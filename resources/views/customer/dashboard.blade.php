@@ -42,6 +42,7 @@
         </div>
     </section>
 
+    @if (trim((string) ($customer->user_term ?? '')) !== 'upgraded')
     <section class="content-card">
         <div class="section-head">
             <div>
@@ -73,6 +74,7 @@
             </a>
         </div>
     </section>
+    @endif
 
     <section class="content-card">
         <div class="section-head">
@@ -178,6 +180,7 @@
         </div>
     </section>
 
+    @if (trim((string) ($customer->user_term ?? '')) !== 'upgraded')
     <!-- Upgrade Alert -->
     <div id="upgrade-alert" data-orders="{{ $metrics['orders'] }}" data-quotes="{{ $metrics['quotes'] }}" data-billing="{{ $metrics['billing_total'] }}" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-left: 4px solid #f59e0b; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
@@ -191,6 +194,17 @@
             <button type="button" id="btn-upgrade" class="button" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 600; white-space: nowrap; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Upgrade your account</button>
         </div>
     </div>
+    @else
+    <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-left: 4px solid #10b981; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="font-size: 24px; line-height: 1;">✅</span>
+            <div>
+                <strong style="font-size: 1.05rem; display: block; margin-bottom: 4px; color: #0f172a;">Your account has been upgraded.</strong>
+                <span style="color: #64748b; font-size: 0.95rem;">You can continue to download your previously paid orders from the legacy portal.</span>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <!-- Custom Modals -->
     <div id="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center;">

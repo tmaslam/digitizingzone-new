@@ -548,7 +548,10 @@ class CustomerOrderEntryController extends Controller
         $warning = null;
         $canPlace = true;
 
-        if ($creditLimit > 0 && $pendingAmount >= $creditLimit) {
+        if (trim((string) ($customer->user_term ?? '')) === 'upgraded') {
+            $canPlace = false;
+            $warning = 'Your account has been upgraded. You can no longer place new orders or quotes on the legacy portal, but you can still download your previously paid orders.';
+        } elseif ($creditLimit > 0 && $pendingAmount >= $creditLimit) {
             $canPlace = false;
             $warning = "You have exceeded your credit limit of US$".number_format($creditLimit, 2).". Please clear billing or contact support to continue.";
         } elseif ($pendingLimit > 0 && $pendingOrders >= $pendingLimit) {

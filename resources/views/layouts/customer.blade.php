@@ -1789,6 +1789,11 @@
                 <nav class="customer-nav">
                     <div class="customer-nav-shell">
                         <div class="customer-nav-grid">
+                            @php
+                                $upgradedCustomer = request()->attributes->get('customerUser');
+                                $isUpgraded = $upgradedCustomer && trim((string) ($upgradedCustomer->user_term ?? '')) === 'upgraded';
+                            @endphp
+                            @if (! $isUpgraded)
                             <details class="customer-action-menu">
                                 <summary class="customer-action primary">New Order</summary>
                                 <div class="customer-action-list">
@@ -1800,6 +1805,7 @@
                                     @endforeach
                                 </div>
                             </details>
+                            @endif
                             @foreach ($customerNav as $item)
                                 @php
                                     $active = collect($item['match'])->contains(fn ($pattern) => str_contains($currentPath, $pattern));
