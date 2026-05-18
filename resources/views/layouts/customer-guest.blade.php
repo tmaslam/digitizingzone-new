@@ -8,11 +8,11 @@
     @php
         $legacyAssetBase = rtrim(request()->getSchemeAndHttpHost(), '/');
         $publicMenu = [
-            ['label' => 'Home', 'href' => '/'],
-            ['label' => 'Work Process', 'href' => '/work-process.php'],
-            ['label' => 'Formats', 'href' => '/formats.php'],
-            ['label' => 'Our Prices', 'href' => '/price-plan.php'],
-            ['label' => 'Contact Us', 'href' => '/contact-us.php'],
+            ['label' => 'Home', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'Work Process', 'href' => 'https://1dollardigitizing.com/work-process.php'],
+            ['label' => 'Formats', 'href' => 'https://1dollardigitizing.com/formats.php'],
+            ['label' => 'Our Prices', 'href' => 'https://1dollardigitizing.com/price-plan.php'],
+            ['label' => 'Contact Us', 'href' => 'https://1dollardigitizing.com/contact-us.php'],
         ];
         $serviceLinks = [
             ['label' => 'Embroidery Digitizing', 'href' => url('/embroidery-digitizing.php')],
@@ -667,7 +667,7 @@
 
         <header class="site-header">
             <div class="container nav-shell">
-                <a class="brand" href="/">
+                <a class="brand" href="https://1dollardigitizing.com/">
                     <img src="{{ $legacyAssetBase }}/images/logo.png" alt="1 Dollar Digitizing">
                 </a>
 
