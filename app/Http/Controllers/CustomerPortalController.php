@@ -289,7 +289,7 @@ class CustomerPortalController extends Controller
 
         return response()->json([
             'success' => true,
-            'redirect' => 'https://1dollardigitizing.com/dashboard.php?legacy_customer_id=' . $customer->user_id,
+            'redirect' => 'https://1dollardigitizing.com/dashboard.php?legacy_customer_id=' . urlencode(encrypt($customer->user_id)),
         ]);
     }
 
