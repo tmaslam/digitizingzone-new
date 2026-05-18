@@ -6,6 +6,16 @@
 @section('hero_text', 'Track your orders, quotes, billing, downloads, and account details in one streamlined workspace.')
 
 @section('content')
+    <section class="content-card" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #fff;">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+            <div>
+                <h3 style="color: #fff; margin: 0 0 8px;">Upgrade Your Account</h3>
+                <p style="color: rgba(255,255,255,0.95); margin: 0;">Enjoy better features, faster service, and more discounted prices. Please update your account to continue using your customer dashboard.</p>
+            </div>
+            <a href="/account-upgrade.php" class="button" style="background: #fff; color: #0284c7; font-weight: 600; white-space: nowrap;">Upgrade your account</a>
+        </div>
+    </section>
+
     <section class="content-card">
         <div class="section-head">
             <div>
