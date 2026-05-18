@@ -1775,6 +1775,7 @@
 
         <main class="page-content">
             <div class="container customer-shell">
+                @yield('before_hero')
                 <section class="customer-hero @yield('hero_class')">
                     <span class="eyebrow">@yield('eyebrow', 'Welcome Back')</span>
                     <div class="hero-grid">

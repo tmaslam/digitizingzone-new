@@ -5,17 +5,22 @@
 @section('hero_title', 'Dashboard')
 @section('hero_text', 'Track your orders, quotes, billing, downloads, and account details in one streamlined workspace.')
 
-@section('content')
-    <section class="content-card" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #fff;">
+@section('before_hero')
+    <div style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; padding: 18px 24px; border-radius: 14px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(234, 88, 12, 0.25);">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-            <div>
-                <h3 style="color: #fff; margin: 0 0 8px;">Upgrade Your Account</h3>
-                <p style="color: rgba(255,255,255,0.95); margin: 0;">Enjoy better features, faster service, and more discounted prices. Please update your account to continue using your customer dashboard.</p>
+            <div style="display: flex; align-items: flex-start; gap: 14px;">
+                <span style="font-size: 28px; line-height: 1;">⚡</span>
+                <div>
+                    <strong style="font-size: 1.1rem; display: block; margin-bottom: 4px;">Enjoy better features, faster service, and more discounted prices.</strong>
+                    <span style="opacity: 0.95; font-size: 0.95rem;">Please update your account to continue using your customer dashboard.</span>
+                </div>
             </div>
-            <a href="/account-upgrade.php" class="button" style="background: #fff; color: #0284c7; font-weight: 600; white-space: nowrap;">Upgrade your account</a>
+            <a href="/account-upgrade.php" class="button" style="background: #fff; color: #c2410c; font-weight: 700; white-space: nowrap; padding: 10px 22px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12);">Upgrade your account</a>
         </div>
-    </section>
+    </div>
+@endsection
 
+@section('content')
     <section class="content-card">
         <div class="section-head">
             <div>
