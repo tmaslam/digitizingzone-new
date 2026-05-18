@@ -2024,5 +2024,13 @@
         });
     </script>
     @include('shared.file-preview-script')
+    <script>
+        // Bust bfcache when user navigates back after logout/account block
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
 </body>
 </html>
