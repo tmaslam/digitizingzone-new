@@ -180,8 +180,8 @@
         </div>
     </section>
 
-    @if (false && trim((string) ($customer->user_term ?? '')) !== 'upgraded')
-    <!-- Upgrade Alert (temporarily disabled) -->
+    @if (trim((string) ($customer->user_term ?? '')) !== 'upgraded')
+    <!-- Upgrade Alert -->
     <div id="upgrade-alert" data-orders="{{ $metrics['orders'] }}" data-quotes="{{ $metrics['quotes'] }}" data-billing="{{ $metrics['billing_total'] }}" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-left: 4px solid #f59e0b; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div style="display: flex; align-items: flex-start; gap: 14px;">
