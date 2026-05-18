@@ -21,6 +21,22 @@
         </section>
     @endif
 
+    @if (trim((string) ($customer->user_term ?? '')) === 'upgraded')
+        <section class="content-card">
+            <div class="section-head">
+                <div>
+                    <h3>Order Entry Unavailable</h3>
+                    <p>Your account has been upgraded and new submissions are handled on the new portal.</p>
+                </div>
+            </div>
+            <div class="alert alert-error">
+                Your account has been upgraded. You can no longer place new orders or quotes on the legacy portal, but you can still download your previously paid orders.
+            </div>
+            <div style="margin-top: 18px;">
+                <a class="button secondary" href="/view-archive-orders.php">View Paid Orders</a>
+            </div>
+        </section>
+    @else
     <section class="content-card">
         <div class="section-head">
             <div>
@@ -168,6 +184,7 @@
             </div>
         </form>
     </section>
+    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
