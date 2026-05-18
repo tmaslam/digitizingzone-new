@@ -212,7 +212,7 @@
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 </div>
                 <h3 style="margin:0 0 10px; font-size:1.25rem; color:#111;">Confirm Account Upgrade</h3>
-                <p style="margin:0 0 24px; color:#64748b; line-height:1.6; font-size:0.95rem;">This action is irreversible. Your account will be upgraded, and an order migration request will be sent to the admin.</p>
+                <p style="margin:0 0 24px; color:#64748b; line-height:1.6; font-size:0.95rem;">This action is irreversible. Your account will be upgraded, you will be logged out, and your legacy account will be blocked.</p>
                 <div id="confirm-buttons" style="display:flex; gap:12px; justify-content:center;">
                     <button type="button" onclick="closeModal('modal-confirm')" style="background:#f3f4f6; color:#374151; border:none; padding:10px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">Cancel</button>
                     <button type="button" id="btn-confirm-upgrade" style="background:#2563eb; color:#fff; border:none; padding:10px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">Confirm Upgrade</button>

@@ -13,6 +13,7 @@ use App\Support\CustomerAttachmentAccess;
 use App\Support\CustomerBalance;
 use App\Support\HttpCache;
 use App\Support\CustomerReleaseGate;
+use App\Support\CustomerRememberLogin;
 use App\Support\CustomerWorkflowStatus;
 use App\Support\HostedPaymentProviders;
 use App\Support\LegacyQuerySupport;
@@ -280,13 +281,21 @@ class CustomerPortalController extends Controller
     {
         $customer = $this->customer($request);
 
-        // Clear customer session (effectively making account inactive on this portal)
+        // Deactivate / block the customer account
+        $customer->update([
+            'is_active' => 0,
+            'status'    => 'inactive',
+        ]);
+
+        // Clear customer session (log out)
         CustomerRememberLogin::clearCurrent($request);
         $request->session()->forget([
             'customer_user_id',
             'customer_user_name',
             'customer_site_key',
         ]);
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return response()->json([
             'success' => true,
