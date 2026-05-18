@@ -284,7 +284,7 @@ class CustomerPortalController extends Controller
         // Deactivate / block the customer account
         $customer->update([
             'is_active' => 0,
-            'status'    => 'inactive',
+            'user_term' => 'blocked',
         ]);
 
         // Clear customer session (log out)
