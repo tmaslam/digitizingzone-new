@@ -6,7 +6,7 @@
     <div class="container guest-shell">
         <div class="auth-layout auth-layout-solo">
             <section class="panel form-panel auth-panel">
-                <h2>Signing In</h2>
+                <h2>Sign In</h2>
                 <p class="muted">Use your email or username to access your orders, quotes, billing, and downloads.</p>
 
                {{-- @if ($signupOffer)
