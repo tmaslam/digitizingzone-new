@@ -48,7 +48,7 @@
 
                     <div class="actions">
                         <button type="submit">Sign In</button>
-                        <a class="button secondary" href="/sign-up.php">Create Account</a>
+                        <a class="button secondary" href="https://1dollardigitizing.com/sign-up.php">Create Account</a>
                     </div>
                 </form>
 
