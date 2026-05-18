@@ -30,12 +30,6 @@
                 <strong>{{ $billingSummary['invoice_count'] }}</strong>
             </div>
         </div>
-        @if ($billingRows->count() && $depositBalance > 0)
-            <form method="post" action="/view-billing.php/pay-with-deposit" style="margin-top: 16px;">
-                @csrf
-                <button type="submit" class="button" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 600; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Pay with Deposit</button>
-            </form>
-        @endif
     </section>
 
     <section class="content-card">
@@ -45,13 +39,19 @@
                 <p>Pay invoices one at a time or together. The largest current invoice is ${{ number_format($billingSummary['largest_invoice'], 2) }}.</p>
             </div>
             @if ($billingRows->count())
-                <form method="post" action="/view-billing.php/pay-all">
-                    @csrf
-                    @include('customer.payments.provider-buttons', [
-                        'paymentProviders' => $paymentProviders,
-                        'buttonPrefix' => 'Pay All With',
-                    ])
-                </form>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                    <form method="post" action="/view-billing.php/pay-with-deposit">
+                        @csrf
+                        <button type="submit" class="button" style="background: #0284c7; color: #fff; font-weight: 600; padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer;">Pay with Deposit</button>
+                    </form>
+                    <form method="post" action="/view-billing.php/pay-all">
+                        @csrf
+                        @include('customer.payments.provider-buttons', [
+                            'paymentProviders' => $paymentProviders,
+                            'buttonPrefix' => 'Pay All With',
+                        ])
+                    </form>
+                </div>
             @endif
         </div>
 

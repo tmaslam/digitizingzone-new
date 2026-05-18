@@ -258,10 +258,12 @@ class CustomerPortalController extends Controller
             return (float) ($billing->order?->total_amount ?: $billing->amount);
         });
 
+        $availableBalance = CustomerBalance::available((int) $customer->user_id, $site->legacyKey);
         $deposit = CustomerBalance::deposit($customer->topup);
+        $combinedBalance = $availableBalance + $deposit;
 
-        if ($deposit + 0.0001 < $totalOutstanding) {
-            return redirect('/view-billing.php')->with('error', 'Insufficient deposit balance. Your deposit is $' . number_format($deposit, 2) . ' but outstanding total is $' . number_format($totalOutstanding, 2) . '.');
+        if ($combinedBalance + 0.0001 < $totalOutstanding) {
+            return redirect('/view-billing.php')->with('error', 'Insufficient balance. Your available balance + deposit ($' . number_format($combinedBalance, 2) . ') is less than the outstanding total ($' . number_format($totalOutstanding, 2) . ').');
         }
 
         $paidCount = 0;
