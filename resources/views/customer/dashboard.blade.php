@@ -179,16 +179,16 @@
     </section>
 
     <!-- Upgrade Alert -->
-    <div id="upgrade-alert" data-orders="{{ $metrics['orders'] }}" data-quotes="{{ $metrics['quotes'] }}" data-billing="{{ $metrics['billing_total'] }}" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-left: 4px solid #0ea5e9; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
+    <div id="upgrade-alert" data-orders="{{ $metrics['orders'] }}" data-quotes="{{ $metrics['quotes'] }}" data-billing="{{ $metrics['billing_total'] }}" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-left: 4px solid #f59e0b; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
             <div style="display: flex; align-items: flex-start; gap: 14px;">
                 <span style="font-size: 24px; line-height: 1;">💡</span>
                 <div>
                     <strong style="font-size: 1.05rem; display: block; margin-bottom: 4px; color: #0f172a;">Enjoy better features, faster service, and more discounted prices.</strong>
-                    <span style="color: #64748b; font-size: 0.95rem;">Please update your account to continue using your customer dashboard.</span>
+                    <span style="color: #64748b; font-size: 0.95rem;">Additionally, all of your existing orders will be migrated to your upgraded account.</span>
                 </div>
             </div>
-            <button type="button" id="btn-upgrade" class="button" style="background: #0284c7; color: #fff; font-weight: 600; white-space: nowrap; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Upgrade your account</button>
+            <button type="button" id="btn-upgrade" class="button" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 600; white-space: nowrap; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Upgrade your account</button>
         </div>
     </div>
 
