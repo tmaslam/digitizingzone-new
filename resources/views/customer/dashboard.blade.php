@@ -185,7 +185,7 @@
                 <span style="font-size: 24px; line-height: 1;">💡</span>
                 <div>
                     <strong style="font-size: 1.05rem; display: block; margin-bottom: 4px; color: #0f172a;">Enjoy better features, faster service, and more discounted prices.</strong>
-                    <span style="color: #64748b; font-size: 0.95rem;">Additionally, all of your existing orders will be migrated to your upgraded account.</span>
+                    <span style="color: #64748b; font-size: 0.95rem;">Additionally, You will continue to have access to download your previously paid orders.</span>
                 </div>
             </div>
             <button type="button" id="btn-upgrade" class="button" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 600; white-space: nowrap; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Upgrade your account</button>
