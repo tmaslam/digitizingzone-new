@@ -207,6 +207,16 @@ class AdminPeopleController extends Controller
             ->with('success', 'Customer has been blocked successfully.');
     }
 
+    public function reverseUpgrade(Request $request, AdminUser $customer)
+    {
+        abort_unless((int) $customer->usre_type_id === 1, 404);
+
+        $customer->update(['user_term' => '']);
+
+        return redirect()->to(url('/v/customer_list.php').'?'.http_build_query($request->except('_token')))
+            ->with('success', 'Customer upgrade has been reversed. They can now place new orders and quotes again.');
+    }
+
     public function deleteCustomer(Request $request, AdminUser $customer)
     {
         abort_unless((int) $customer->usre_type_id === 1, 404);

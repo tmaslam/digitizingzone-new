@@ -21,6 +21,12 @@
                         <input type="hidden" name="return_to" value="{{ request()->fullUrl() }}">
                         <button type="submit">Simulate Login</button>
                     </form>
+                    @if (trim((string) ($customer->user_term ?? '')) === 'upgraded')
+                    <form method="post" action="{{ url('/v/customers/'.$customer->user_id.'/reverse-upgrade') }}" onsubmit="return confirm('Reverse upgrade for this customer? They will be able to place new orders again.');">
+                        @csrf
+                        <button style="background: linear-gradient(135deg, #2563eb, #1d4ed8);" type="submit">Reverse Upgrade</button>
+                    </form>
+                    @endif
                 </div>
             </div>
 
