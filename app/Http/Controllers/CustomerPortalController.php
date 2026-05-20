@@ -862,6 +862,36 @@ class CustomerPortalController extends Controller
             ->where('user_id', $customer->user_id)
             ->where('status', 'approved')
             ->where('is_active', '1')
+            ->where(function ($dateQuery) {
+                // Hide pre-2025 records where physical files no longer exist
+                $dateQuery->where(function ($q) {
+                    $q->whereNotNull('completion_date')
+                        ->where('completion_date', '!=', '')
+                        ->where('completion_date', '!=', '0000-00-00')
+                        ->whereDate('completion_date', '>=', '2025-01-01');
+                })->orWhere(function ($q) {
+                    $q->where(function ($q2) {
+                        $q2->whereNull('completion_date')
+                            ->orWhere('completion_date', '')
+                            ->orWhere('completion_date', '0000-00-00');
+                    })
+                        ->whereNotNull('submit_date')
+                        ->where('submit_date', '!=', '')
+                        ->where('submit_date', '!=', '0000-00-00')
+                        ->whereDate('submit_date', '>=', '2025-01-01');
+                })->orWhere(function ($q) {
+                    $q->where(function ($q2) {
+                        $q2->whereNull('completion_date')
+                            ->orWhere('completion_date', '')
+                            ->orWhere('completion_date', '0000-00-00');
+                    })
+                        ->where(function ($q2) {
+                            $q2->whereNull('submit_date')
+                                ->orWhere('submit_date', '')
+                                ->orWhere('submit_date', '0000-00-00');
+                        });
+                });
+            })
             ->whereIn('order_id', function ($query) use ($customer, $site) {
                 $query->select('order_id')
                     ->from('billing')
