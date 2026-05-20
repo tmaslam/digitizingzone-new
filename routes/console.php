@@ -1,9 +1,16 @@
 <?php
 
+use App\Models\AdvancePayment;
 use App\Models\AdminUser;
+use App\Models\Attachment;
+use App\Models\Billing;
+use App\Models\Order;
+use App\Models\OrderComment;
+use App\Support\LegacyQuerySupport;
 use App\Support\PasswordManager;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 Artisan::command('inspire', function () {
@@ -183,3 +190,135 @@ Artisan::command('release:check {--strict : Fail when any required release item 
 
     return $issues === [] ? self::SUCCESS : self::FAILURE;
 })->purpose('Validate unified release prerequisites before QA or cutover');
+
+
+Artisan::command('cleanup:old-orders {--date=2025-01-01 : Archive orders completed or submitted before this date} {--dry-run : Show counts without making changes} {--batch-size=500 : Number of orders to process per batch}', function () {
+    $cutoffDate = trim((string) $this->option('date'));
+    $dryRun = (bool) $this->option('dry-run');
+    $batchSize = (int) $this->option('batch-size');
+
+    if (! preg_match('/^\d{4}-\d{2}-\d{2}$/', $cutoffDate)) {
+        $this->error('Date must be in YYYY-MM-DD format.');
+
+        return self::FAILURE;
+    }
+
+    $this->info('Cutoff date: ' . $cutoffDate);
+    $this->info('Mode: ' . ($dryRun ? 'DRY RUN (no changes)' : 'LIVE'));
+    $this->newLine();
+
+    // Build query for old active orders (use completion_date, fall back to submit_date)
+    $orderQuery = Order::query()
+        ->active()
+        ->where(function ($q) use ($cutoffDate) {
+            $q->where(function ($q2) use ($cutoffDate) {
+                $q2->whereNotNull('completion_date')
+                    ->where('completion_date', '!=', '')
+                    ->where('completion_date', '!=', '0000-00-00')
+                    ->whereDate('completion_date', '<', $cutoffDate);
+            })->orWhere(function ($q2) use ($cutoffDate) {
+                $q2->where(function ($q3) {
+                    $q3->whereNull('completion_date')
+                        ->orWhere('completion_date', '')
+                        ->orWhere('completion_date', '0000-00-00');
+                })
+                    ->whereNotNull('submit_date')
+                    ->where('submit_date', '!=', '')
+                    ->where('submit_date', '!=', '0000-00-00')
+                    ->whereDate('submit_date', '<', $cutoffDate);
+            });
+        });
+
+    $totalOrders = (int) $orderQuery->count();
+
+    if ($totalOrders === 0) {
+        $this->info('No active orders found before ' . $cutoffDate);
+
+        return self::SUCCESS;
+    }
+
+    $this->warn('Found ' . $totalOrders . ' active order(s) to archive.');
+
+    if (! $dryRun && ! $this->confirm('Do you want to proceed with archiving these orders and all related records?')) {
+        $this->info('Aborted.');
+
+        return self::SUCCESS;
+    }
+
+    $timestamp = now()->format('Y-m-d H:i:s');
+    $deletedBy = 'cleanup-old-orders';
+
+    $archivedOrders = 0;
+    $archivedComments = 0;
+    $archivedTeamComments = 0;
+    $archivedAttachments = 0;
+    $archivedBilling = 0;
+    $archivedNegotiations = 0;
+    $archivedWorkflowMeta = 0;
+    $updatedAdvancePayments = 0;
+
+    $orderQuery->select('order_id')
+        ->orderBy('order_id')
+        ->chunkById($batchSize, function ($orders) use ($timestamp, $deletedBy, $dryRun, &$archivedOrders, &$archivedComments, &$archivedTeamComments, &$archivedAttachments, &$archivedBilling, &$archivedNegotiations, &$archivedWorkflowMeta, &$updatedAdvancePayments) {
+            $ids = $orders->pluck('order_id')->all();
+
+            if ($dryRun) {
+                $archivedOrders += count($ids);
+                $archivedComments += OrderComment::query()->whereIn('order_id', $ids)->where(function ($q) {
+                    LegacyQuerySupport::applyActiveEndDate($q, 'comments');
+                })->count();
+                $archivedTeamComments += DB::table('team_comments')->whereIn('order_id', $ids)->where(function ($q) {
+                    LegacyQuerySupport::applyActiveEndDate($q, 'team_comments');
+                })->count();
+                $archivedAttachments += Attachment::query()->whereIn('order_id', $ids)->where(function ($q) {
+                    LegacyQuerySupport::applyActiveEndDate($q, 'attach_files');
+                })->count();
+                $archivedBilling += Billing::query()->whereIn('order_id', $ids)->where(function ($q) {
+                    LegacyQuerySupport::applyActiveEndDate($q, 'billing');
+                })->count();
+
+                if (Schema::hasTable('quote_negotiations')) {
+                    $archivedNegotiations += DB::table('quote_negotiations')->whereIn('order_id', $ids)->whereNull('end_date')->count();
+                }
+
+                if (Schema::hasTable('order_workflow_meta')) {
+                    $archivedWorkflowMeta += DB::table('order_workflow_meta')->whereIn('order_id', $ids)->whereNull('end_date')->count();
+                }
+
+                $updatedAdvancePayments += AdvancePayment::query()->whereIn('order_id', $ids)->where(function ($q) {
+                    $q->whereNull('status')->orWhere('status', '!=', 0);
+                })->count();
+            } else {
+                $archivedOrders += Order::query()->whereIn('order_id', $ids)->update(['end_date' => $timestamp, 'deleted_by' => $deletedBy]);
+                $archivedComments += OrderComment::query()->whereIn('order_id', $ids)->update(['end_date' => $timestamp, 'deleted_by' => $deletedBy]);
+                $archivedTeamComments += DB::table('team_comments')->whereIn('order_id', $ids)->update(['end_date' => $timestamp, 'deleted_by' => $deletedBy]);
+                $archivedAttachments += Attachment::query()->whereIn('order_id', $ids)->update(['end_date' => $timestamp, 'deleted_by' => $deletedBy]);
+                $archivedBilling += Billing::query()->whereIn('order_id', $ids)->update(['end_date' => $timestamp, 'deleted_by' => $deletedBy]);
+
+                if (Schema::hasTable('quote_negotiations')) {
+                    $archivedNegotiations += DB::table('quote_negotiations')->whereIn('order_id', $ids)->update(['end_date' => $timestamp]);
+                }
+
+                if (Schema::hasTable('order_workflow_meta')) {
+                    $archivedWorkflowMeta += DB::table('order_workflow_meta')->whereIn('order_id', $ids)->update(['end_date' => $timestamp]);
+                }
+
+                $updatedAdvancePayments += AdvancePayment::query()->whereIn('order_id', $ids)->update(['status' => 0]);
+            }
+
+            $this->info('Processed batch of ' . count($ids) . ' order(s)...');
+        }, 'order_id');
+
+    $this->newLine();
+    $this->info('Summary:');
+    $this->line('  Orders archived:          ' . $archivedOrders);
+    $this->line('  Comments archived:        ' . $archivedComments);
+    $this->line('  Team comments archived:   ' . $archivedTeamComments);
+    $this->line('  Attachments archived:     ' . $archivedAttachments);
+    $this->line('  Billing records archived: ' . $archivedBilling);
+    $this->line('  Quote negotiations:       ' . $archivedNegotiations);
+    $this->line('  Workflow meta records:    ' . $archivedWorkflowMeta);
+    $this->line('  Advance payments zeroed:  ' . $updatedAdvancePayments);
+
+    return self::SUCCESS;
+})->purpose('Archive orders and related records older than the given cutoff date');
