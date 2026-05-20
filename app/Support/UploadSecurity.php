@@ -18,13 +18,13 @@ class UploadSecurity
 
     private const SOURCE_EXTENSIONS = [
         'pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff', 'svg',
-        'ai', 'eps', 'cdr',
+        'ai', 'eps', 'cdr', 'psd',
         'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf',
     ];
 
     private const PRODUCTION_EXTENSIONS = [
         'pdf', 'jpg', 'jpeg', 'png',
-        'ai', 'eps', 'svg', 'cdr',
+        'ai', 'eps', 'svg', 'cdr', 'psd',
         'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf',
     ];
 

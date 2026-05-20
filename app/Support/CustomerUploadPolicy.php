@@ -21,8 +21,8 @@ class CustomerUploadPolicy
         return [
             'max_size_mb' => self::CUSTOMER_SOURCE_MAX_SIZE_MB,
             'preview_extensions' => ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'],
-            'source_allowed' => ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff', 'svg', 'ai', 'eps', 'cdr', 'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf'],
-            'production_allowed' => ['pdf', 'jpg', 'jpeg', 'png', 'ai', 'eps', 'svg', 'cdr', 'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf'],
+            'source_allowed' => ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff', 'svg', 'ai', 'eps', 'cdr', 'psd', 'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf'],
+            'production_allowed' => ['pdf', 'jpg', 'jpeg', 'png', 'ai', 'eps', 'svg', 'cdr', 'psd', 'dst', 'emb', 'pes', 'exp', 'jef', 'hus', 'vp3', 'xxx', 'dsb', 'dsz', 'tap', 'u01', 'cnd', 'pxt', 'pxf'],
         ];
     }
 
