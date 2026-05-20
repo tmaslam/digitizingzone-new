@@ -393,25 +393,30 @@ class CustomerPortalController extends Controller
         }
 
         foreach ($orders as $order) {
-            $released = CustomerAttachmentAccess::releasedAttachments($order);
-            $sources  = CustomerAttachmentAccess::sourceAttachments($order);
+            // Fetch every attachment for this order so nothing is missed
+            // (scanned, sewout, orderTeamImages, team, source files, etc.)
+            $allAttachments = Attachment::query()
+                ->where('order_id', $order->order_id)
+                ->get()
+                ->filter(fn (Attachment $attachment) => CustomerAttachmentAccess::attachmentAllowedForCustomer($order, $attachment));
 
             $orderRef = $order->order_num ?: $order->order_id;
 
-            foreach ($released as $attachment) {
+            foreach ($allAttachments as $attachment) {
                 $fullPath = CustomerAttachmentAccess::absolutePath($attachment);
-                if (is_file($fullPath)) {
-                    $fileName = (string) ($attachment->file_name ?: basename($fullPath));
-                    $zip->addFile($fullPath, 'order_' . $orderRef . '/' . $fileName);
+                if (! is_file($fullPath)) {
+                    continue;
                 }
-            }
 
-            foreach ($sources as $attachment) {
-                $fullPath = CustomerAttachmentAccess::absolutePath($attachment);
-                if (is_file($fullPath)) {
-                    $fileName = (string) ($attachment->file_name ?: basename($fullPath));
-                    $zip->addFile($fullPath, 'order_' . $orderRef . '/source file - ' . $fileName);
-                }
+                $fileName = (string) ($attachment->file_name ?: basename($fullPath));
+                $source   = (string) $attachment->file_source;
+
+                // Prefix source/original uploads so they are easy to distinguish
+                $zipPath = in_array($source, CustomerAttachmentAccess::SOURCE_FILE_SOURCES, true)
+                    ? 'order_' . $orderRef . '/source file - ' . $fileName
+                    : 'order_' . $orderRef . '/' . $fileName;
+
+                $zip->addFile($fullPath, $zipPath);
             }
         }
 
