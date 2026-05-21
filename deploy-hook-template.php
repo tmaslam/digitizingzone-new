@@ -2,6 +2,9 @@
 if (!hash_equals('__DEPLOY_TOKEN__', (string) ($_GET['t'] ?? ''))) {
     http_response_code(404); exit;
 }
+if (function_exists('opcache_reset')) {
+    opcache_reset();
+}
 define('LARAVEL_START', microtime(true));
 require __DIR__.'/vendor/autoload.php';
 $app = require_once __DIR__.'/bootstrap/app.php';
