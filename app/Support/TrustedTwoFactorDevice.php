@@ -74,19 +74,15 @@ class TrustedTwoFactorDevice
             return false;
         }
 
-        $newValidator = bin2hex(random_bytes(32));
-
         DB::table(self::TABLE)
             ->where('id', $record->id)
             ->update([
-                'token_hash' => hash('sha256', $newValidator),
-                'user_agent_hash' => self::userAgentHash($request),
                 'expires_at' => now()->addDays(self::LIFETIME_DAYS)->format('Y-m-d H:i:s'),
                 'last_used_at' => now()->format('Y-m-d H:i:s'),
             ]);
 
-        self::queueCookie($request, $portal, $siteLegacyKey, $selector, $newValidator);
-        Log::info('TrustedTwoFactorDevice: challenge skipped, token rotated.', ['portal' => $portal, 'user_id' => $user->user_id, 'selector' => $selector]);
+        self::queueCookie($request, $portal, $siteLegacyKey, $selector, $validator);
+        Log::info('TrustedTwoFactorDevice: challenge skipped.', ['portal' => $portal, 'user_id' => $user->user_id, 'selector' => $selector]);
 
         return true;
     }
@@ -99,11 +95,25 @@ class TrustedTwoFactorDevice
             return;
         }
 
-        self::revokeCurrent($request, $portal, $siteLegacyKey);
-
         $selector = bin2hex(random_bytes(8));
         $validator = bin2hex(random_bytes(32));
         $now = now();
+
+        // Remove any existing trusted device for this user/portal so we only
+        // keep one active record per user (simpler and avoids queue churn).
+        try {
+            $query = DB::table(self::TABLE)
+                ->where('portal', $portal)
+                ->where('user_id', (int) $user->user_id);
+
+            if ($portal === 'customer') {
+                $query->where('site_legacy_key', (string) ($siteLegacyKey ?? ''));
+            }
+
+            $query->delete();
+        } catch (\Throwable $e) {
+            Log::error('TrustedTwoFactorDevice.issue: delete failed.', ['portal' => $portal, 'user_id' => $user->user_id, 'error' => $e->getMessage()]);
+        }
 
         try {
             DB::table(self::TABLE)->insert([
