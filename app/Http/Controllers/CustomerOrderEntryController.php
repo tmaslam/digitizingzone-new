@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
 
 class CustomerOrderEntryController extends Controller
 {
-    private const CUSTOMER_SOURCE_FILE_MAX_KB = 5120;
+    private const CUSTOMER_SOURCE_FILE_MAX_KB = 25600;
 
     private const FABRIC_TYPE_OPTIONS = [
         'Pique Polo',
@@ -300,7 +300,7 @@ class CustomerOrderEntryController extends Controller
             'comments' => ['required', 'string', 'max:5000'],
             'source_files.*' => ['nullable', 'file', 'max:'.self::CUSTOMER_SOURCE_FILE_MAX_KB],
         ], [
-            'source_files.*.max' => 'Each uploaded file must be 5 MB or smaller.',
+            'source_files.*.max' => 'Each uploaded file must be 25 MB or smaller.',
         ]);
 
         $uploadValidationError = UploadSecurity::assertAllowedFiles($request->file('source_files', []), 'source');
@@ -362,7 +362,7 @@ class CustomerOrderEntryController extends Controller
         ], [
             'source_files.required' => 'Please upload at least one file.',
             'source_files.min' => 'Please upload at least one file.',
-            'source_files.*.max' => 'Each uploaded file must be 5 MB or smaller.',
+            'source_files.*.max' => 'Each uploaded file must be 25 MB or smaller.',
         ]);
     }
 

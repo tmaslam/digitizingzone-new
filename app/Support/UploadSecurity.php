@@ -77,9 +77,13 @@ class UploadSecurity
             ? self::PRODUCTION_EXTENSIONS
             : self::SOURCE_EXTENSIONS;
 
-        return collect($extensions)
+        $extList = collect($extensions)
             ->map(fn (string $extension) => '.'.$extension)
             ->implode(',');
+
+        // Windows file pickers need MIME-type hints for formats like .psd
+        // that may not have a registered system file association.
+        return 'image/*,application/pdf,'.$extList;
     }
 
     private static function validationMessage(UploadedFile $file, string $profile): ?string

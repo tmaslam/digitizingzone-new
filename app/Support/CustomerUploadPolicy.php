@@ -4,7 +4,7 @@ namespace App\Support;
 
 class CustomerUploadPolicy
 {
-    private const CUSTOMER_SOURCE_MAX_SIZE_MB = 5;
+    private const CUSTOMER_SOURCE_MAX_SIZE_MB = 25;
 
     public static function customerSourceAcceptAttribute(): string
     {
