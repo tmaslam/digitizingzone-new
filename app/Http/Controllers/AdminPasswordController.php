@@ -6,6 +6,7 @@ use App\Models\AdminUser;
 use App\Support\LoginSecurity;
 use App\Support\PasswordManager;
 use App\Support\PortalMailer;
+use App\Support\TrustedTwoFactorDevice;
 use App\Support\TurnstileVerifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -139,6 +140,7 @@ class AdminPasswordController extends Controller
             ['is_active' => 1]
         ))->save();
         LoginSecurity::clearSecurityState($admin);
+        TrustedTwoFactorDevice::revokeForUser('admin', (int) $admin->user_id);
 
         DB::table(self::TABLE)
             ->where('admin_user_id', $admin->user_id)

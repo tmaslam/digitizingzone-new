@@ -17,6 +17,7 @@ use App\Support\PasswordManager;
 use App\Support\PortalMailer;
 use App\Support\SecurityAudit;
 use App\Support\SignupOfferService;
+use App\Support\TrustedTwoFactorDevice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -51,6 +52,7 @@ class AdminProfileController extends Controller
         ]);
 
         $adminUser->forceFill(PasswordManager::payload((string) $validated['txtPassword']))->save();
+        TrustedTwoFactorDevice::revokeForUser('admin', (int) $adminUser->user_id);
 
         return redirect()->to(url('/v/change-password.php'))
             ->with('success', 'Admin password updated successfully.');

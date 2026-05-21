@@ -49,8 +49,7 @@ class TrustedTwoFactorDevice
         }
 
         $valid = hash_equals((string) $record->token_hash, hash('sha256', $validator))
-            && hash_equals((string) $record->user_agent_hash, self::userAgentHash($request))
-            && hash_equals((string) $record->password_signature, self::passwordSignature($user));
+            && hash_equals((string) $record->user_agent_hash, self::userAgentHash($request));
 
         if (! $valid) {
             DB::table(self::TABLE)->where('id', $record->id)->delete();
@@ -66,7 +65,6 @@ class TrustedTwoFactorDevice
             ->update([
                 'token_hash' => hash('sha256', $newValidator),
                 'user_agent_hash' => self::userAgentHash($request),
-                'password_signature' => self::passwordSignature($user),
                 'expires_at' => now()->addDays(self::LIFETIME_DAYS)->format('Y-m-d H:i:s'),
                 'last_used_at' => now()->format('Y-m-d H:i:s'),
             ]);
