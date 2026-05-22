@@ -139,6 +139,11 @@ class TrustedTwoFactorDevice
         Cookie::queue(Cookie::forget(self::cookieName($portal, $siteLegacyKey), '/'));
     }
 
+    private static function forgetCookie(string $portal, ?string $siteLegacyKey = null): void
+    {
+        Cookie::queue(Cookie::forget(self::cookieName($portal, $siteLegacyKey), '/'));
+    }
+
     private static function cookieName(string $portal, ?string $siteLegacyKey = null): string
     {
         if ($portal === 'customer') {
