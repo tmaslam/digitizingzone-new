@@ -1,3 +1,6 @@
+/bootstrap/cache/packages.php
+/bootstrap/cache/services.php
+/.claude
 /node_modules
 /public/build
 /public/hot

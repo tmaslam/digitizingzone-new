@@ -38,6 +38,8 @@ jobs:
             uploads/**
             vendor/**
             storage/**
+            bootstrap/cache/packages.php
+            bootstrap/cache/services.php
             .ftpquota
             .ftp-deploy-sync-state.json
             deploy-hook-template.php
