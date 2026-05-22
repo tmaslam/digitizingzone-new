@@ -148,7 +148,7 @@
 <div class="shell">
     <section class="hero">
         <span>Secure Admin Access</span>
-        <h1>1Dollar Admin</h1>
+        <h1>1Dollar <span style="opacity:0.55;font-weight:500;">Legacy</span> Admin</h1>
         <p>Authorized access only.</p>
         <ul>
             <li>Admin portal</li>
