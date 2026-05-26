@@ -756,7 +756,7 @@ class CustomerOrderEntryController extends Controller
         $commentHtml = trim($comment) !== '' ? '<p><strong>Customer Notes:</strong> '.e($comment).'</p>' : '';
 
         $body = <<<HTML
-<p>{$subjectLabel} on {$site->displayLabel()}.</p>
+<p>{$subjectLabel} on {$site->displayLabel()} <strong>(Legacy Platform)</strong>.</p>
 <p><strong>Order ID:</strong> {$order->order_id}</p>
 <p><strong>Design Name:</strong> {$designName}</p>
 <p><strong>Customer:</strong> {$customerLabel}</p>
@@ -767,7 +767,7 @@ class CustomerOrderEntryController extends Controller
 <p><a href="{$detailUrl}">Open order detail</a></p>
 HTML;
 
-        PortalMailer::sendHtml($recipient, $subject, $body);
+        PortalMailer::sendHtml($recipient, '[Legacy] '.$subject, $body);
     }
 
     private function adminDetailUrl(Order $order): string
