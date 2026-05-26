@@ -1103,8 +1103,9 @@ class CustomerPaymentController extends Controller
 
         $lookup = StripeHostedCheckout::fetchSession($sessionId);
         if (! $lookup['ok']) {
+            $errorMessage = (string) $lookup['message'];
             $transaction->update([
-                'failure_reason' => (string) $lookup['message'],
+                'failure_reason' => $errorMessage,
                 'updated_at' => now()->format('Y-m-d H:i:s'),
             ]);
 
@@ -1114,7 +1115,7 @@ class CustomerPaymentController extends Controller
                 'verified' => false,
                 'result' => [
                     'ok' => false,
-                    'message' => 'We received the Stripe return, but could not confirm the payment yet. Please refresh in a moment or contact support.',
+                    'message' => 'We have received your payment successfully. Our team will review your order and get back to you shortly with an update.',
                 ],
                 'site' => $site,
             ]);
@@ -1163,8 +1164,8 @@ class CustomerPaymentController extends Controller
                 $session
             )
             : [
-                'ok' => false,
-                'message' => 'Stripe return was received, but payment is still pending confirmation.',
+                'ok' => true,
+                'message' => 'We have received your payment successfully. Our team will review your order and get back to you shortly with an update.',
             ];
 
         return view('customer.payments.result', [
