@@ -17,6 +17,7 @@ if (! is_file($opcacheMarker)) {
         __DIR__ . '/../app/Http/Controllers/AdminTwoFactorController.php',
         __DIR__ . '/../app/Http/Controllers/CustomerAuthController.php',
         __DIR__ . '/../app/Http/Controllers/CustomerTwoFactorController.php',
+        __DIR__ . '/../app/Http/Controllers/CustomerOrderEntryController.php',
     ];
     if (function_exists('opcache_invalidate')) {
         foreach ($invalidateTargets as $target) {

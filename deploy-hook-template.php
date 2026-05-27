@@ -12,5 +12,9 @@ $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 Artisan::call('config:clear');
 Artisan::call('route:clear');
 Artisan::call('view:clear');
+// Delete per-hour OPcache markers so the next web request re-clears FPM workers
+foreach (glob(__DIR__.'/storage/framework/opcache-cleared-*') ?: [] as $marker) {
+    @unlink($marker);
+}
 @unlink(__FILE__);
 echo 'OK';
