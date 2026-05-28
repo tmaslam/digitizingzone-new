@@ -3,13 +3,66 @@
 @section('title', 'Dashboard - '.$siteContext->displayLabel())
 @section('hero_class', 'hero-compact dashboard-hero')
 @section('hero_title', 'Dashboard')
-@section('hero_text')
-Upgrade today to save up to 20% on credit packs and 40% on subscription plans. Your past order history will remain fully available on the legacy platform.
-<br><br>
-<strong style="color:#0f5f66;font-size:1.05em;">🎁 Limited Time Offer! Switch your account today and get a <u>$10 credit bonus</u> — automatically added to your new account.</strong>
-@endsection
+@section('hero_text', 'Upgrade today to save up to 20% on credit packs and 40% on subscription plans. Your past order history will remain fully available on the legacy platform.')
 
 @section('content')
+
+<div id="flash-offer" style="display:none;margin-bottom:16px;border-radius:14px;background:linear-gradient(135deg,#fff8e1 0%,#fffde7 100%);border:2px solid #f59e0b;box-shadow:0 4px 18px rgba(245,158,11,0.18);padding:20px 24px;position:relative;animation:offerFadeIn 0.4s ease;">
+    <style>
+        @keyframes offerFadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+        #flash-offer .offer-body{display:flex;align-items:flex-start;gap:14px;}
+        #flash-offer .offer-icon{font-size:2rem;line-height:1;flex-shrink:0;}
+        #flash-offer .offer-text{flex:1;}
+        #flash-offer .offer-text strong{display:block;font-size:1.05rem;color:#92400e;margin-bottom:4px;}
+        #flash-offer .offer-text p{margin:0 0 14px;color:#78350f;font-size:0.9rem;line-height:1.6;}
+        #flash-offer .offer-actions{display:flex;gap:10px;flex-wrap:wrap;}
+        #flash-offer .btn-dismiss{padding:7px 18px;border-radius:8px;border:1.5px solid #d97706;background:#fff;color:#92400e;font-weight:600;font-size:0.85rem;cursor:pointer;}
+        #flash-offer .btn-dismiss:hover{background:#fef3c7;}
+        #flash-offer .btn-remind{padding:7px 18px;border-radius:8px;border:none;background:#f59e0b;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;}
+        #flash-offer .btn-remind:hover{background:#d97706;}
+    </style>
+    <div class="offer-body">
+        <div class="offer-icon">🎁</div>
+        <div class="offer-text">
+            <strong>Limited Time Offer — $10 Credit Bonus!</strong>
+            <p>Upgrade to our new platform today and receive a <strong>$10 credit bonus</strong> automatically added to your new account. Save up to 20% on credit packs and 40% on subscription plans.</p>
+            <div class="offer-actions">
+                <button class="btn-remind" onclick="upgradeNow()">Upgrade Now</button>
+                <button class="btn-dismiss" onclick="remindLater()">Remind Me Later</button>
+                <button class="btn-dismiss" onclick="dismissOffer()">Dismiss</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function(){
+    var KEY = 'offer_10credit_dismissed';
+    var SNOOZE = 'offer_10credit_snoozed';
+    if(localStorage.getItem(KEY) || sessionStorage.getItem(SNOOZE)) return;
+    document.getElementById('flash-offer').style.display='block';
+})();
+function dismissOffer(){
+    localStorage.setItem('offer_10credit_dismissed','1');
+    var el=document.getElementById('flash-offer');
+    el.style.opacity='0';el.style.transition='opacity 0.3s';
+    setTimeout(function(){el.style.display='none';},300);
+}
+function upgradeNow(){
+    dismissOffer();
+    setTimeout(function(){
+        var target=document.getElementById('upgrade-alert');
+        if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.style.boxShadow='0 0 0 3px #f59e0b';}
+    },350);
+}
+function remindLater(){
+    sessionStorage.setItem('offer_10credit_snoozed','1');
+    var el=document.getElementById('flash-offer');
+    el.style.opacity='0';el.style.transition='opacity 0.3s';
+    setTimeout(function(){el.style.display='none';},300);
+}
+</script>
+
     <section class="content-card">
         <div class="section-head">
             <div>
