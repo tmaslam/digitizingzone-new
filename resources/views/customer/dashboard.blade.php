@@ -3,7 +3,11 @@
 @section('title', 'Dashboard - '.$siteContext->displayLabel())
 @section('hero_class', 'hero-compact dashboard-hero')
 @section('hero_title', 'Dashboard')
-@section('hero_text', 'Upgrade today to save up to 20% on credit packs and 40% on subscription plans. Your past order history will remain fully available on the legacy platform.')
+@section('hero_text')
+Upgrade today to save up to 20% on credit packs and 40% on subscription plans. Your past order history will remain fully available on the legacy platform.
+<br><br>
+<strong style="color:#0f5f66;font-size:1.05em;">🎁 Limited Time Offer! Switch your account today and get a <u>$10 credit bonus</u> — automatically added to your new account.</strong>
+@endsection
 
 @section('content')
     <section class="content-card">
