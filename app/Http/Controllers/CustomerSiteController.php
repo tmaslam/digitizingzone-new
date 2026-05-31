@@ -224,18 +224,12 @@ class CustomerSiteController extends Controller
 
     public function home(Request $request)
     {
-        /** @var SiteContext $site */
-        $site = $request->attributes->get('siteContext');
-
         if ($request->session()->has('customer_user_id')) {
             return redirect('/dashboard.php');
         }
 
-        return view('customer.site-home', [
-            'site' => $site,
-            'customerPortalEnabled' => (bool) config('sites.customer_portal_enabled', false),
-            'signupOfferSummary' => SignupOfferService::offerSummary(SignupOfferService::activeSignupOffer($site)),
-        ]);
+        return response(file_get_contents(public_path('index.html')))
+            ->header('Content-Type', 'text/html');
     }
 
     public function workProcess(Request $request)
