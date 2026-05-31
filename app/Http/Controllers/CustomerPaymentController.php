@@ -1042,8 +1042,7 @@ class CustomerPaymentController extends Controller
             url('/successpay.php?'.http_build_query([
                 'provider' => HostedPaymentProviders::STRIPE,
                 'merchant_reference' => $transaction->merchant_reference,
-                'session_id' => '{CHECKOUT_SESSION_ID}',
-            ])),
+            ]).'&session_id={CHECKOUT_SESSION_ID}'),
             url($backUrl),
             (string) ($customer->user_email ?? '')
         );
