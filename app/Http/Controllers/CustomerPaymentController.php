@@ -27,10 +27,10 @@ class CustomerPaymentController extends Controller
     public function instantPaymentLanding(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/view-billing.php')->with('success', 'Use the secure billing page to complete your payment.');
+            return redirect(url('/view-billing.php'))->with('success', 'Use the secure billing page to complete your payment.');
         }
 
-        return redirect('/login.php')->with('success', 'Please log in to continue to the secure payment area.');
+        return redirect(url('/login.php'))->with('success', 'Please log in to continue to the secure payment area.');
     }
 
     public function showSignupOffer(Request $request)
@@ -40,7 +40,7 @@ class CustomerPaymentController extends Controller
         $claim = SignupOfferService::pendingPaymentClaimForCustomer($site, $customer);
 
         if (! $claim) {
-            return redirect('/dashboard.php')->with('success', 'Your welcome-offer payment is already complete for this website.');
+            return redirect(url('/dashboard.php'))->with('success', 'Your welcome-offer payment is already complete for this website.');
         }
 
         return view('customer.payments.signup-offer', [
@@ -68,14 +68,14 @@ class CustomerPaymentController extends Controller
         $provider = $this->selectedPaymentProvider($request);
 
         if (! $this->paymentGatewayReady($provider)) {
-            return redirect('/member-offer.php')->withErrors([
+            return redirect(url('/member-offer.php'))->withErrors([
                 'payment' => HostedPaymentProviders::label($provider).' is not configured completely yet. Please contact support before attempting the welcome-offer payment.',
             ]);
         }
 
         $requestedAmount = round((float) $claim->required_payment_amount, 2);
         if ($requestedAmount <= 0) {
-            return redirect('/member-offer.php')->withErrors([
+            return redirect(url('/member-offer.php'))->withErrors([
                 'payment' => 'The configured welcome-offer payment amount is not valid.',
             ]);
         }
@@ -146,7 +146,7 @@ class CustomerPaymentController extends Controller
             ->get();
 
         if ($billings->isEmpty()) {
-            return redirect('/view-invoices.php')->with('success', 'No unpaid invoices remain. Any no-charge invoices are already available in your invoice history.');
+            return redirect(url('/view-invoices.php'))->with('success', 'No unpaid invoices remain. Any no-charge invoices are already available in your invoice history.');
         }
 
         return $this->startCheckout($request, $site, $customer, $billings, 'outstanding_balance');
@@ -402,7 +402,7 @@ class CustomerPaymentController extends Controller
             'configuredOutcome' => $configuredOutcome,
             'completeUrl' => url('/simulate-2checkout/'.$transaction->id.'?outcome=success'),
             'failUrl' => url('/simulate-2checkout/'.$transaction->id.'?outcome=failed'),
-            'backUrl' => '/view-billing.php',
+            'backUrl' => url('/view-billing.php'),
         ]);
     }
 
@@ -1086,6 +1086,21 @@ class CustomerPaymentController extends Controller
 
     private function handleStripeReturn(Request $request, SiteContext $site, PaymentTransaction $transaction)
     {
+        // If the webhook already reconciled this payment before the customer returned,
+        // show success immediately instead of re-checking the session.
+        if ((string) $transaction->status === 'success' && $transaction->reconciled_at) {
+            return view('customer.payments.result', [
+                'pageTitle' => 'Payment Status',
+                'transaction' => $transaction->fresh(['items.billing.order', 'customer']),
+                'verified' => true,
+                'result' => [
+                    'ok' => true,
+                    'message' => 'Payment was recorded successfully.',
+                ],
+                'site' => $site,
+            ]);
+        }
+
         $sessionId = trim((string) $request->input('session_id', $transaction->provider_transaction_id ?: ''));
         if ($sessionId === '') {
             return view('customer.payments.result', [
@@ -1114,7 +1129,7 @@ class CustomerPaymentController extends Controller
                 'verified' => false,
                 'result' => [
                     'ok' => false,
-                    'message' => 'We have received your payment successfully. Our team will review your order and get back to you shortly with an update.',
+                    'message' => 'We received the Stripe return, but could not confirm the payment yet. Please refresh in a moment or contact support.',
                 ],
                 'site' => $site,
             ]);
@@ -1154,18 +1169,26 @@ class CustomerPaymentController extends Controller
             ]);
         }
 
-        $result = $paid
-            ? $this->reconcileTransaction(
-                $transaction,
-                $site,
-                StripeHostedCheckout::confirmedAmount($session),
-                StripeHostedCheckout::providerReference($session),
-                $session
-            )
-            : [
-                'ok' => true,
-                'message' => 'We have received your payment successfully. Our team will review your order and get back to you shortly with an update.',
-            ];
+        if (! $paid) {
+            return view('customer.payments.result', [
+                'pageTitle' => 'Payment Status',
+                'transaction' => $transaction->fresh(['items.billing.order', 'customer']),
+                'verified' => false,
+                'result' => [
+                    'ok' => false,
+                    'message' => 'Payment is being processed. You will receive confirmation shortly. Please check your billing page in a moment.',
+                ],
+                'site' => $site,
+            ]);
+        }
+
+        $result = $this->reconcileTransaction(
+            $transaction,
+            $site,
+            StripeHostedCheckout::confirmedAmount($session),
+            StripeHostedCheckout::providerReference($session),
+            $session
+        );
 
         return view('customer.payments.result', [
             'pageTitle' => 'Payment Status',
