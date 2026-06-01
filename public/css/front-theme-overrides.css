@@ -12,12 +12,12 @@ body.front-theme .site-frame {
 }
 
 body.front-theme .topbar {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
 }
 
 body.front-theme .top-bar {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
     text-align: center;
 }
@@ -75,11 +75,11 @@ body.front-theme .nav-shell {
 }
 
 body.front-theme .brand img {
-    height: 62px !important;
+    height: 48px !important;
 }
 
 body.front-theme.customer-guest-theme .brand img {
-    height: 84px !important;
+    height: 48px !important;
 }
 
 body.front-theme .brand,
@@ -129,15 +129,15 @@ body.front-theme .nav-parent-toggle.active,
 body.front-theme .nav-item:hover > a,
 body.front-theme .nav-links a:hover,
 body.front-theme .nav-links a.active {
-    background: rgba(22, 159, 230, 0.12) !important;
-    color: #0d6ea3 !important;
+    background: var(--accent-soft) !important;
+    color: #b01f1f !important;
 }
 
 body.front-theme .nav-toggle {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
     border-color: transparent !important;
-    box-shadow: 0 12px 24px rgba(22, 159, 230, 0.24);
+    box-shadow: 0 12px 24px rgba(214, 43, 43, 0.24);
 }
 
 body.front-theme .public-header-actions {
@@ -190,7 +190,7 @@ body.front-theme button.primary,
 body.front-theme .customer-action.primary,
 body.front-theme .actions button,
 body.front-theme input[type="submit"] {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
 }
 
@@ -211,9 +211,9 @@ body.front-theme .customer-tab:hover,
 body.front-theme .customer-tab.active,
 body.front-theme .customer-action.secondary:hover,
 body.front-theme .account-chip-link:hover {
-    background: rgba(22, 159, 230, 0.1) !important;
-    color: #0d6ea3 !important;
-    border-color: rgba(22, 159, 230, 0.24) !important;
+    background: var(--accent-soft) !important;
+    color: #b01f1f !important;
+    border-color: var(--accent-dark) !important;
 }
 
 body.front-theme .section,
@@ -237,7 +237,7 @@ body.front-theme .auth-hero {
     padding: clamp(28px, 4vw, 46px);
     background:
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 32%),
-        linear-gradient(135deg, #0d6ea3 0%, #169fe6 62%, #4ec0ef 100%);
+        linear-gradient(135deg, #b01f1f 0%, #d62b2b 62%, #4ec0ef 100%);
     color: #ffffff;
 }
 
@@ -375,8 +375,8 @@ body.front-theme .hero-feature-icon {
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    background: rgba(22, 159, 230, 0.1);
-    color: #0d6ea3;
+    background: var(--accent-soft);
+    color: #b01f1f;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -425,7 +425,7 @@ body.front-theme .stat-card {
 body.front-theme .stat-number {
     font-size: clamp(2.3rem, 4vw, 3.4rem);
     font-weight: 700;
-    color: #169fe6;
+    color: #d62b2b;
     line-height: 1;
     margin-bottom: 10px;
 }
@@ -443,7 +443,7 @@ body.front-theme .marketing-hero-grid {
     padding: clamp(28px, 4vw, 44px);
     background:
         radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 28%),
-        linear-gradient(135deg, #0d6ea3 0%, #169fe6 62%, #4ec0ef 100%);
+        linear-gradient(135deg, #b01f1f 0%, #d62b2b 62%, #4ec0ef 100%);
     color: #ffffff;
 }
 
@@ -507,7 +507,7 @@ body.front-theme .metric strong,
 body.front-theme .info-card strong,
 body.front-theme .portal-stat strong {
     display: block;
-    color: #0d6ea3;
+    color: #b01f1f;
     font-size: clamp(1.6rem, 3vw, 2.6rem);
     line-height: 1.05;
     letter-spacing: -0.05em;
@@ -720,7 +720,7 @@ body.front-theme .info-card .info-card-contact {
 body.front-theme .info-card .info-card-contact .inline-link {
     font-size: 1rem !important;
     line-height: 1.55 !important;
-    color: #0d6ea3 !important;
+    color: #b01f1f !important;
     word-break: break-word;
     overflow-wrap: anywhere;
 }
@@ -841,7 +841,7 @@ body.front-theme .section-header h2 {
 }
 
 body.front-theme .section-header h2 span {
-    color: #169fe6;
+    color: #d62b2b;
 }
 
 body.front-theme .section-header p {
@@ -916,7 +916,7 @@ body.front-theme .service-card h3 {
 }
 
 body.front-theme .service-card h3 span {
-    color: #169fe6;
+    color: #d62b2b;
 }
 
 body.front-theme .service-card p,
@@ -950,7 +950,7 @@ body.front-theme .pricing-features li::before {
     position: absolute;
     left: 0;
     top: 0;
-    color: #169fe6;
+    color: #d62b2b;
     font-weight: 800;
 }
 
@@ -961,8 +961,8 @@ body.front-theme .turnaround-badge {
     justify-content: center;
     padding: 8px 14px;
     border-radius: 999px;
-    background: rgba(22, 159, 230, 0.1);
-    color: #0d6ea3;
+    background: var(--accent-soft);
+    color: #b01f1f;
     font-weight: 700;
     font-size: 0.84rem;
 }
@@ -1001,7 +1001,7 @@ body.front-theme .pricing-price {
 body.front-theme .pricing-price .amount {
     display: block;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
-    color: #169fe6;
+    color: #d62b2b;
     line-height: 1;
     font-weight: 700;
 }
@@ -1025,8 +1025,8 @@ body.front-theme .contact-method-icon {
     height: 60px;
     margin: 0 auto 14px;
     border-radius: 14px;
-    background: rgba(22, 159, 230, 0.1);
-    color: #169fe6;
+    background: var(--accent-soft);
+    color: #d62b2b;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1054,7 +1054,7 @@ body.front-theme .page-header h1 {
 }
 
 body.front-theme .page-header h1 span {
-    color: #169fe6;
+    color: #d62b2b;
 }
 
 body.front-theme .page-header p {
@@ -1079,7 +1079,7 @@ body.front-theme .template-cta-card {
     padding: clamp(28px, 4vw, 42px);
     border-radius: 28px;
     text-align: center;
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%);
+    background: linear-gradient(135deg, #d62b2b, #b01f1f);
     color: #ffffff;
     box-shadow: 0 26px 58px rgba(13, 110, 163, 0.22);
 }
@@ -1171,8 +1171,8 @@ body.front-theme .form-input:focus,
 body.front-theme .form-select:focus,
 body.front-theme .form-textarea:focus {
     outline: none;
-    border-color: #169fe6;
-    box-shadow: 0 0 0 4px rgba(22, 159, 230, 0.12);
+    border-color: #d62b2b;
+    box-shadow: 0 0 0 4px rgba(214, 43, 43, 0.12);
 }
 
 body.front-theme .form-textarea {
@@ -1186,7 +1186,7 @@ body.front-theme .faq-item {
 
 body.front-theme .faq-item h3 {
     margin: 0 0 10px;
-    color: #169fe6;
+    color: #d62b2b;
     font-size: 1.08rem;
 }
 
@@ -1205,7 +1205,7 @@ body.front-theme .footer a {
 }
 
 body.front-theme .footer a:hover {
-    color: #169fe6;
+    color: #d62b2b;
 }
 
 body.front-theme .footer-links {
@@ -1360,7 +1360,7 @@ body.front-theme .activity-card strong {
 }
 
 body.front-theme .inline-link {
-    color: #0d6ea3 !important;
+    color: #b01f1f !important;
     font-weight: 700;
 }
 
@@ -1394,7 +1394,7 @@ body.front-theme .pricing-feature-list li::before,
 body.front-theme .contact-detail-list li::before,
 body.front-theme .timeline-step-list li::before {
     content: "✓";
-    color: #169fe6;
+    color: #d62b2b;
     font-weight: 800;
 }
 
@@ -1449,7 +1449,7 @@ body.front-theme .pricing-rate strong {
     font-size: clamp(2.4rem, 5vw, 3.5rem);
     line-height: 1;
     letter-spacing: -0.06em;
-    color: #0d6ea3;
+    color: #b01f1f;
 }
 
 body.front-theme .pricing-rate span {
@@ -1464,7 +1464,7 @@ body.front-theme .auth-note-card {
     padding: 18px 20px;
     border-radius: 20px;
     background: linear-gradient(180deg, rgba(22, 159, 230, 0.08) 0%, rgba(255, 255, 255, 0.98) 100%);
-    border: 1px solid rgba(22, 159, 230, 0.16);
+    border: 1px solid var(--accent-dark);
 }
 
 body.front-theme .contact-copy {
@@ -1545,8 +1545,8 @@ body.front-theme .timeline-step-number {
     width: 40px;
     height: 40px;
     border-radius: 999px;
-    background: rgba(22, 159, 230, 0.1);
-    color: #0d6ea3;
+    background: var(--accent-soft);
+    color: #b01f1f;
     font-weight: 800;
     margin-bottom: 14px;
 }
@@ -1719,8 +1719,8 @@ body.front-theme.customer-guest-theme .actions .button.secondary {
 }
 
 body.front-theme.customer-guest-theme .actions .button.secondary:hover {
-    border-color: #169fe6 !important;
-    color: #169fe6 !important;
+    border-color: #d62b2b !important;
+    color: #d62b2b !important;
 }
 
 body.front-theme .auth-note-grid {
@@ -1729,8 +1729,8 @@ body.front-theme .auth-note-grid {
 }
 
 body.front-theme .account-chip {
-    background: rgba(22, 159, 230, 0.08) !important;
-    border-color: rgba(22, 159, 230, 0.14) !important;
+    background: var(--accent-soft) !important;
+    border-color: var(--accent-dark) !important;
 }
 
 body.front-theme.customer-portal-theme .topbar .account-chip-link,
@@ -1743,7 +1743,7 @@ body.front-theme.customer-portal-theme .topbar .topbar-links .account-chip-link 
 
 body.front-theme.customer-portal-theme .topbar .account-chip-link:hover,
 body.front-theme.customer-portal-theme .topbar .topbar-links .account-chip-link:hover {
-    color: #0d6ea3 !important;
+    color: #b01f1f !important;
     background: #ffffff !important;
     border-color: rgba(255, 255, 255, 0.82) !important;
     box-shadow: 0 8px 18px rgba(13, 110, 163, 0.16) !important;
@@ -1893,7 +1893,7 @@ body.front-theme select:focus,
 body.front-theme textarea:focus {
     outline: none !important;
     border-color: rgba(22, 159, 230, 0.72) !important;
-    box-shadow: 0 0 0 4px rgba(22, 159, 230, 0.12) !important;
+    box-shadow: 0 0 0 4px rgba(214, 43, 43, 0.12) !important;
 }
 
 body.front-theme.customer-guest-theme .form-field input:not([type="checkbox"]):not([type="radio"]),
@@ -1913,8 +1913,8 @@ body.front-theme.customer-guest-theme .form-field textarea:hover {
 body.front-theme.customer-guest-theme .form-field input:not([type="checkbox"]):not([type="radio"]):focus,
 body.front-theme.customer-guest-theme .form-field select:focus,
 body.front-theme.customer-guest-theme .form-field textarea:focus {
-    border-color: #169fe6 !important;
-    box-shadow: 0 0 0 4px rgba(22, 159, 230, 0.12) !important;
+    border-color: #d62b2b !important;
+    box-shadow: 0 0 0 4px rgba(214, 43, 43, 0.12) !important;
 }
 
 body.front-theme .alert,
@@ -2127,7 +2127,7 @@ body.front-theme.public-theme .container {
 }
 
 body.front-theme.public-theme .top-bar {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
     text-align: center;
     padding: 0.35rem 0;
@@ -2182,7 +2182,7 @@ body.front-theme.public-theme .brand img {
 }
 
 body.front-theme.customer-portal-theme .brand img {
-    height: 64px !important;
+    height: 48px !important;
     width: auto;
     max-width: 100%;
 }
@@ -2226,7 +2226,7 @@ body.front-theme.public-theme .nav-links > a.active,
 body.front-theme.public-theme .nav-links a:hover,
 body.front-theme.public-theme .nav-links a.active {
     background: #ffffff !important;
-    color: #0d6ea3 !important;
+    color: #b01f1f !important;
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08) !important;
 }
 
@@ -2244,8 +2244,8 @@ body.front-theme.public-theme .header-contact-chip {
     gap: 0.45rem;
     padding: 0.55rem 0.78rem;
     border-radius: 999px;
-    background: rgba(22, 159, 230, 0.08);
-    border: 1px solid rgba(22, 159, 230, 0.12);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-dark);
     color: #0f172a !important;
     text-decoration: none;
     white-space: nowrap;
@@ -2261,7 +2261,7 @@ body.front-theme.public-theme .header-contact-label {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #0d6ea3;
+    color: #b01f1f;
 }
 
 body.front-theme.public-theme .button,
@@ -2286,7 +2286,7 @@ body.front-theme.public-theme input[type="submit"] {
 body.front-theme.public-theme .button.primary,
 body.front-theme.public-theme button.primary,
 body.front-theme.public-theme input[type="submit"] {
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%) !important;
+    background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
     color: #ffffff !important;
 }
 
@@ -2303,7 +2303,7 @@ body.front-theme.public-theme .button.secondary {
 
 body.front-theme.public-theme .button.secondary:hover {
     border-color: rgba(22, 159, 230, 0.28) !important;
-    color: #169fe6 !important;
+    color: #d62b2b !important;
     background: rgba(239, 248, 253, 0.95) !important;
 }
 
@@ -2471,7 +2471,7 @@ body.front-theme.public-theme .stat-card {
 body.front-theme.public-theme .stat-number {
     margin-bottom: 0.75rem !important;
     font-size: 3.5rem !important;
-    color: #169fe6 !important;
+    color: #d62b2b !important;
 }
 
 body.front-theme.public-theme .stat-label {
@@ -2496,7 +2496,7 @@ body.front-theme.public-theme .section-header h2 {
 }
 
 body.front-theme.public-theme .section-header h2 span {
-    color: #169fe6 !important;
+    color: #d62b2b !important;
 }
 
 body.front-theme.public-theme .section-header p {
@@ -2605,8 +2605,8 @@ body.front-theme.public-theme .form-field textarea:focus,
 body.front-theme.public-theme .contact-form input:focus,
 body.front-theme.public-theme .contact-form select:focus,
 body.front-theme.public-theme .contact-form textarea:focus {
-    border-color: #169fe6 !important;
-    box-shadow: 0 0 0 4px rgba(22, 159, 230, 0.12) !important;
+    border-color: #d62b2b !important;
+    box-shadow: 0 0 0 4px rgba(214, 43, 43, 0.12) !important;
 }
 
 body.front-theme.public-theme .service-card-content {
@@ -2649,7 +2649,7 @@ body.front-theme.public-theme .service-features li::before {
     position: absolute;
     left: 0;
     top: 0.24rem;
-    color: #169fe6;
+    color: #d62b2b;
     font-weight: 700;
 }
 
@@ -2662,13 +2662,13 @@ body.front-theme.public-theme .price-tag {
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     background: linear-gradient(135deg, #eaf2f8 0%, #eef7fc 100%);
-    color: #0d6ea3;
+    color: #b01f1f;
     font-size: 0.84rem;
     font-weight: 700;
 }
 
 body.front-theme.public-theme .inline-link {
-    color: #169fe6;
+    color: #d62b2b;
     font-weight: 700;
     text-decoration: none;
 }
@@ -2726,7 +2726,7 @@ body.front-theme.public-theme .marketing-faq-item .faq-toggle-icon {
     width: 38px;
     height: 38px;
     border-radius: 999px;
-    background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%);
+    background: linear-gradient(135deg, #d62b2b, #b01f1f);
     color: #ffffff;
     border: 1px solid rgba(13, 110, 163, 0.18);
     box-shadow:
@@ -2759,14 +2759,14 @@ body.front-theme.public-theme .marketing-faq-item[open] .faq-toggle-minus {
 }
 
 body.front-theme.public-theme .marketing-faq-item[open] {
-    border-color: rgba(22, 159, 230, 0.24) !important;
+    border-color: var(--accent-dark) !important;
     box-shadow: 0 28px 56px rgba(15, 23, 42, 0.12) !important;
 }
 
 body.front-theme.public-theme .marketing-faq-item[open] summary {
     border-bottom: 1px solid rgba(203, 213, 225, 0.72);
     background: linear-gradient(180deg, rgba(22, 159, 230, 0.08), rgba(22, 159, 230, 0.03));
-    color: #0d6ea3;
+    color: #b01f1f;
 }
 
 body.front-theme.public-theme .faq-answer {
@@ -2791,7 +2791,7 @@ body.front-theme.public-theme .feature-icon {
     margin: 0 auto 1rem !important;
     border-radius: 12px !important;
     background: #eaf2f8 !important;
-    color: #169fe6 !important;
+    color: #d62b2b !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3063,7 +3063,7 @@ body.front-theme.public-theme .welcome-offer-metric span {
 
 body.front-theme.public-theme .welcome-offer-metric strong {
     display: block;
-    color: #0d6ea3;
+    color: #b01f1f;
     font-size: 1.05rem;
     line-height: 1.35;
 }
@@ -3075,7 +3075,7 @@ body.front-theme.public-theme .welcome-offer-note {
     padding: 1rem 1.05rem;
     border-radius: 18px;
     background: linear-gradient(180deg, rgba(22, 159, 230, 0.08), rgba(22, 159, 230, 0.03));
-    border: 1px solid rgba(22, 159, 230, 0.16);
+    border: 1px solid var(--accent-dark);
 }
 
 body.front-theme.public-theme .welcome-offer-note strong {
@@ -3317,7 +3317,7 @@ body.front-theme.public-theme .nav {
 }
 
 body.front-theme.public-theme .site-logo {
-    height: 54px !important;
+    height: 48px !important;
     width: auto;
     display: block;
 }
@@ -3362,7 +3362,7 @@ body.front-theme.public-theme .nav-links > a:hover,
 body.front-theme.public-theme .nav-links a.active,
 body.front-theme.public-theme .nav-links a:hover {
     background: #ffffff !important;
-    color: #0d6ea3 !important;
+    color: #b01f1f !important;
     box-shadow: 0 8px 18px rgba(15, 23, 42, 0.07);
 }
 
@@ -3838,8 +3838,8 @@ body.front-theme.public-theme .marketing-testimonial-avatar {
     justify-content: center;
     flex-shrink: 0;
     background: linear-gradient(135deg, rgba(22, 159, 230, 0.14), rgba(13, 110, 163, 0.2));
-    border: 1px solid rgba(22, 159, 230, 0.18);
-    color: #0d6ea3;
+    border: 1px solid var(--accent-dark);
+    color: #b01f1f;
     font-weight: 800;
     letter-spacing: 0.04em;
 }
@@ -3847,7 +3847,7 @@ body.front-theme.public-theme .marketing-testimonial-avatar {
 body.front-theme.public-theme .marketing-testimonial-avatar.avatar-blue {
     background: linear-gradient(135deg, rgba(22, 159, 230, 0.16), rgba(13, 110, 163, 0.24));
     border-color: rgba(22, 159, 230, 0.22);
-    color: #0d6ea3;
+    color: #b01f1f;
 }
 
 body.front-theme.public-theme .marketing-testimonial-avatar.avatar-amber {
@@ -3915,9 +3915,9 @@ body.front-theme.public-theme .marketing-faq-item .faq-toggle-icon {
     width: 30px;
     height: 30px;
     border-radius: 999px;
-    background: rgba(22, 159, 230, 0.1);
-    color: #0d6ea3;
-    border: 1px solid rgba(22, 159, 230, 0.16);
+    background: var(--accent-soft);
+    color: #b01f1f;
+    border: 1px solid var(--accent-dark);
     flex-shrink: 0;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
 }

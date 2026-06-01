@@ -35,7 +35,7 @@ class AdminSimulation
                 'customer_site_key' => $siteKey,
             ]);
 
-            return '/dashboard.php';
+            return url('/dashboard.php');
         }
 
         if (in_array((int) $target->usre_type_id, [AdminUser::TYPE_TEAM, AdminUser::TYPE_SUPERVISOR], true)) {
@@ -45,7 +45,7 @@ class AdminSimulation
                 'team_user_type_id' => (int) $target->usre_type_id,
             ]);
 
-            return '/team/welcome.php';
+            return url('/team/welcome.php');
         }
 
         $request->session()->put([
@@ -53,7 +53,7 @@ class AdminSimulation
             'admin_user_name' => (string) $target->user_name,
         ]);
 
-        return '/welcome.php';
+        return url('/welcome.php');
     }
 
     public static function stop(Request $request): string
@@ -83,7 +83,7 @@ class AdminSimulation
             'impersonator_admin_name',
         ]);
 
-        return $returnPath !== '' ? $returnPath : '/welcome.php';
+        return $returnPath !== '' ? $returnPath : url('/welcome.php');
     }
 
     public static function active(Request $request): bool

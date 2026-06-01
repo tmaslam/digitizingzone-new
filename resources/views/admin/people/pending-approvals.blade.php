@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Customer Approvals | 1Dollar Admin')
+@section('title', 'Customer Approvals | Digitizing Zone Admin')
 @section('page_heading', 'Customer Approvals')
 @section('page_subheading', 'Review signup accounts that are waiting for email verification, admin approval, or the customer welcome-payment step.')
 

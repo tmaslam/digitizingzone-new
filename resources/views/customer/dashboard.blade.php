@@ -3,65 +3,9 @@
 @section('title', 'Dashboard - '.$siteContext->displayLabel())
 @section('hero_class', 'hero-compact dashboard-hero')
 @section('hero_title', 'Dashboard')
-@section('hero_text', 'Upgrade today to save up to 20% on credit packs and 40% on subscription plans. Your past order history will remain fully available on the legacy platform.')
+@section('hero_text', 'View your orders, quotes, billing, and account details in one place.')
 
 @section('content')
-
-<div id="flash-offer" style="display:none;margin-bottom:16px;border-radius:14px;background:linear-gradient(135deg,#fff8e1 0%,#fffde7 100%);border:2px solid #f59e0b;box-shadow:0 4px 18px rgba(245,158,11,0.18);padding:20px 24px;position:relative;animation:offerFadeIn 0.4s ease;">
-    <style>
-        @keyframes offerFadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-        #flash-offer .offer-body{display:flex;align-items:flex-start;gap:14px;}
-        #flash-offer .offer-icon{font-size:2rem;line-height:1;flex-shrink:0;}
-        #flash-offer .offer-text{flex:1;}
-        #flash-offer .offer-text strong{display:block;font-size:1.05rem;color:#92400e;margin-bottom:4px;}
-        #flash-offer .offer-text p{margin:0 0 14px;color:#78350f;font-size:0.9rem;line-height:1.6;}
-        #flash-offer .offer-actions{display:flex;gap:10px;flex-wrap:wrap;}
-        #flash-offer .btn-dismiss{padding:7px 18px;border-radius:8px;border:1.5px solid #d97706;background:#fff;color:#92400e;font-weight:600;font-size:0.85rem;cursor:pointer;}
-        #flash-offer .btn-dismiss:hover{background:#fef3c7;}
-        #flash-offer .btn-remind{padding:7px 18px;border-radius:8px;border:none;background:#f59e0b;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;}
-        #flash-offer .btn-remind:hover{background:#d97706;}
-    </style>
-    <div class="offer-body">
-        <div class="offer-icon">🎁</div>
-        <div class="offer-text">
-            <strong>Limited Time Offer — $10 Credit Bonus!</strong>
-            <p>Upgrade to our new platform today and receive a <strong>$10 credit bonus</strong> automatically added to your new account. Save up to 20% on credit packs and 40% on subscription plans.</p>
-            <div class="offer-actions">
-                <button class="btn-remind" onclick="upgradeNow()">Upgrade Now</button>
-                <button class="btn-dismiss" onclick="remindLater()">Remind Me Later</button>
-                <button class="btn-dismiss" onclick="dismissOffer()">Dismiss</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-(function(){
-    var KEY = 'offer_10credit_dismissed';
-    var SNOOZE = 'offer_10credit_snoozed';
-    if(localStorage.getItem(KEY) || sessionStorage.getItem(SNOOZE)) return;
-    document.getElementById('flash-offer').style.display='block';
-})();
-function dismissOffer(){
-    localStorage.setItem('offer_10credit_dismissed','1');
-    var el=document.getElementById('flash-offer');
-    el.style.opacity='0';el.style.transition='opacity 0.3s';
-    setTimeout(function(){el.style.display='none';},300);
-}
-function upgradeNow(){
-    dismissOffer();
-    setTimeout(function(){
-        var target=document.getElementById('upgrade-alert');
-        if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.style.boxShadow='0 0 0 3px #f59e0b';}
-    },350);
-}
-function remindLater(){
-    sessionStorage.setItem('offer_10credit_snoozed','1');
-    var el=document.getElementById('flash-offer');
-    el.style.opacity='0';el.style.transition='opacity 0.3s';
-    setTimeout(function(){el.style.display='none';},300);
-}
-</script>
 
     <section class="content-card">
         <div class="section-head">
@@ -72,25 +16,25 @@ function remindLater(){
         </div>
 
         <div class="portal-stat-grid" style="margin-top:18px;">
-            <a class="metric-link" href="/view-orders.php">
+            <a class="metric-link" href="{{ url('/view-orders.php') }}">
                 <article class="portal-stat">
                     <span>My Orders</span>
                     <strong>{{ $metrics['orders'] }}</strong>
                 </article>
             </a>
-            <a class="metric-link" href="/view-quotes.php">
+            <a class="metric-link" href="{{ url('/view-quotes.php') }}">
                 <article class="portal-stat">
                     <span>My Quotes</span>
                     <strong>{{ $metrics['quotes'] }}</strong>
                 </article>
             </a>
-            <a class="metric-link" href="/view-billing.php">
+            <a class="metric-link" href="{{ url('/view-billing.php') }}">
                 <article class="portal-stat">
                     <span>Payment Due</span>
                     <strong>${{ number_format($metrics['billing_total'], 2) }}</strong>
                 </article>
             </a>
-            <a class="metric-link" href="/view-archive-orders.php">
+            <a class="metric-link" href="{{ url('/view-archive-orders.php') }}">
                 <article class="portal-stat">
                     <span>Paid Orders</span>
                     <strong>{{ $metrics['paid'] }}</strong>
@@ -99,7 +43,6 @@ function remindLater(){
         </div>
     </section>
 
-    @if (trim((string) ($customer->user_term ?? '')) !== 'upgraded')
     <section class="content-card">
         <div class="section-head">
             <div>
@@ -109,29 +52,28 @@ function remindLater(){
         </div>
 
         <div class="action-grid">
-            <a class="action-card" href="/new-order.php">
+            <a class="action-card" href="{{ url('/new-order.php') }}">
                 <span>Digitizing</span>
                 <strong>Place New Order</strong>
                 <p>Upload artwork and start a standard digitizing request.</p>
             </a>
-            <a class="action-card" href="/quote.php">
+            <a class="action-card" href="{{ url('/quote.php') }}">
                 <span>Quote</span>
                 <strong>Digitizing Quote</strong>
                 <p>Ask for digitizing pricing first before placing a new order.</p>
             </a>
-            <a class="action-card" href="/vector-order.php">
+            <a class="action-card" href="{{ url('/vector-order.php') }}">
                 <span>Vector</span>
                 <strong>Place Vector Order</strong>
                 <p>Start a vector-only job with the existing vector order flow.</p>
             </a>
-            <a class="action-card" href="/vector-quote.php">
+            <a class="action-card" href="{{ url('/vector-quote.php') }}">
                 <span>Vector Quote</span>
                 <strong>Request Vector Quote</strong>
                 <p>Ask for vector pricing first before placing a vector order.</p>
             </a>
         </div>
     </section>
-    @endif
 
     <section class="content-card">
         <div class="section-head">
@@ -151,11 +93,11 @@ function remindLater(){
                         @foreach ($recentOrders as $order)
                             <div class="activity-item">
                                 <div class="activity-meta">
-                                    <strong><a class="inline-link" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=orders">{{ $order->design_name ?: 'Order #'.$order->order_id }}</a></strong>
+                                    <strong><a class="inline-link" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=orders">{{ $order->design_name ?: 'Order #'.$order->order_id }}</a></strong>
                                     <span class="status {{ \App\Support\CustomerWorkflowStatus::tone($order) }}">{{ \App\Support\CustomerWorkflowStatus::label($order) }}</span>
                                 </div>
                                 <div class="file-actions">
-                                    <a class="button secondary" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=orders">Open Order</a>
+                                    <a class="button secondary" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=orders">Open Order</a>
                                 </div>
                             </div>
                         @endforeach
@@ -175,11 +117,11 @@ function remindLater(){
                         @foreach ($recentQuotes as $quote)
                             <div class="activity-item">
                                 <div class="activity-meta">
-                                    <strong><a class="inline-link" href="/view-quote-detail.php?order_id={{ $quote->order_id }}&origin=quotes">{{ $quote->design_name ?: 'Quote #'.$quote->order_id }}</a></strong>
+                                    <strong><a class="inline-link" href="{{ url('/view-quote-detail.php') }}?order_id={{ $quote->order_id }}&origin=quotes">{{ $quote->design_name ?: 'Quote #'.$quote->order_id }}</a></strong>
                                     <span class="status {{ \App\Support\CustomerWorkflowStatus::tone($quote, true) }}">{{ \App\Support\CustomerWorkflowStatus::label($quote, true) }}</span>
                                 </div>
                                 <div class="file-actions">
-                                    <a class="button secondary" href="/view-quote-detail.php?order_id={{ $quote->order_id }}&origin=quotes">Open Quote</a>
+                                    <a class="button secondary" href="{{ url('/view-quote-detail.php') }}?order_id={{ $quote->order_id }}&origin=quotes">Open Quote</a>
                                 </div>
                             </div>
                         @endforeach
@@ -192,7 +134,7 @@ function remindLater(){
                                 <span class="status warning">{{ $metrics['billing_count'] }} due</span>
                             </div>
                             <div class="file-actions">
-                                <a class="button secondary" href="/view-billing.php">Open Billing</a>
+                                <a class="button secondary" href="{{ url('/view-billing.php') }}">Open Billing</a>
                             </div>
                         </div>
                     @endif
@@ -237,136 +179,5 @@ function remindLater(){
         </div>
     </section>
 
-    @if (trim((string) ($customer->user_term ?? '')) !== 'upgraded')
-    <!-- Upgrade Alert -->
-    <div id="upgrade-alert" data-orders="{{ $metrics['orders'] }}" data-quotes="{{ $metrics['quotes'] }}" data-billing="{{ $metrics['billing_total'] }}" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-left: 4px solid #f59e0b; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-            <div style="display: flex; align-items: flex-start; gap: 14px;">
-                <span style="font-size: 24px; line-height: 1;">💡</span>
-                <div>
-                    <strong style="font-size: 1.05rem; display: block; margin-bottom: 4px; color: #0f172a;">Enjoy better features, faster service, and more discounted prices.</strong>
-                    <span style="color: #64748b; font-size: 0.95rem;">Additionally, You will continue to have access to download your previously paid orders.</span>
-                </div>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
-                <button type="button" id="btn-upgrade" class="button" style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 600; white-space: nowrap; padding: 10px 22px; border-radius: 10px; border: none; cursor: pointer;">Upgrade your account</button>
-            </div>
-        </div>
-    </div>
-    @else
-    <div style="background: #ecfdf5; border: 1.5px solid #a7f3d0; border-left: 4px solid #10b981; color: #334155; padding: 18px 24px; border-radius: 14px; margin-top: 20px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-            <span style="font-size: 24px; line-height: 1;">✅</span>
-            <div>
-                <strong style="font-size: 1.05rem; display: block; margin-bottom: 4px; color: #0f172a;">Your account has been upgraded.</strong>
-                <span style="color: #64748b; font-size: 0.95rem;">You can continue to download your previously paid orders from the legacy portal.</span>
-            </div>
-        </div>
-    </div>
-    @endif
 
-    <!-- Custom Modals -->
-    <div id="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center;">
-        
-        <!-- Error Modal -->
-        <div id="modal-error" style="display:none; background:#fff; border-radius:16px; padding:32px 28px; max-width:420px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.25); text-align:center; animation:modalIn 0.3s ease;">
-            <div style="width:56px; height:56px; background:#fee2e2; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            </div>
-            <h3 style="margin:0 0 10px; font-size:1.25rem; color:#111;">Account Upgrade Unavailable</h3>
-            <p style="margin:0 0 24px; color:#64748b; line-height:1.6; font-size:0.95rem;">To switch your account, please ensure all outstanding billing is cleared first.</p>
-            <button type="button" onclick="closeModal('modal-error')" style="background:#dc2626; color:#fff; border:none; padding:10px 28px; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">Got it</button>
-        </div>
-
-        <!-- Confirm Modal -->
-        <div id="modal-confirm" style="display:none; background:#fff; border-radius:16px; padding:32px 28px; max-width:420px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.25); text-align:center; animation:modalIn 0.3s ease;">
-            <div id="confirm-content">
-                <div style="width:56px; height:56px; background:#dbeafe; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                </div>
-                <h3 style="margin:0 0 10px; font-size:1.25rem; color:#111;">Confirm Account Upgrade</h3>
-                <p style="margin:0 0 24px; color:#64748b; line-height:1.6; font-size:0.95rem;">This action is irreversible. Your account will be upgraded, and you will be able to download your previous paid orders.</p>
-                <div id="confirm-buttons" style="display:flex; gap:12px; justify-content:center;">
-                    <button type="button" onclick="closeModal('modal-confirm')" style="background:#f3f4f6; color:#374151; border:none; padding:10px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">Cancel</button>
-                    <button type="button" id="btn-confirm-upgrade" style="background:#2563eb; color:#fff; border:none; padding:10px 24px; border-radius:10px; font-weight:600; cursor:pointer; font-size:0.95rem;">Confirm Upgrade</button>
-                </div>
-            </div>
-            <div id="confirm-loader" style="display:none; padding:20px 0;">
-                <div style="width:40px; height:40px; border:3px solid #dbeafe; border-top-color:#2563eb; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 16px;"></div>
-                <p style="color:#64748b; font-size:0.95rem; margin:0;">Processing your upgrade...</p>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        @keyframes modalIn {
-            from { opacity:0; transform:scale(0.92) translateY(10px); }
-            to   { opacity:1; transform:scale(1) translateY(0); }
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
-
-    <script>
-        function openModal(id) {
-            document.getElementById('modal-overlay').style.display = 'flex';
-            document.getElementById(id).style.display = 'block';
-        }
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-            document.getElementById('modal-overlay').style.display = 'none';
-            // Reset confirm modal state
-            document.getElementById('confirm-buttons').style.display = 'flex';
-            document.getElementById('confirm-loader').style.display = 'none';
-        }
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal('modal-error');
-                closeModal('modal-confirm');
-            }
-        });
-
-        document.getElementById('btn-upgrade').addEventListener('click', function() {
-            var alertBox = document.getElementById('upgrade-alert');
-            var orders = parseInt(alertBox.dataset.orders) || 0;
-            var quotes = parseInt(alertBox.dataset.quotes) || 0;
-            var billing = parseFloat(alertBox.dataset.billing) || 0;
-
-            if (orders === 0 && quotes === 0 && billing === 0) {
-                openModal('modal-confirm');
-            } else {
-                openModal('modal-error');
-            }
-        });
-
-        document.getElementById('btn-confirm-upgrade').addEventListener('click', function() {
-            document.getElementById('confirm-buttons').style.display = 'none';
-            document.getElementById('confirm-loader').style.display = 'block';
-
-            var startTime = Date.now();
-
-            fetch('/process-account-upgrade', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
-                    'Accept': 'application/json',
-                },
-                credentials: 'same-origin'
-            })
-            .then(function(response) { return response.json(); })
-            .then(function(data) {
-                var elapsed = Date.now() - startTime;
-                var delay = Math.max(500 - elapsed, 0);
-                setTimeout(function() {
-                    window.location.href = data.redirect || 'https://1dollardigitizing.com/dashboard.php';
-                }, delay);
-            })
-            .catch(function() {
-                setTimeout(function() {
-                    window.location.href = 'https://1dollardigitizing.com/dashboard.php';
-                }, 500);
-            });
-        });
-    </script>
 @endsection

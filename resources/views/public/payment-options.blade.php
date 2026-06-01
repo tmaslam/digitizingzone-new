@@ -22,8 +22,8 @@
                     <h1>Secure payment handling with the same customer simplicity</h1>
                     <p>We accept multiple payment options to make checkout easier for customers while keeping invoice control, payment verification, and final file release in the right order.</p>
                     <div class="hero-actions">
-                        <a class="button primary" href="/view-billing.php">View Billing</a>
-                        <a class="button secondary" href="/contact-us.php">Billing Support</a>
+                        <a class="button primary" href="{{ url('/view-billing.php') }}">View Billing</a>
+                        <a class="button secondary" href="{{ url('/contact-us.php') }}">Billing Support</a>
                     </div>
                 </div>
                 <div class="hero-card">

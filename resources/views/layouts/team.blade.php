@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', '1Dollar Team Portal')</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <title>@yield('title', 'Digitizing Zone Team Portal')</title>
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}">
     <style>
         :root {
             color-scheme: light;
@@ -466,7 +466,7 @@
     <aside class="sidebar">
         <button type="button" class="sidebar-close" data-mobile-nav-close>Close Menu</button>
         <div class="brand">
-            <h1>1Dollar<br>{{ ($teamUser->is_supervisor ?? false) ? 'Supervisor' : 'Team' }}</h1>
+            <h1>Digitizing Zone<br>{{ ($teamUser->is_supervisor ?? false) ? 'Supervisor' : 'Team' }}</h1>
             <p>{{ ($teamUser->is_supervisor ?? false) ? 'Team oversight, assignment, uploads, notes, and completion updates.' : 'Assigned production work, uploads, notes, and completion updates.' }}</p>
         </div>
 

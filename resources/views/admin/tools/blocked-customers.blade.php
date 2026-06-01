@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Inactive Customers | 1Dollar Admin')
+@section('title', 'Inactive Customers | Digitizing Zone Admin')
 @section('page_heading', 'Inactive Customers')
 @section('page_subheading', 'Previously active customer accounts that are currently inactive or blocked. Pending signup approvals are managed separately.')
 

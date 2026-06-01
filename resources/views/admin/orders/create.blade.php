@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Order / Quote | 1Dollar Admin')
+@section('title', 'Create Order / Quote | Digitizing Zone Admin')
 @section('page_heading', 'Create Order / Quote')
 @section('page_subheading', 'Create an assisted admin entry without changing the customer-facing flow.')
 

@@ -33,7 +33,7 @@
                 Your account has been upgraded. You can no longer place new orders or quotes on the legacy portal, but you can still download your previously paid orders.
             </div>
             <div style="margin-top: 18px;">
-                <a class="button secondary" href="/view-archive-orders.php">View Paid Orders</a>
+                <a class="button secondary" href="{{ url('/view-archive-orders.php') }}">View Paid Orders</a>
             </div>
         </section>
     @else
@@ -180,7 +180,7 @@
 
             <div style="grid-column: 1 / -1; display: flex; gap: 12px; flex-wrap: wrap;">
                 <button type="submit">{{ $submitLabel }}</button>
-                <a class="button secondary" href="{{ ($flow['flow_context'] ?? 'order') === 'code' ? '/view-quotes.php' : '/view-orders.php' }}">Cancel</a>
+                <a class="button secondary" href="{{ ($flow['flow_context'] ?? 'order') === 'code' ? url('/view-quotes.php') : url('/view-orders.php') }}">Cancel</a>
             </div>
         </form>
     </section>

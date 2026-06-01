@@ -18,7 +18,7 @@ class EnsureAdminAuthenticated
         if (! $adminId) {
             SecurityAudit::recordUnauthorizedAccess($request, 'Admin route was requested without an active admin session.');
 
-            return redirect('/v');
+            return redirect(url('/v'));
         }
 
         $admin = AdminUser::query()
@@ -34,7 +34,7 @@ class EnsureAdminAuthenticated
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect('/v');
+            return redirect(url('/v'));
         }
 
         $request->attributes->set('adminUser', $admin);

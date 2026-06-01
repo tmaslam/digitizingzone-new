@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', $pageTitle.' | 1Dollar Team Portal')
+@section('title', $pageTitle.' | Digitizing Zone Team Portal')
 @section('page_heading', $pageTitle)
 @section('page_subheading', $pageSummary)
 

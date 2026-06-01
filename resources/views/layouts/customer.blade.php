@@ -4,45 +4,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', $siteContext->displayLabel())</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     @php
         $legacyAssetBase = rtrim(request()->getSchemeAndHttpHost(), '/');
         $publicMenu = [
-            ['label' => 'Home', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Work Process', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Our Services', 'href' => 'https://1dollardigitizing.com/', 'children' => [
-                ['label' => 'Vector Art', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => 'Photo Digitizing', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => 'Embroidery Digitizing', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => '3D / Puff Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => 'Applique Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => 'Chain Stitch Embroidery', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'Home', 'href' => url('/?page=home')],
+            ['label' => 'Services', 'href' => url('/?page=services'), 'children' => [
+                ['label' => 'Embroidery Digitizing', 'href' => url('/?page=svc-embroidery')],
+                ['label' => '3D / Puff Embroidery', 'href' => url('/?page=svc-3d')],
+                ['label' => 'Applique Embroidery', 'href' => url('/?page=svc-applique')],
+                ['label' => 'Chain Stitch Embroidery', 'href' => url('/?page=svc-chain')],
+                ['label' => 'Photo Digitizing', 'href' => url('/?page=svc-photo')],
+                ['label' => 'Vector Art', 'href' => url('/?page=svc-vector')],
             ]],
-            ['label' => 'Formats', 'href' => 'https://1dollardigitizing.com/', 'children' => [
-                ['label' => 'Machine Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-                ['label' => 'Vector File', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'Pricing', 'href' => url('/?page=pricing')],
+            ['label' => 'Formats', 'href' => url('/?page=formats'), 'children' => [
+                ['label' => 'Machine Embroidery', 'href' => url('/?page=formats')],
+                ['label' => 'Vector File', 'href' => url('/?page=formats')],
             ]],
-            ['label' => 'Our Prices', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Contact Us', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'How It Works', 'href' => url('/?page=how-it-works')],
+            ['label' => 'About', 'href' => url('/?page=about')],
+            ['label' => 'Contact', 'href' => url('/?page=contact')],
         ];
         $serviceLinks = [
-            ['label' => 'Embroidery Digitizing', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => '3D / Puff Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Applique Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Chain Stitch Embroidery', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Photo Digitizing', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Vector Art', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'Embroidery Digitizing', 'href' => url('/?page=svc-embroidery')],
+            ['label' => '3D / Puff Embroidery', 'href' => url('/?page=svc-3d')],
+            ['label' => 'Applique Embroidery', 'href' => url('/?page=svc-applique')],
+            ['label' => 'Chain Stitch Embroidery', 'href' => url('/?page=svc-chain')],
+            ['label' => 'Photo Digitizing', 'href' => url('/?page=svc-photo')],
+            ['label' => 'Vector Art', 'href' => url('/?page=svc-vector')],
         ];
         $companyLinks = [
-            ['label' => 'About Us', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Our Quality', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Contact Us', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'About Us', 'href' => url('/?page=about')],
+            ['label' => 'Our Quality', 'href' => url('/our-quality.php')],
+            ['label' => 'Contact Us', 'href' => url('/?page=contact')],
         ];
         $resourceLinks = [
-            ['label' => 'Our Prices', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Formats', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Privacy Policy', 'href' => 'https://1dollardigitizing.com/'],
-            ['label' => 'Terms and Conditions', 'href' => 'https://1dollardigitizing.com/'],
+            ['label' => 'Our Prices', 'href' => url('/?page=pricing')],
+            ['label' => 'Formats', 'href' => url('/?page=formats')],
+            ['label' => 'Privacy Policy', 'href' => url('/privacy-policy.php')],
+            ['label' => 'Terms and Conditions', 'href' => url('/terms.php')],
         ];
     @endphp
     <style>
@@ -53,14 +55,18 @@
             --surface-soft: #f8fbfd;
             --ink: #1f252d;
             --muted: #5e6772;
-            --brand: #169fe6;
-            --brand-dark: #0d6ea3;
+            --brand: #d62b2b;
+            --brand-dark: #b01f1f;
             --accent: #f4b43a;
             --line: #dde4ea;
             --line-strong: #c9d4de;
             --shadow: 0 18px 38px rgba(17, 31, 45, 0.12);
             --footer: #111821;
             --max: 1180px;
+            --navy: #0e1e35;
+            --gold: #f5a623;
+            --accent-soft: #fdf0f0;
+            --accent-dark: #b01f1f;
         }
 
 @include('shared.file-preview-styles')
@@ -90,23 +96,25 @@
         }
 
         .topbar {
-            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+            background: linear-gradient(135deg, #d62b2b, #b01f1f);
             color: rgba(255,255,255,0.96);
             font-size: 0.92rem;
+            padding: 8px 0;
         }
 
-        .topbar-inner {
-            min-height: 46px;
+        .topbar-inner, .topbar .inner {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
+            gap: 6px;
             flex-wrap: wrap;
-            padding: 10px 0;
         }
 
-        .topbar a { color: #ffffff; }
-        .topbar a:hover { color: rgba(255,255,255,0.86); }
+        .topbar a { color: #ffffff; transition: color .2s; }
+        .topbar a:hover { color: #ffffff; }
 
         .topbar-links {
             display: flex;
@@ -115,15 +123,49 @@
             align-items: center;
         }
 
+        .tleft, .tright {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12.5px;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .tb-sep { opacity: .25; }
+
+        .socials {
+            display: flex;
+            gap: 7px;
+        }
+
+        .socials a {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all .2s;
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .socials a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
         .account-chip {
             display: inline-flex;
             align-items: center;
             gap: 14px;
             padding: 8px 12px;
             border-radius: 999px;
-            background: rgba(22, 159, 230, 0.08);
-            border: 1px solid rgba(22, 159, 230, 0.12);
-            color: var(--ink);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #ffffff;
         }
 
         .account-chip-meta {
@@ -133,7 +175,7 @@
 
         .account-chip-meta strong {
             font-size: 0.92rem;
-            color: var(--ink);
+            color: #ffffff;
         }
 
         .account-chip-actions {
@@ -151,27 +193,27 @@
             border-radius: 999px;
             font-size: 0.84rem;
             font-weight: 700;
-            color: var(--ink) !important;
+            color: var(--brand) !important;
             background: rgba(255,255,255,0.94);
             border: 1px solid rgba(17, 31, 45, 0.10);
             transition: background .18s ease, border-color .18s ease, color .18s ease;
         }
 
         .topbar .account-chip-link {
-            color: var(--ink) !important;
+            color: var(--brand) !important;
         }
 
         .account-chip-link:hover {
             color: var(--brand-dark) !important;
-            border-color: rgba(22, 159, 230, 0.18);
-            background: rgba(22, 159, 230, 0.10);
+            border-color: rgba(214, 43, 43, 0.35);
+            background: #ffffff;
         }
 
         .site-header {
             position: relative;
             z-index: 50;
             background: #ffffff;
-            border-bottom: 1px solid #dde4ea;
+            border-bottom: 3px solid var(--gold);
         }
 
         .nav-shell {
@@ -190,7 +232,7 @@
         }
 
         .brand img {
-            height: 78px;
+            height: 48px;
             width: auto;
             max-width: 48vw;
         }
@@ -220,13 +262,14 @@
         .nav-links > a,
         .nav-item > a,
         .nav-parent-toggle {
-            padding: 26px 14px;
-            border-radius: 0;
-            font-size: 15px;
-            font-family: 'Roboto Slab', serif;
-            color: var(--ink);
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: var(--navy);
             display: block;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .nav-parent-toggle {
@@ -258,6 +301,7 @@
         .nav-parent-toggle.active,
         .nav-item:hover > a {
             color: var(--brand);
+            background: #fdf0f0;
         }
 
         .sub-nav {
@@ -273,17 +317,18 @@
 
         .sub-nav a {
             display: block;
-            padding: 12px 16px;
+            padding: 10px 14px;
             color: var(--ink);
-            font-family: "Roboto", "Segoe UI", sans-serif;
-            font-size: 0.98rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
             border-bottom: 1px solid #e8eef3;
         }
 
         .sub-nav a:hover,
         .sub-nav a.active {
-            background: #f4f9fd;
-            color: var(--brand-dark);
+            background: #fdf0f0;
+            color: var(--brand);
         }
 
         .nav-item:hover .sub-nav {
@@ -333,7 +378,7 @@
         .customer-hero {
             padding: clamp(24px, 4vw, 34px);
             background:
-                linear-gradient(180deg, rgba(22, 159, 230, 0.06) 0%, rgba(255, 255, 255, 0.96) 100%),
+                linear-gradient(180deg, rgba(214, 43, 43, 0.06) 0%, rgba(255, 255, 255, 0.96) 100%),
                 #fff;
         }
 
@@ -366,8 +411,8 @@
             display: inline-block;
             padding: 7px 12px;
             border-radius: 999px;
-            background: rgba(22, 159, 230, 0.08);
-            color: var(--brand-dark);
+            background: rgba(214, 43, 43, 0.08);
+            color: var(--brand);
             font-size: 0.78rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
@@ -451,19 +496,21 @@
             border: 1px solid var(--line);
             background: #fff;
             color: var(--ink);
-            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
             transition: background .18s ease, border-color .18s ease, color .18s ease;
         }
 
         .customer-tab:hover,
         .customer-tab.active {
-            background: rgba(22, 159, 230, 0.10);
-            border-color: rgba(22, 159, 230, 0.24);
-            color: var(--brand-dark);
+            background: rgba(214, 43, 43, 0.10);
+            border-color: rgba(214, 43, 43, 0.24);
+            color: var(--brand);
         }
 
         .customer-tab.account {
-            background: rgba(22, 159, 230, 0.06);
+            background: rgba(214, 43, 43, 0.06);
         }
 
         .customer-action {
@@ -481,13 +528,13 @@
         .customer-action.primary {
             background: linear-gradient(135deg, var(--brand), var(--brand-dark));
             color: #fff;
-            box-shadow: 0 12px 24px rgba(22, 159, 230, 0.18);
+            box-shadow: 0 12px 24px rgba(214, 43, 43, 0.18);
         }
 
         .customer-action.secondary {
-            background: rgba(22, 159, 230, 0.08);
-            color: var(--brand-dark);
-            border-color: rgba(22, 159, 230, 0.16);
+            background: rgba(214, 43, 43, 0.08);
+            color: var(--brand);
+            border-color: rgba(214, 43, 43, 0.16);
         }
 
         .customer-action:hover {
@@ -546,7 +593,7 @@
         }
 
         .customer-action-list a:hover {
-            background: rgba(22, 159, 230, 0.08);
+            background: rgba(214, 43, 43, 0.08);
             color: var(--brand-dark);
         }
 
@@ -625,7 +672,7 @@
         a.portal-stat:hover {
             transform: translateY(-2px);
             border-color: var(--brand);
-            box-shadow: 0 8px 24px rgba(22, 159, 230, 0.12);
+            box-shadow: 0 8px 24px rgba(214, 43, 43, 0.12);
         }
 
         .portal-stat span {
@@ -679,9 +726,9 @@
 
         .metric-link:hover {
             transform: translateY(-1px);
-            border-color: rgba(22, 159, 230, 0.22);
+            border-color: rgba(214, 43, 43, 0.22);
             background: rgba(255,255,255,0.98);
-            box-shadow: 0 16px 28px rgba(12, 48, 89, 0.08);
+            box-shadow: 0 16px 28px rgba(176, 31, 31, 0.08);
         }
 
         .metric span {
@@ -743,8 +790,8 @@
 
         a.action-card:hover {
             transform: translateY(-1px);
-            border-color: rgba(22, 159, 230, 0.22);
-            box-shadow: 0 16px 28px rgba(12, 48, 89, 0.08);
+            border-color: rgba(214, 43, 43, 0.22);
+            box-shadow: 0 16px 28px rgba(176, 31, 31, 0.08);
         }
 
         .activity-list {
@@ -887,8 +934,8 @@
         .content-note {
             padding: 14px 16px;
             border-radius: 14px;
-            background: rgba(22, 159, 230, 0.06);
-            border: 1px solid rgba(22, 159, 230, 0.14);
+            background: rgba(214, 43, 43, 0.06);
+            border: 1px solid rgba(214, 43, 43, 0.14);
             font-size: 0.93rem;
             line-height: 1.6;
             color: var(--ink);
@@ -1075,9 +1122,9 @@
 
         .button.ghost,
         button.ghost {
-            background: rgba(22,159,230,0.08);
+            background: rgba(214,43,43,0.08);
             color: var(--brand-dark);
-            border-color: rgba(22,159,230,0.16);
+            border-color: rgba(214,43,43,0.16);
         }
 
         .button.danger,
@@ -1504,7 +1551,11 @@
         }
 
         .footer-link {
-            color: rgba(255, 255, 255, 0.8);
+            color: #ffffff;
+        }
+
+        .footer-link:hover {
+            color: #f5a623;
         }
 
         .footer-contact {
@@ -1703,39 +1754,61 @@
         }
     </style>
     <link rel="stylesheet" href="{{ url('/css/front-theme-overrides.css') }}">
+    <style>
+        body.front-theme.customer-portal-theme .topbar {
+            background: linear-gradient(135deg, #d62b2b, #b01f1f) !important;
+            color: #ffffff !important;
+        }
+        body.front-theme.customer-portal-theme .topbar a {
+            color: #ffffff !important;
+        }
+        body.front-theme.customer-portal-theme .topbar a:hover {
+            color: #f5a623 !important;
+        }
+        body.front-theme.customer-portal-theme .site-header {
+            border-bottom: 3px solid #f5a623 !important;
+            background: rgba(255, 255, 255, 0.97) !important;
+        }
+    </style>
 </head>
 <body class="front-theme customer-portal-theme">
     @php
         $currentPath = request()->path();
         $customerName = request()->attributes->get('customerUser')?->display_name ?? session('customer_user_name');
         $customerNav = [
-            ['label' => 'Dashboard', 'href' => '/dashboard.php', 'match' => ['dashboard.php']],
-            ['label' => 'Orders', 'href' => '/view-orders.php', 'match' => ['new-order.php', 'vector-order.php', 'view-orders.php', 'view-order-detail.php', 'edit-order.php', 'disapprove-order.php', 'download.php', 'preview.php']],
-            ['label' => 'Quotes', 'href' => '/view-quotes.php', 'match' => ['quote.php', 'vector_quote.php', 'vector-quote.php', 'digitizing_quote.php', 'digitizing-quote.php', 'view-quotes.php', 'view-quote-detail.php', 'edit-quote.php']],
-            ['label' => 'Billing', 'href' => '/view-billing.php', 'match' => ['view-billing.php', 'payment.php', 'payment-proceed.php', 'successpay.php', 'referral-invoice.php']],
-            ['label' => 'Paid Orders', 'href' => '/view-archive-orders.php', 'match' => ['view-paid-orders.php', 'view-archive-orders.php']],
-            ['label' => 'Invoices', 'href' => '/view-invoices.php', 'match' => ['view-invoices.php', 'view-invoice-detail.php']],
+            ['label' => 'Dashboard', 'href' => url('/dashboard.php'), 'match' => ['dashboard.php']],
+            ['label' => 'Orders', 'href' => url('/view-orders.php'), 'match' => ['new-order.php', 'vector-order.php', 'view-orders.php', 'view-order-detail.php', 'edit-order.php', 'disapprove-order.php', 'download.php', 'preview.php']],
+            ['label' => 'Quotes', 'href' => url('/view-quotes.php'), 'match' => ['quote.php', 'vector_quote.php', 'vector-quote.php', 'digitizing_quote.php', 'digitizing-quote.php', 'view-quotes.php', 'view-quote-detail.php', 'edit-quote.php']],
+            ['label' => 'Billing', 'href' => url('/view-billing.php'), 'match' => ['view-billing.php', 'payment.php', 'payment-proceed.php', 'successpay.php', 'referral-invoice.php']],
+            ['label' => 'Paid Orders', 'href' => url('/view-archive-orders.php'), 'match' => ['view-paid-orders.php', 'view-archive-orders.php']],
+            ['label' => 'Invoices', 'href' => url('/view-invoices.php'), 'match' => ['view-invoices.php', 'view-invoice-detail.php']],
         ];
         $customerStartLinks = [
-            ['label' => 'Digitizing Order', 'href' => '/new-order.php', 'description' => 'Start a regular embroidery digitizing order.'],
-            ['label' => 'Vector Order', 'href' => '/vector-order.php', 'description' => 'Submit a vector-only order directly.'],
-            ['label' => 'Digitizing Quote', 'href' => '/quote.php', 'description' => 'Get digitizing pricing first before placing the order.'],
-            ['label' => 'Vector Quote', 'href' => '/vector-quote.php', 'description' => 'Request vector pricing first before placing the order.'],
+            ['label' => 'Digitizing Order', 'href' => url('/new-order.php'), 'description' => 'Start a regular embroidery digitizing order.'],
+            ['label' => 'Vector Order', 'href' => url('/vector-order.php'), 'description' => 'Submit a vector-only order directly.'],
+            ['label' => 'Digitizing Quote', 'href' => url('/quote.php'), 'description' => 'Get digitizing pricing first before placing the order.'],
+            ['label' => 'Vector Quote', 'href' => url('/vector-quote.php'), 'description' => 'Request vector pricing first before placing the order.'],
         ];
     @endphp
 
     <div class="site-frame">
         <div class="topbar">
-            <div class="container topbar-inner">
-                <a href="mailto:{{ $siteContext->supportEmail }}">Email Us: {{ $siteContext->supportEmail }}</a>
-                <div class="topbar-links">
+            <div class="inner">
+                <div class="tleft">
+                    <span>📞 <a href="tel:+12063126446">+1 206-312-6446</a></span>
+                    <span class="tb-sep">|</span>
+                    <span>✉ <a href="mailto:info@digitizingzone.com">info@digitizingzone.com</a></span>
+                    <span class="tb-sep topbar-addr">|</span>
+                    <span class="topbar-addr">🇺🇸 US · 🇬🇧 UK · 🇵🇰 Pakistan — Global Operations</span>
+                </div>
+                <div class="tright">
                     <div class="account-chip">
                         <div class="account-chip-meta">
                             <strong>{{ $customerName ?: 'Customer' }}</strong>
                         </div>
                         <div class="account-chip-actions">
-                            <a class="account-chip-link" href="/my-profile.php">My Profile</a>
-                            <a class="account-chip-link" href="/logout.php">Logout</a>
+                            <a class="account-chip-link" href="{{ url('/my-profile.php') }}">My Profile</a>
+                            <a class="account-chip-link" href="{{ url('/logout.php') }}">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -1744,8 +1817,8 @@
 
         <header class="site-header">
             <div class="container nav-shell">
-                <a class="brand" href="https://1dollardigitizing.com/">
-                    <img src="{{ $legacyAssetBase }}/images/logo.png" alt="1 Dollar Digitizing">
+                <a class="brand" href="{{ url('/') }}">
+                    <img src="{{ url('images/logo.png') }}" alt="Digitizing Zone">
                 </a>
 
                 <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="public-navigation">Menu</button>
@@ -1843,8 +1916,8 @@
         <footer class="footer">
             <div class="container footer-grid">
                 <div class="footer-card">
-                    <img class="footer-logo" src="{{ $legacyAssetBase }}/images/logo.png" alt="1 Dollar Digitizing footer logo">
-                    <p class="footer-intro">Professional embroidery digitizing services at affordable prices. Quality you can count on.</p>
+                    <img class="footer-logo" src="{{ url('images/logo.png') }}" alt="Digitizing Zone footer logo">
+                    <p class="footer-intro">Digitizing Zone is a world-leading embroidery digitizing company with over 20 years of excellence. We deliver the highest quality digitized designs at unbeatable rates, with offices in the USA, UK, and Pakistan — serving clients globally 24/7.</p>
                 </div>
                 <div class="footer-card">
                     <h3>Company</h3>
@@ -1871,17 +1944,17 @@
                         </div>
                         <div class="footer-contact-item">
                             <span>Dashboard</span>
-                            <a class="footer-link" href="/dashboard.php">Go To Customer Dashboard</a>
+                            <a class="footer-link" href="{{ url('/dashboard.php') }}">Go To Customer Dashboard</a>
                         </div>
                         <div class="footer-contact-item">
                             <span>Need Help?</span>
-                            <a class="footer-link" href="https://1dollardigitizing.com/">Contact Our Team</a>
+                            <a class="footer-link" href="{{ url('/contact-us.php') }}">Contact Our Team</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container footer-bottom">
-                <span>Copyrights &copy; 2010-{{ date('Y') }} All Rights Reserved by 1dollardigitizing.com</span>
+                <span>Copyrights &copy; 2010-{{ date('Y') }} All Rights Reserved by digitizingzone.com</span>
                 <span>Custom embroidery digitizing and vector art services.</span>
             </div>
         </footer>

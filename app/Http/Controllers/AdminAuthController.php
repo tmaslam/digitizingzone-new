@@ -19,7 +19,7 @@ class AdminAuthController extends Controller
     public function showLogin(Request $request)
     {
         if ($request->session()->has('admin_user_id')) {
-            return redirect('/welcome.php');
+            return redirect(url('/welcome.php'));
         }
 
         return view('admin.auth.login');
@@ -28,7 +28,7 @@ class AdminAuthController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('admin_user_id')) {
-            return redirect('/welcome.php');
+            return redirect(url('/welcome.php'));
         }
 
         $validated = $request->validate([
@@ -109,7 +109,7 @@ class AdminAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/v')->with('success', 'You have been successfully logged out.');
+        return redirect(url('/v'))->with('success', 'You have been successfully logged out.');
     }
 
     private function initiate2FA(Request $request, AdminUser $user)
@@ -130,6 +130,9 @@ class AdminAuthController extends Controller
             'impersonation_target_role',
             'impersonation_target_name',
         ]);
+
+        // 2FA temporarily disabled for admin logins.
+        return $this->persistLogin($request, $user, 'Admin login (2FA temporarily disabled)');
 
         if ($email === '') {
             // No email on record — fall back to direct login and log a warning.
@@ -173,7 +176,7 @@ class AdminAuthController extends Controller
         ]);
         LoginSecurity::recordAttempt($request, $user->user_name, $reason, 'success', $user);
 
-        return redirect('/welcome.php');
+        return redirect(url('/welcome.php'));
     }
 
     private function throttleKey(Request $request, string $login): string

@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Customers | 1Dollar Admin')
+@section('title', 'Customers | Digitizing Zone Admin')
 @section('page_heading', 'Customers')
 @section('page_subheading', 'Manage active customer accounts and account details.')
 
@@ -125,15 +125,7 @@
                                         @endforeach
                                         <button class="block-button" type="submit">Block</button>
                                     </form>
-                                    @if (trim((string) ($customer->user_term ?? '')) === 'upgraded')
-                                    <form method="post" action="{{ url('/v/customers/'.$customer->user_id.'/reverse-upgrade') }}" onsubmit="return confirm('Reverse upgrade for this customer? They will be able to place new orders again.');">
-                                        @csrf
-                                        @foreach (request()->query() as $key => $value)
-                                            <input type="hidden" name="{{ $key }}" value="{{ $value }}">
-                                        @endforeach
-                                        <button style="background: linear-gradient(135deg, #2563eb, #1d4ed8);" type="submit">Reverse Upgrade</button>
-                                    </form>
-                                    @endif
+
                                 </div>
                             </td>
                             <td class="cell-nowrap">{{ $customer->user_id }}</td>

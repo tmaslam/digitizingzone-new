@@ -268,7 +268,7 @@ class CustomerOrderEntryController extends Controller
         $this->storeSourceFiles($request->file('source_files', []), $order, 'edit order');
         $this->sendAdminAlertForAction($customer, $site, $order, 'Customer Order Updated', trim((string) ($validated['comments'] ?? '')));
 
-        return redirect($this->isQuoteType($order) ? '/view-quotes.php' : '/view-orders.php')
+        return redirect($this->isQuoteType($order) ? url('/view-quotes.php') : url('/view-orders.php'))
             ->with('success', 'Your order has been updated successfully.');
     }
 
@@ -333,7 +333,7 @@ class CustomerOrderEntryController extends Controller
         $this->storeSourceFiles($request->file('source_files', []), $order, 'edit order');
         $this->sendAdminAlertForAction($customer, $site, $order, 'Customer Revision Requested', trim((string) $validated['comments']));
 
-        return redirect('/view-orders.php')->with('success', 'Your edit request has been sent successfully.');
+        return redirect(url('/view-orders.php'))->with('success', 'Your edit request has been sent successfully.');
     }
 
     private function validateOrderInput(Request $request, array $flow, bool $editing): array
@@ -378,8 +378,8 @@ class CustomerOrderEntryController extends Controller
                 'work_type' => 'vector',
                 'order_type' => 'q-vector',
                 'source_file_source' => 'quote',
-                'submit_path' => '/vector_quote.php',
-                'success_redirect' => '/view-quotes.php',
+                'submit_path' => url('/vector_quote.php'),
+                'success_redirect' => url('/view-quotes.php'),
                 'success_message' => 'Your vector quote has been submitted successfully.',
                 'submit_label' => 'Submit Quote',
             ],
@@ -389,8 +389,8 @@ class CustomerOrderEntryController extends Controller
                 'work_type' => 'digitizing',
                 'order_type' => 'digitzing',
                 'source_file_source' => 'quote',
-                'submit_path' => '/quote.php',
-                'success_redirect' => '/view-quotes.php',
+                'submit_path' => url('/quote.php'),
+                'success_redirect' => url('/view-quotes.php'),
                 'success_message' => 'Your quote has been submitted successfully.',
                 'submit_label' => 'Submit Quote',
             ],
@@ -400,8 +400,8 @@ class CustomerOrderEntryController extends Controller
                 'work_type' => 'vector',
                 'order_type' => 'vector',
                 'source_file_source' => 'vector',
-                'submit_path' => '/vector-order.php',
-                'success_redirect' => '/view-orders.php',
+                'submit_path' => url('/vector-order.php'),
+                'success_redirect' => url('/view-orders.php'),
                 'success_message' => 'Your vector order has been submitted successfully.',
                 'submit_label' => 'Submit Order',
             ],
@@ -411,8 +411,8 @@ class CustomerOrderEntryController extends Controller
                 'work_type' => 'digitizing',
                 'order_type' => 'order',
                 'source_file_source' => 'order',
-                'submit_path' => '/new-order.php',
-                'success_redirect' => '/view-orders.php',
+                'submit_path' => url('/new-order.php'),
+                'success_redirect' => url('/view-orders.php'),
                 'success_message' => 'Your order has been submitted successfully.',
                 'submit_label' => 'Submit Order',
             ],
@@ -443,7 +443,7 @@ class CustomerOrderEntryController extends Controller
 
     private function editFormAction(Order $order): string
     {
-        $path = $this->isQuoteType($order) ? '/edit-quote.php' : '/edit-order.php';
+        $path = $this->isQuoteType($order) ? url('/edit-quote.php') : url('/edit-order.php');
 
         return $path.'?order_id='.$order->order_id;
     }

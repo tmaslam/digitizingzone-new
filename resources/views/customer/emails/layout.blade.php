@@ -52,7 +52,7 @@ table {
                 <table role="presentation" width="640" cellspacing="0" cellpadding="0" style="width:100%;max-width:640px;border-collapse:collapse;">
                     <tr>
                         <td style="background:#17212a;padding:22px 28px;">
-                            <div style="font-size:20px;font-weight:700;line-height:1.2;color:#ffffff;font-family:Arial,Helvetica,sans-serif;">{{ $siteLabel ?? '1Dollar Digitizing' }}</div>
+                            <div style="font-size:20px;font-weight:700;line-height:1.2;color:#ffffff;font-family:Arial,Helvetica,sans-serif;">{{ $siteLabel ?? 'Digitizing Zone' }}</div>
                             <div style="margin-top:6px;font-size:13px;color:#d6e0ea;font-family:Arial,Helvetica,sans-serif;">{{ $title }}</div>
                         </td>
                     </tr>
@@ -63,7 +63,7 @@ table {
                     </tr>
                     <tr>
                         <td style="padding:14px 28px;font-size:12px;color:#6b7785;background:#f9f9f9;border:1px solid #d9dee5;border-top:0;font-family:Arial,Helvetica,sans-serif;">
-                            {{ $siteLabel ?? '1Dollar Digitizing' }}
+                            {{ $siteLabel ?? 'Digitizing Zone' }}
                             @if (! empty($supportEmail))
                                 &bull; Questions? <a href="mailto:{{ $supportEmail }}" style="color:#0d6ea3;font-family:Arial,Helvetica,sans-serif;">{{ $supportEmail }}</a>
                             @endif

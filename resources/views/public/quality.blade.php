@@ -36,8 +36,8 @@
                 <h1>Our <span>Quality</span></h1>
                 <p>Quality digitizing starts with experienced people, careful file preparation, and dependable turnaround for real embroidery production.</p>
                 <div class="theme-header-actions">
-                    <a class="button primary" href="/price-plan.php">View Pricing</a>
-                    <a class="button secondary" href="/contact-us.php">Contact Us</a>
+                    <a class="button primary" href="{{ url('/price-plan.php') }}">View Pricing</a>
+                    <a class="button secondary" href="{{ url('/contact-us.php') }}">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -49,10 +49,10 @@
                 <div class="split">
                     <div class="copy">
                         <div class="section-head quality-head">
-                            <h2><span style="color:#169fe6;">Quality</span> Digitizing & Embroidery</h2>
+                            <h2><span style="color:#d62b2b;">Quality</span> Digitizing & Embroidery</h2>
                         </div>
                         <div class="quality-copy">
-                            <p>Looking for professional embroidery digitizing or machine embroidery designs? 1 Dollar Digitizing is built to support customers who need practical service, strong communication, and files prepared for real production use.</p>
+                            <p>Looking for professional embroidery digitizing or machine embroidery designs? Digitizing Zone is built to support customers who need practical service, strong communication, and files prepared for real production use.</p>
                             <p>With a team of skilled digitizers, embroiderers, and graphic designers backed by years of hands-on industry experience, we focus on delivering accurate results for logos, detailed artwork, rush jobs, and repeat production work.</p>
                             <p>We stay committed to fast service without losing sight of quality. That is why customers continue to rely on us for dependable turnaround, consistent file preparation, and support that stays available when orders need attention.</p>
                         </div>
@@ -99,8 +99,8 @@
                     <p>Start with a quote, send your artwork, or contact us if you want help choosing the right service before placing an order.</p>
                 </div>
                 <div class="theme-header-actions" style="margin:0;">
-                    <a class="button primary" href="/sign-up.php">Get Started</a>
-                    <a class="button secondary" href="/formats.php">View Formats</a>
+                    <a class="button primary" href="{{ url('/sign-up.php') }}">Get Started</a>
+                    <a class="button secondary" href="{{ url('/formats.php') }}">View Formats</a>
                 </div>
             </div>
         </div>
@@ -127,8 +127,8 @@
             align-self: start;
             padding: 24px;
             border-radius: 24px;
-            background: linear-gradient(180deg, rgba(22, 159, 230, 0.08) 0%, rgba(255, 255, 255, 0.98) 100%);
-            border: 1px solid rgba(22, 159, 230, 0.14);
+            background: linear-gradient(180deg, rgba(214, 43, 43, 0.08) 0%, rgba(255, 255, 255, 0.98) 100%);
+            border: 1px solid rgba(214, 43, 43, 0.14);
             box-shadow: 0 18px 36px rgba(12, 48, 89, 0.08);
         }
 
@@ -159,7 +159,7 @@
             padding: 24px;
             border-radius: 22px;
             background: #fff;
-            border: 1px solid rgba(22, 159, 230, 0.12);
+            border: 1px solid rgba(214, 43, 43, 0.12);
             box-shadow: 0 16px 30px rgba(12, 48, 89, 0.08);
         }
 

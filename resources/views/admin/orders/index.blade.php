@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', $pageTitle.' | 1Dollar Admin')
+@section('title', $pageTitle.' | Digitizing Zone Admin')
 @section('page_heading', $pageTitle)
 @section('page_subheading', str_contains(strtolower($pageTitle), 'quote') ? 'Review quotes by queue, search quickly, and move work forward without jumping between duplicate screens.' : 'Review orders by queue, search quickly, and move work forward without jumping between duplicate screens.')
 

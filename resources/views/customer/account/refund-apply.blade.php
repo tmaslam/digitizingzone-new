@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <form method="post" action="/refund-apply.php" class="form-grid">
+        <form method="post" action="{{ url('/refund-apply.php') }}" class="form-grid">
             @csrf
 
             <label style="grid-column: 1 / -1;">
@@ -23,7 +23,7 @@
 
             <div style="grid-column: 1 / -1; display: flex; gap: 12px; flex-wrap: wrap;">
                 <button type="submit">Submit Refund Request</button>
-                <a class="button secondary" href="/dashboard.php">Back To Dashboard</a>
+                <a class="button secondary" href="{{ url('/dashboard.php') }}">Back To Dashboard</a>
             </div>
         </form>
     </section>

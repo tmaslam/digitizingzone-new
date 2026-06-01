@@ -63,7 +63,7 @@
                 </div>
 
                 <div>
-                    <form method="post" action="/contact-us.php" class="contact-form" data-validate-form novalidate id="contact-form">
+                    <form method="post" action="{{ url('/contact-us.php') }}" class="contact-form" data-validate-form novalidate id="contact-form">
                         @csrf
                         <input type="text" name="website_url" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
                         <h3 class="form-title">Request a Quote</h3>

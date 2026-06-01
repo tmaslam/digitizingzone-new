@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', ($mode === 'create' ? 'Create Email Template' : 'Edit Email Template').' | 1Dollar Admin')
+@section('title', ($mode === 'create' ? 'Create Email Template' : 'Edit Email Template').' | Digitizing Zone Admin')
 @section('page_heading', $mode === 'create' ? 'Create Email Template' : 'Edit Email Template')
 @section('page_subheading', 'Save reusable subjects and message content for customer emails.')
 

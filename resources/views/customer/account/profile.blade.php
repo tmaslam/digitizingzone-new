@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <form method="post" action="/my-profile.php" class="stack" data-form-validation novalidate>
+        <form method="post" action="{{ url('/my-profile.php') }}" class="stack" data-form-validation novalidate>
             @csrf
             <div class="form-grid">
                 <label>
@@ -134,13 +134,13 @@
 
         <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
             @if ((int) ($customer->two_factor_enabled ?? 0) === 1)
-                <form method="post" action="/my-profile/2fa" onsubmit="return confirm('Are you sure you want to disable two-factor authentication? Your account will be less secure.');">
+                <form method="post" action="{{ url('/my-profile/2fa') }}" onsubmit="return confirm('Are you sure you want to disable two-factor authentication? Your account will be less secure.');">
                     @csrf
                     <input type="hidden" name="action" value="disable">
                     <button type="submit" class="secondary">Disable Two-Factor Authentication</button>
                 </form>
             @else
-                <form method="post" action="/my-profile/2fa">
+                <form method="post" action="{{ url('/my-profile/2fa') }}">
                     @csrf
                     <input type="hidden" name="action" value="enable">
                     <button type="submit">Enable Two-Factor Authentication</button>
@@ -157,7 +157,7 @@
             </div>
         </div>
 
-        <form method="post" action="/my-profile/password" class="stack" data-form-validation novalidate>
+        <form method="post" action="{{ url('/my-profile/password') }}" class="stack" data-form-validation novalidate>
             @csrf
             <div class="form-grid">
                 <label>

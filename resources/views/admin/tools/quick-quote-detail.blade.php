@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Quick Quote #'.$order->order_id.' | 1Dollar Admin')
+@section('title', 'Quick Quote #'.$order->order_id.' | Digitizing Zone Admin')
 @section('page_heading', 'Quick Quote Detail #'.$order->order_id)
 @section('page_subheading', 'Review quote details, files, comments, and pricing.')
 

@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', '1Dollar Admin')</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <title>@yield('title', 'Digitizing Zone Admin')</title>
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}">
     <style>
         :root {
             color-scheme: light;
@@ -15,9 +15,9 @@
             --muted: #6d7683;
             --line: rgba(24, 34, 45, 0.22);
             --line-strong: rgba(24, 34, 45, 0.34);
-            --accent: #0f5f66;
-            --accent-dark: #123c55;
-            --accent-soft: #dff0ee;
+            --accent: #d62b2b;
+            --accent-dark: #b01f1f;
+            --accent-soft: #fdf0f0;
             --warning: #c56b22;
             --shadow: 0 24px 60px rgba(20, 33, 49, 0.12);
         }
@@ -29,11 +29,11 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: "Avenir Next", "Segoe UI", sans-serif;
+            font-family: 'Montserrat', 'Inter', 'Segoe UI', sans-serif;
             color: var(--ink);
             overflow-x: hidden;
             background:
-                radial-gradient(circle at top left, rgba(15, 95, 102, 0.14), transparent 32%),
+                radial-gradient(circle at top left, rgba(214, 43, 43, 0.10), transparent 32%),
                 radial-gradient(circle at top right, rgba(197, 107, 34, 0.12), transparent 26%),
                 linear-gradient(180deg, #fbf7ef 0%, #f3eadb 100%);
         }
@@ -123,8 +123,8 @@
             min-width: 32px;
             padding: 4px 8px;
             border-radius: 999px;
-            background: rgba(223, 240, 238, 0.14);
-            color: #dff0ee;
+            background: rgba(253, 240, 240, 0.14);
+            color: #fdf0f0;
             text-align: center;
             font-size: 0.82rem;
             font-weight: 800;
@@ -252,7 +252,7 @@
         }
         .stat-link:hover .stat {
             transform: translateY(-2px);
-            border-color: rgba(15, 95, 102, 0.28);
+            border-color: rgba(214, 43, 43, 0.22);
             box-shadow: 0 18px 34px rgba(20, 33, 49, 0.1);
         }
         .stat {
@@ -339,7 +339,7 @@
             background: rgba(255,255,255,0.34);
         }
         tbody tr:hover td {
-            background: rgba(223, 240, 238, 0.28);
+            background: rgba(253, 240, 240, 0.35);
         }
         .badge {
             display: inline-flex;
@@ -443,9 +443,9 @@
         select:focus,
         textarea:focus {
             outline: none;
-            border-color: rgba(15, 95, 102, 0.62);
+            border-color: rgba(214, 43, 43, 0.50);
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(15, 95, 102, 0.12);
+            box-shadow: 0 0 0 4px rgba(214, 43, 43, 0.10);
         }
         input[type="checkbox"],
         input[type="radio"] {
@@ -470,7 +470,7 @@
             justify-content: center;
             gap: 8px;
             line-height: 1.1;
-            box-shadow: 0 12px 24px rgba(18, 60, 85, 0.16);
+            box-shadow: 0 12px 24px rgba(214, 43, 43, 0.16);
             transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
             white-space: nowrap;
             text-decoration: none;
@@ -485,10 +485,10 @@
         button.secondary,
         a.button.secondary,
         .button.secondary {
-            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(240,236,228,0.88));
-            color: var(--ink);
-            box-shadow: 0 2px 8px rgba(18, 60, 85, 0.08);
-            border: 1px solid rgba(24, 34, 45, 0.15);
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(253,240,240,0.55));
+            color: var(--accent);
+            box-shadow: 0 2px 8px rgba(214, 43, 43, 0.08);
+            border: 1px solid rgba(214, 43, 43, 0.18);
         }
         button,
         a.button,
@@ -523,7 +523,7 @@
             font-weight: 700;
         }
         .pagination a:hover {
-            border-color: rgba(15, 95, 102, 0.32);
+            border-color: rgba(214, 43, 43, 0.28);
             background: #ffffff;
         }
         .pagination .current {
@@ -745,7 +745,7 @@
     <aside class="sidebar">
         <button type="button" class="sidebar-close" data-mobile-nav-close>Close Menu</button>
         <div class="brand">
-            <h1>1Dollar<br>Admin</h1>
+            <h1>Digitizing Zone<br>Admin</h1>
             <p>Management portal for orders, quotes, billing, customers, teams, and reports.</p>
         </div>
 

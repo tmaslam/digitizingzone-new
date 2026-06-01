@@ -21,7 +21,7 @@ class EnsureSupervisorAuthenticated
                 'team_user_type_id' => $teamUser?->usre_type_id,
             ]);
 
-            return redirect('/team/welcome.php');
+            return redirect(url('/team/welcome.php'));
         }
 
         return HttpCache::applyPrivateNoStore($next($request));

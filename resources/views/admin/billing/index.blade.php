@@ -38,7 +38,7 @@
     $detailLabel = fn ($billing) => $billing->order ? 'Open Detail' : 'Open Billing';
 @endphp
 
-@section('title', $title.' | 1Dollar Admin')
+@section('title', $title.' | Digitizing Zone Admin')
 @section('page_heading', $title)
 @section('page_subheading', $subtitle)
 

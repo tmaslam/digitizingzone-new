@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Received Detail | 1Dollar Admin')
+@section('title', 'Received Detail | Digitizing Zone Admin')
 @section('page_heading', 'Received Detail For '.$customer->display_name)
 @section('page_subheading', 'Paid invoice history for this customer.')
 

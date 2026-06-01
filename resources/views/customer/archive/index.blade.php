@@ -16,7 +16,7 @@
 
         <dialog id="dlPaidOrdersModal" style="border:1px solid var(--line,#e2e6ea);border-radius:12px;padding:28px 32px;max-width:400px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
             <h3 style="margin:0 0 18px;font-size:1.05rem;">Download Paid Orders</h3>
-            <form method="get" action="/download-paid-orders.php" id="dlPaidOrdersForm">
+            <form method="get" action="{{ url('/download-paid-orders.php') }}" id="dlPaidOrdersForm">
                 <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;">
                     <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
                         <input type="radio" name="range_type" value="all" checked onchange="dlToggleRange()"> All Time
@@ -58,7 +58,7 @@
         });
         </script>
 
-        <form method="get" action="/view-archive-orders.php" class="filter-bar">
+        <form method="get" action="{{ url('/view-archive-orders.php') }}" class="filter-bar">
             <input
                 type="text"
                 name="search"
@@ -68,7 +68,7 @@
             >
             <button type="submit">Search</button>
             @if ($search !== '')
-                <a class="button secondary" href="/view-archive-orders.php">Clear</a>
+                <a class="button secondary" href="{{ url('/view-archive-orders.php') }}">Clear</a>
             @endif
         </form>
 
@@ -97,7 +97,7 @@
                             <td>{{ $order->order_num ?: $order->order_id }}</td>
                             <td>{{ $order->design_name }}</td>
                             <td>{{ $order->completion_date ?: '-' }}</td>
-                            <td><a class="button secondary" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=archive">View Detail</a></td>
+                            <td><a class="button secondary" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=archive">View Detail</a></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Customer #'.$customer->user_id.' | 1Dollar Admin')
+@section('title', 'Edit Customer #'.$customer->user_id.' | Digitizing Zone Admin')
 @section('page_heading', 'Edit Customer #'.$customer->user_id)
 @section('page_subheading', 'Update customer account details, pricing, and approval limits.')
 
@@ -72,13 +72,7 @@
                             <option value="0" @selected((string) old('is_active', $customer->is_active) === '0')>Blocked</option>
                         </select>
                     </div>
-                    <div class="field">
-                        <label>Account Type</label>
-                        <select name="user_term">
-                            <option value="" @selected(trim((string) old('user_term', $customer->user_term)) === '')>Legacy</option>
-                            <option value="upgraded" @selected(trim((string) old('user_term', $customer->user_term)) === 'upgraded')>Upgraded</option>
-                        </select>
-                    </div>
+
                     <div class="field"><label>Max Number of Stitches Override</label><input type="text" name="max_num_stiches" value="{{ old('max_num_stiches', $customer->max_num_stiches) }}" placeholder="Blank uses site pricing"></div>
                 </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Manage Team | 1Dollar Team Portal')
+@section('title', 'Manage Team | Digitizing Zone Team Portal')
 @section('page_heading', 'Manage Team')
 @section('page_subheading', 'Create team logins and manage your assigned team members.')
 

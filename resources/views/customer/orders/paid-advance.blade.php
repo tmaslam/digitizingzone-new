@@ -29,7 +29,7 @@
                     <tbody>
                     @foreach ($orders as $order)
                         <tr>
-                            <td><a class="button secondary" href="/view-orderpaid-details.php?order_id={{ $order->order_id }}">View</a></td>
+                            <td><a class="button secondary" href="{{ url('/view-orderpaid-details.php') }}?order_id={{ $order->order_id }}">View</a></td>
                             <td>{{ $order->order_id }}</td>
                             <td>{{ $order->design_name ?: 'Order #'.$order->order_id }}</td>
                             <td>{{ $order->completion_date ?: '-' }}</td>

@@ -62,7 +62,7 @@
         </div>
 
         <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:flex-start;">
-            <form method="post" action="/member-offer.php/pay" class="stack" id="signup-offer-payment-form">
+            <form method="post" action="{{ url('/member-offer.php/pay') }}" class="stack" id="signup-offer-payment-form">
                 @csrf
                 @if ($singlePaymentProvider)
                     <input type="hidden" name="provider" value="{{ $singlePaymentProvider['key'] }}">
@@ -72,7 +72,7 @@
                     'buttonPrefix' => 'Continue With',
                 ])
             </form>
-            <a class="button secondary" href="/logout.php">Log Out</a>
+            <a class="button secondary" href="{{ url('/logout.php') }}">Log Out</a>
         </div>
     </section>
 

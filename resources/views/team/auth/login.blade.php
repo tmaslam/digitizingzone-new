@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1Dollar Team Portal</title>
+    <title>Digitizing Zone Team Portal</title>
     <style>
         :root {
             --bg: #f4efe6;
@@ -86,7 +86,7 @@
 <body>
     <form class="panel" method="post" action="{{ url('/team/login') }}">
         @csrf
-        <h1>1Dollar<br>Team Portal</h1>
+        <h1>Digitizing Zone<br>Team Portal</h1>
         <p>Authorized users only.</p>
 
         @if (session('success'))

@@ -23,7 +23,7 @@
 @if ($page === 'quote')
     <p><strong>PLEASE NOTE:</strong> This quotation is a preliminary estimate only. Final pricing may vary up to +/- 10% based on final design output. Should the cost exceed this range, we will notify you for approval prior to proceeding.</p>
 @else
-    <p><strong>DISCLAIMER:</strong> Please conduct a test run and verify the sample against your design before proceeding with production. 1dollardigitizing.com is not responsible for any damage to materials incurred during use. Designs are provided for lawful use only. The recipient assumes all responsibility for ensuring reproduction rights and maintaining compliance with intellectual property laws.</p>
+    <p><strong>DISCLAIMER:</strong> Please conduct a test run and verify the sample against your design before proceeding with production. digitizingzone.com is not responsible for any damage to materials incurred during use. Designs are provided for lawful use only. The recipient assumes all responsibility for ensuring reproduction rights and maintaining compliance with intellectual property laws.</p>
 @endif
 
 <p>Kind regards,<br>{{ $companyName }}</p>

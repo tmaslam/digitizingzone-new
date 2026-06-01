@@ -15,10 +15,10 @@
             <div class="order-detail-actions">
                 <a class="button secondary" href="{{ $backLink['url'] }}">{{ $backLink['label'] }}</a>
                 @if (! in_array((string) $order->status, ['done', 'approved'], true))
-                    <a class="button secondary" href="/edit-order.php?order_id={{ $order->order_id }}">Edit Order</a>
+                    <a class="button secondary" href="{{ url('/edit-order.php') }}?order_id={{ $order->order_id }}">Edit Order</a>
                 @endif
                 @if ($showOrderCancelAction)
-                    <form method="post" action="/orders/{{ $order->order_id }}/cancel" onsubmit="return confirm('Cancel this order?');">
+                    <form method="post" action="{{ url('/orders/' . $order->order_id . '/cancel') }}" onsubmit="return confirm('Cancel this order?');">
                         @csrf
                         <button type="submit" class="button danger">Cancel Order</button>
                     </form>
@@ -198,12 +198,12 @@
                     <p>Completed orders still need your approval before they move to billing or archive.</p>
                 </div>
             </div>
-            <form method="post" action="/orders/{{ $order->order_id }}/approve">
+            <form method="post" action="{{ url('/orders/' . $order->order_id . '/approve') }}">
                 @csrf
                 <button type="submit">{{ trim(strtolower((string) $order->total_amount)) === 'first order is free' || (float) preg_replace('/[^0-9.\-]/', '', (string) $order->total_amount) <= 0 ? 'Approve Order' : 'Send to Billing' }}</button>
             </form>
             <div style="margin-top: 12px;">
-                <a class="button danger" href="/disapprove-order.php?order_id={{ $order->order_id }}">Request an Edit</a>
+                <a class="button danger" href="{{ url('/disapprove-order.php') }}?order_id={{ $order->order_id }}">Request an Edit</a>
             </div>
         </section>
     @endif

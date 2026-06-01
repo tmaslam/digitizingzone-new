@@ -80,7 +80,7 @@
             @elseif (! empty($autoRedirectUrl))
                 <a class="button" href="{{ $autoRedirectUrl }}">Continue To {{ $providerLabel ?? 'Secure Payment' }}</a>
             @endif
-            <a class="button secondary" href="{{ $backUrl ?? '/view-billing.php' }}">{{ $backLabel ?? 'Back To Billing' }}</a>
+            <a class="button secondary" href="{{ $backUrl ?? url('/view-billing.php') }}">{{ $backLabel ?? 'Back To Billing' }}</a>
         </div>
 
     </section>

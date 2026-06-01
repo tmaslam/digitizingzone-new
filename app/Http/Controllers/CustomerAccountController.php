@@ -70,7 +70,7 @@ class CustomerAccountController extends Controller
             'user_phone' => trim((string) ($validated['user_phone'] ?? '')),
         ]);
 
-        return redirect('/my-profile.php')->with('success', 'Your profile has been updated successfully.');
+        return redirect(url('/my-profile.php'))->with('success', 'Your profile has been updated successfully.');
     }
 
     public function updatePassword(Request $request)
@@ -95,7 +95,7 @@ class CustomerAccountController extends Controller
             ['exist_customer' => '1']
         ))->save();
 
-        return redirect('/my-profile.php')->with('success', 'Your password has been updated successfully.');
+        return redirect(url('/my-profile.php'))->with('success', 'Your password has been updated successfully.');
     }
 
     public function toggleTwoFactor(Request $request)
@@ -122,7 +122,7 @@ class CustomerAccountController extends Controller
             ? 'Two-factor authentication has been enabled. You will now receive a verification code by email each time you sign in.'
             : 'Two-factor authentication has been disabled for your account.';
 
-        return redirect('/my-profile.php')->with('success', $message);
+        return redirect(url('/my-profile.php'))->with('success', $message);
     }
 
     public function invoices(Request $request)
@@ -450,7 +450,7 @@ class CustomerAccountController extends Controller
         $sent = PortalMailer::sendHtml($recipient, $subject, $body);
 
         return $sent
-            ? redirect('/refund-apply.php')->with('success', 'Your refund request has been sent successfully.')
+            ? redirect(url('/refund-apply.php'))->with('success', 'Your refund request has been sent successfully.')
             : back()->withErrors(['refund' => 'We could not send your refund request right now. Please try again or contact support directly.']);
     }
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Change Password | 1Dollar Admin')
+@section('title', 'Change Password | Digitizing Zone Admin')
 @section('page_heading', 'Change Password')
 @section('page_subheading', 'Update your own admin login password.')
 

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'File Preview | 1Dollar Admin')
+@section('title', 'File Preview | Digitizing Zone Admin')
 @section('page_heading', 'File Preview')
 @section('page_subheading', 'Preview supported files without downloading them first.')
 

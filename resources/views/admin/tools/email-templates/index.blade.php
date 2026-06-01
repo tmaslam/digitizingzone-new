@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Email Templates | 1Dollar Admin')
+@section('title', 'Email Templates | Digitizing Zone Admin')
 @section('page_heading', 'Email Templates')
 @section('page_subheading', 'Create and manage reusable email subjects and message content.')
 

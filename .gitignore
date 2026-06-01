@@ -26,3 +26,10 @@ yarn-error.log
 /.vscode
 .ftpquota
 /uploads
+_clear.zip
+dz.zip
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+

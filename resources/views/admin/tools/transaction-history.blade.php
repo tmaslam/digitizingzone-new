@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Transaction History | 1Dollar Admin')
+@section('title', 'Transaction History | Digitizing Zone Admin')
 @section('page_heading', 'Transaction History')
 @section('page_subheading', 'Manual payment ledger and outstanding balances.')
 

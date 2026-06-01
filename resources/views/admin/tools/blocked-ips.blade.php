@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Blocked IPs | 1Dollar Admin')
+@section('title', 'Blocked IPs | Digitizing Zone Admin')
 @section('page_heading', 'Blocked IP List')
 @section('page_subheading', 'Manage blocked IP addresses for admin access.')
 

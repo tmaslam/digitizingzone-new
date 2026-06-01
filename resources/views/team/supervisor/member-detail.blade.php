@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Team Member Detail | 1Dollar Team Portal')
+@section('title', 'Team Member Detail | Digitizing Zone Team Portal')
 @section('page_heading', 'Team Member Detail')
 @section('page_subheading', 'See current assignments, active work, and completed items for this team member.')
 

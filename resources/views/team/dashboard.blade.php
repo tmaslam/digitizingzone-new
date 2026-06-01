@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Summary | 1Dollar Team Portal')
+@section('title', 'Summary | Digitizing Zone Team Portal')
 @section('page_heading', 'Summary')
 @section('page_subheading', ($teamUser->is_supervisor ?? false) ? 'Track team queues, review work, and move jobs forward without jumping through legacy screens.' : 'Jump into the right queue quickly and keep assigned work moving.')
 

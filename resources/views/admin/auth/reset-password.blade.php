@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reset Password | 1Dollar Admin</title>
-    <link rel="icon" type="image/png" href="/images/logo.png">
+    <title>Reset Password | Digitizing Zone Admin</title>
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}">
     <style>
         :root {
             --bg: #f4ede2;

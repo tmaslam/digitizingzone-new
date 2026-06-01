@@ -161,7 +161,7 @@ class CustomerRegistrationController extends Controller
             $message .= ' After verification, your account will stay pending until an admin approves it.';
         }
 
-        return redirect('/login.php')->with('success', $message);
+        return redirect(url('/login.php'))->with('success', $message);
     }
 
     public function activate(Request $request)
@@ -196,7 +196,7 @@ class CustomerRegistrationController extends Controller
                 'pageTitle' => 'Verification Complete',
                 'activated' => true,
                 'message' => 'Your email has been verified. This account is now waiting for admin approval before you can sign in.',
-                'nextStepUrl' => '/',
+                'nextStepUrl' => url('/'),
                 'nextStepLabel' => 'Return To Website',
             ]);
         }
@@ -221,7 +221,7 @@ class CustomerRegistrationController extends Controller
                 'customer_site_key' => $site->legacyKey,
             ]);
 
-            return redirect('/member-offer.php')->with('success', 'Your email has been verified. Please complete the secure welcome-offer payment to finish activating this customer account.');
+            return redirect(url('/member-offer.php'))->with('success', 'Your email has been verified. Please complete the secure welcome-offer payment to finish activating this customer account.');
         }
 
         $customer->update([
@@ -233,7 +233,7 @@ class CustomerRegistrationController extends Controller
             'pageTitle' => 'Account Activated',
             'activated' => true,
             'message' => 'Your customer account for '.$site->displayLabel().' is now active. You can sign in and continue with quotes, orders, billing, and downloads inside this website.',
-            'nextStepUrl' => '/login.php',
+            'nextStepUrl' => url('/login.php'),
             'nextStepLabel' => 'Go to Login',
         ]);
     }
@@ -284,7 +284,7 @@ class CustomerRegistrationController extends Controller
             ])->withInput();
         }
 
-        return redirect('/login.php')->with(
+        return redirect(url('/login.php'))->with(
             'success',
             'If we found a pending account for this website, we sent a fresh verification email. Please check your inbox and spam or junk folder.'
         );

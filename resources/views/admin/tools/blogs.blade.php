@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Blogs | 1Dollar Admin')
+@section('title', 'Blogs | Digitizing Zone Admin')
 @section('page_heading', 'Blogs')
 @section('page_subheading', 'Blog listing against the existing `blogs` table.')
 

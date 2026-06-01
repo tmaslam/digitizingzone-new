@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Security Events | 1Dollar Admin')
+@section('title', 'Security Events | Digitizing Zone Admin')
 @section('page_heading', 'Security Events')
 @section('page_subheading', 'Structured audit events for unauthorized access, failed bot checks, and suspicious file activity.')
 

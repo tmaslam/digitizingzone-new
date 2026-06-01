@@ -11,10 +11,10 @@
                 <h3>Order #{{ $order->order_id }}: {{ $order->design_name }}</h3>
                 <p>This request will move the order back into the internal workflow for review.</p>
             </div>
-            <a class="button secondary" href="/view-order-detail.php?order_id={{ $order->order_id }}">Back to Order</a>
+            <a class="button secondary" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}">Back to Order</a>
         </div>
 
-        <form method="post" action="/disapprove-order.php?order_id={{ $order->order_id }}" enctype="multipart/form-data" class="form-grid">
+        <form method="post" action="{{ url('/disapprove-order.php') }}?order_id={{ $order->order_id }}" enctype="multipart/form-data" class="form-grid">
             @csrf
 
             <label style="grid-column: 1 / -1;">
@@ -44,7 +44,7 @@
 
             <div style="grid-column: 1 / -1; display: flex; gap: 12px; flex-wrap: wrap;">
                 <button type="submit" class="button danger">Send Edit Request</button>
-                <a class="button secondary" href="/view-order-detail.php?order_id={{ $order->order_id }}">Cancel</a>
+                <a class="button secondary" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}">Cancel</a>
             </div>
         </form>
     </section>

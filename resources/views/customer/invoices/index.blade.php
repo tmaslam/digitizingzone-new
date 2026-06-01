@@ -14,7 +14,7 @@
             <a class="button ghost" href="{{ request()->fullUrlWithQuery(['export' => 'csv']) }}">Download Invoice List</a>
         </div>
 
-        <form method="get" action="/view-invoices.php" class="invoice-filterbar">
+        <form method="get" action="{{ url('/view-invoices.php') }}" class="invoice-filterbar">
             <label class="filter-field">
                 <span class="field-label">Date From</span>
                 <input type="date" name="date_from" value="{{ $dateFrom }}">
@@ -25,7 +25,7 @@
             </label>
             <div class="field-actions">
                 <button type="submit">Filter</button>
-                <a class="button secondary" href="/view-invoices.php">Reset</a>
+                <a class="button secondary" href="{{ url('/view-invoices.php') }}">Reset</a>
             </div>
             <div class="field-hint">
                 @if (! empty($usingDefaultRange))
@@ -55,7 +55,7 @@
                     <tbody>
                     @foreach ($invoiceGroups as $invoice)
                         <tr>
-                            <td><a class="button secondary" href="/view-invoice-detail.php?transid={{ urlencode($invoice->transid) }}&origin=invoices">View</a></td>
+                            <td><a class="button secondary" href="{{ url('/view-invoice-detail.php') }}?transid={{ urlencode($invoice->transid) }}&origin=invoices">View</a></td>
                             <td>{{ $invoice->transid }}</td>
                             <td>{{ $invoice->total_designs }}</td>
                             <td>{{ $invoice->invoice_date ?: '-' }}</td>

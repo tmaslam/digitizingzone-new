@@ -18,7 +18,7 @@ class EnsureTeamAuthenticated
         if (! $teamId) {
             SecurityAudit::recordUnauthorizedAccess($request, 'Team route was requested without an active team session.');
 
-            return redirect('/team');
+            return redirect(url('/team'));
         }
 
         $teamUser = AdminUser::query()
@@ -36,7 +36,7 @@ class EnsureTeamAuthenticated
             $request->session()->forget(['team_user_id', 'team_user_name', 'team_user_type_id']);
             $request->session()->regenerateToken();
 
-            return redirect('/team');
+            return redirect(url('/team'));
         }
 
         $request->attributes->set('teamUser', $teamUser);

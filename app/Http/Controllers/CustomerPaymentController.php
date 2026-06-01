@@ -60,7 +60,7 @@ class CustomerPaymentController extends Controller
         $claim = SignupOfferService::pendingPaymentClaimForCustomer($site, $customer);
 
         if (! $claim) {
-            return redirect('/dashboard.php')->with('success', 'Your welcome-offer payment is already complete for this website.');
+            return redirect(url('/dashboard.php'))->with('success', 'Your welcome-offer payment is already complete for this website.');
         }
 
         abort_unless($this->paymentTablesReady(), 500, 'Payment tables are not installed yet.');
@@ -116,7 +116,7 @@ class CustomerPaymentController extends Controller
             $transaction,
             $checkoutItems,
             'Offer',
-            '/member-offer.php',
+            url('/member-offer.php'),
             'Back To Welcome Offer'
         );
     }
@@ -176,7 +176,7 @@ class CustomerPaymentController extends Controller
             ->first();
 
         if (! $billing) {
-            return redirect('/view-invoices.php')->with('success', 'This invoice is already settled and available in your invoice history.');
+            return redirect(url('/view-invoices.php'))->with('success', 'This invoice is already settled and available in your invoice history.');
         }
 
         return $this->startCheckout($request, $site, $customer, collect([$billing]), 'single_invoice');
@@ -493,15 +493,15 @@ class CustomerPaymentController extends Controller
         ], static fn ($value) => trim((string) $value) !== '');
 
         if (empty($params)) {
-            return redirect('/view-billing.php')->with('success', 'Your payment return is still being checked. Please refresh your billing page in a moment, and contact support if the payment does not appear shortly.');
+            return redirect(url('/view-billing.php'))->with('success', 'Your payment return is still being checked. Please refresh your billing page in a moment, and contact support if the payment does not appear shortly.');
         }
 
-        return redirect('/successpay.php?'.http_build_query($params));
+        return redirect(url('/successpay.php').'?'.http_build_query($params));
     }
 
     public function legacyDirectPayment()
     {
-        return redirect('/view-billing.php')->withErrors([
+        return redirect(url('/view-billing.php'))->withErrors([
             'payment' => 'The older direct card form has been retired. Please use the secure billing checkout for this account.',
         ]);
     }
@@ -518,14 +518,14 @@ class CustomerPaymentController extends Controller
         $provider = $this->selectedPaymentProvider($request);
 
         if (! $this->paymentGatewayReady($provider)) {
-            return redirect('/view-billing.php')->withErrors([
+            return redirect(url('/view-billing.php'))->withErrors([
                 'payment' => HostedPaymentProviders::label($provider).' is not configured completely yet. Please contact support before attempting payment.',
             ]);
         }
 
         $requestedAmount = round((float) $billings->sum(fn (Billing $billing) => $this->billingAmount($billing)), 2);
         if ($requestedAmount <= 0) {
-            return redirect('/view-billing.php')->withErrors(['payment' => 'The selected invoice total is not valid for payment.']);
+            return redirect(url('/view-billing.php'))->withErrors(['payment' => 'The selected invoice total is not valid for payment.']);
         }
 
         $merchantReference = $this->merchantReference($site, $customer);
@@ -575,7 +575,7 @@ class CustomerPaymentController extends Controller
                 ];
             }),
             'Invoices',
-            '/view-billing.php',
+            url('/view-billing.php'),
             'Back To Billing'
         );
     }
@@ -1013,13 +1013,7 @@ class CustomerPaymentController extends Controller
 
     private function hostedReturnUrl(Request $request): string
     {
-        $root = rtrim((string) $request->getSchemeAndHttpHost(), '/');
-
-        if ($root !== '') {
-            return $root.'/payment-proceed.php';
-        }
-
-        return $this->fallbackReturnUrl();
+        return url('/payment-proceed.php');
     }
 
     private function fallbackReturnUrl(): string

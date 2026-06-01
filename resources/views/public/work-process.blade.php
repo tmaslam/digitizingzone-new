@@ -102,7 +102,7 @@
                 <h2>Ready to Start Your Project?</h2>
                 <p>Get started with a free quote. We'll guide you through every step of the process.</p>
                 <div class="theme-header-actions">
-                    <a class="button secondary" href="{{ session()->has('customer_user_id') ? '/quote.php' : '/sign-up.php' }}">Request Your Free Quote</a>
+                    <a class="button secondary" href="{{ session()->has('customer_user_id') ? url('/quote.php') : url('/sign-up.php') }}">Request Your Free Quote</a>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', $pageTitle.' | 1Dollar Admin')
+@section('title', $pageTitle.' | Digitizing Zone Admin')
 @section('page_heading', $pageTitle)
 @section('page_subheading', 'Review and manage quick quote requests.')
 

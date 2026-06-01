@@ -79,7 +79,7 @@
                             <td>${{ number_format($row->total_billing, 2) }}</td>
                             <td>${{ number_format($row->credit_points, 2) }}</td>
                             <td>{{ $row->submitdate ?: '-' }}</td>
-                            <td><a class="button ghost" href="/view-invoice-detail.php?transid={{ urlencode($row->transid) }}&origin=invoices">View Invoice</a></td>
+                            <td><a class="button ghost" href="{{ url('/view-invoice-detail.php') }}?transid={{ urlencode($row->transid) }}&origin=invoices">View Invoice</a></td>
                         </tr>
                     @endforeach
                     </tbody>

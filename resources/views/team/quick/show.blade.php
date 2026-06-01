@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Quick Quote Detail #'.$order->order_id.' | 1Dollar Team Portal')
+@section('title', 'Quick Quote Detail #'.$order->order_id.' | Digitizing Zone Team Portal')
 @section('page_heading', 'Quick Quote Detail #'.$order->order_id)
 @section('page_subheading', 'Assigned quick quote files, comments, and completion.')
 

@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1Dollar Admin Login</title>
+    <title>Digitizing Zone Admin Login</title>
     <style>
         :root {
             --bg: #f4ede2;
             --ink: #19232e;
             --muted: #6b7280;
-            --accent: #0f5f66;
-            --accent-dark: #123c55;
+            --accent: #bf5a57;
+            --accent-dark: #983a37;
             --line: rgba(25, 35, 46, 0.26);
             --line-strong: rgba(25, 35, 46, 0.38);
             --shadow: 0 28px 70px rgba(20, 33, 49, 0.14);
@@ -26,7 +26,7 @@
             color: var(--ink);
             overflow-x: hidden;
             background:
-                radial-gradient(circle at top left, rgba(15, 95, 102, 0.14), transparent 30%),
+                radial-gradient(circle at top left, rgba(191, 90, 87, 0.14), transparent 30%),
                 radial-gradient(circle at bottom right, rgba(197, 107, 34, 0.12), transparent 24%),
                 linear-gradient(180deg, #fbf7ef 0%, #f3eadb 100%);
         }
@@ -49,7 +49,7 @@
             display: inline-block;
             padding: 8px 12px;
             border-radius: 999px;
-            background: rgba(15, 95, 102, 0.1);
+            background: rgba(191, 90, 87, 0.1);
             color: var(--accent-dark);
             font-size: 0.76rem;
             font-weight: 800;
@@ -59,7 +59,7 @@
         .hero h1 { margin: 18px 0 12px; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.92; letter-spacing: -0.07em; }
         .hero p { margin: 0; max-width: 480px; color: var(--muted); line-height: 1.75; }
         .hero ul { margin: 30px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
-        .hero li::before { content: "•"; color: var(--accent); font-weight: 900; margin-right: 10px; }
+        .hero li::before { content: "•"; color: #d62b2b; font-weight: 900; margin-right: 10px; }
         .panel { padding: clamp(22px, 3vw, 34px); background: rgba(255,255,255,0.75); }
         .card {
             border-radius: 24px;
@@ -102,9 +102,9 @@
         }
         input:focus {
             outline: none;
-            border-color: rgba(15, 95, 102, 0.62);
+            border-color: rgba(191, 90, 87, 0.62);
             background: #ffffff;
-            box-shadow: 0 0 0 4px rgba(15, 95, 102, 0.12);
+            box-shadow: 0 0 0 4px rgba(191, 90, 87, 0.12);
         }
         button {
             border: 0;
@@ -148,7 +148,7 @@
 <div class="shell">
     <section class="hero">
         <span>Secure Admin Access</span>
-        <h1>1Dollar <span style="opacity:0.55;font-weight:500;">Legacy</span> Admin</h1>
+        <h1>Digitizing Zone Admin</h1>
         <p>Authorized access only.</p>
         <ul>
             <li>Admin portal</li>

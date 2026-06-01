@@ -12,8 +12,8 @@
                 <p>Payment date: {{ $invoiceDate ?: '-' }}</p>
             </div>
             <div class="invoice-detail-actions">
-                <a class="button secondary" href="/view-invoices.php">Back to Invoices</a>
-                <a class="button secondary" href="/view-invoice-detail.php?transid={{ urlencode($transactionId) }}&download=pdf">Download Invoice</a>
+                <a class="button secondary" href="{{ url('/view-invoices.php') }}">Back to Invoices</a>
+                <a class="button secondary" href="{{ url('/view-invoice-detail.php') }}?transid={{ urlencode($transactionId) }}&download=pdf">Download Invoice</a>
                 <span class="status success">Total ${{ number_format($invoiceTotal, 2) }}</span>
             </div>
         </div>
@@ -33,7 +33,7 @@
                     <tr>
                         <td>
                             @if ($billing->order)
-                                <a href="/view-order-detail.php?order_id={{ $billing->order->order_id }}&origin=invoices">{{ $billing->order->order_id }}</a>
+                                <a href="{{ url('/view-order-detail.php') }}?order_id={{ $billing->order->order_id }}&origin=invoices">{{ $billing->order->order_id }}</a>
                             @else
                                 {{ $billing->order_id }}
                             @endif

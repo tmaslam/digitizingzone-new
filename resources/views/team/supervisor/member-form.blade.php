@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', ($mode === 'create' ? 'Create Team Login' : 'Edit Team Login').' | 1Dollar Team Portal')
+@section('title', ($mode === 'create' ? 'Create Team Login' : 'Edit Team Login').' | Digitizing Zone Team Portal')
 @section('page_heading', $mode === 'create' ? 'Create Team Login' : 'Edit Team Login #'.$member->user_id)
 @section('page_subheading', 'Manage login details for team members on your supervisor account.')
 

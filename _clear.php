@@ -1,7 +1,7 @@
 <?php
 /**
- * Emergency OPcache clear for legacy.1dollardigitizing.com
- * Visit: https://legacy.1dollardigitizing.com/_clear.php
+ * Emergency OPcache clear for legacy.digitizingzone.com
+ * Visit: https://legacy.digitizingzone.com/_clear.php
  */
 
 header('Content-Type: text/plain; charset=utf-8');
@@ -100,4 +100,4 @@ if (function_exists('opcache_get_status')) {
 
 echo "\n=== DONE ===\n";
 echo "Timestamp: " . date('Y-m-d H:i:s T') . "\n";
-echo "\nNow refresh: https://legacy.1dollardigitizing.com/v/login-2fa\n";
+echo "\nNow refresh: https://legacy.digitizingzone.com/v/login-2fa\n";

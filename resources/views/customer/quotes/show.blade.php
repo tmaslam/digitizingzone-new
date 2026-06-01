@@ -14,7 +14,7 @@
             </div>
             <div style="display:flex; gap:12px; flex-wrap:wrap;">
                 <a class="button secondary" href="{{ $backLink['url'] }}">{{ $backLink['label'] }}</a>
-                <form method="post" action="/quotes/{{ $order->order_id }}/delete" onsubmit="return confirm('Delete this quote?');">
+                <form method="post" action="{{ url('/quotes/' . $order->order_id . '/delete') }}" onsubmit="return confirm('Delete this quote?');">
                     @csrf
                     <button type="submit" class="button danger">Delete Quote</button>
                 </form>
@@ -246,7 +246,7 @@
         @endif
 
         @if ($showQuoteAcceptAction)
-            <form method="post" action="/quotes/{{ $order->order_id }}/switch-to-order" class="form-grid">
+            <form method="post" action="{{ url('/quotes/' . $order->order_id . '/switch-to-order') }}" class="form-grid">
                 @csrf
                 <label style="grid-column: 1 / -1;">
                     Response On Quote Comments
@@ -262,7 +262,7 @@
                             aria-expanded="{{ $errors->has('reason_code') || $errors->has('reason_text') || $errors->has('target_amount') ? 'true' : 'false' }}"
                         >Reject Quote</button>
                     @endif
-                    <a class="button secondary" href="/view-quotes.php">Back To Quotes</a>
+                    <a class="button secondary" href="{{ url('/view-quotes.php') }}">Back To Quotes</a>
                 </div>
             </form>
         @endif
@@ -281,7 +281,7 @@
 
             <form
                 method="post"
-                action="/quotes/{{ $order->order_id }}/feedback"
+                action="{{ url('/quotes/' . $order->order_id . '/feedback') }}"
                 class="form-grid"
                 data-reject-quote-panel
                 @if (! ($errors->has('reason_code') || $errors->has('reason_text') || $errors->has('target_amount')))
@@ -318,7 +318,7 @@
                 <strong>Switch to Order</strong>
                 This quote has not been completed by our team yet. If you switch it to an order now, it will be processed directly without a quoted price first.
             </div>
-            <form method="post" action="/quotes/{{ $order->order_id }}/switch-to-order" onsubmit="return confirm('This quote has not been completed yet. Are you sure you want to switch it directly to an order?');">
+            <form method="post" action="{{ url('/quotes/' . $order->order_id . '/switch-to-order') }}" onsubmit="return confirm('This quote has not been completed yet. Are you sure you want to switch it directly to an order?');">
                 @csrf
                 <button type="submit" class="button secondary">Switch to Order</button>
             </form>

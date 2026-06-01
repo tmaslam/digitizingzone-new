@@ -225,7 +225,7 @@ class CustomerSiteController extends Controller
     public function home(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         return response(file_get_contents(public_path('index.html')))
@@ -294,7 +294,7 @@ class CustomerSiteController extends Controller
 
     public function paymentOptions(Request $request)
     {
-        return redirect('/contact-us.php');
+        return redirect(url('/contact-us.php'));
     }
 
     public function robots(Request $request)
@@ -417,12 +417,6 @@ class CustomerSiteController extends Controller
 
     private function absoluteUrl(Request $request, string $path): string
     {
-        $base = rtrim($request->getSchemeAndHttpHost(), '/');
-
-        if ($path === '' || $path === '/') {
-            return $base.'/';
-        }
-
-        return $base.'/'.ltrim($path, '/');
+        return url($path);
     }
 }

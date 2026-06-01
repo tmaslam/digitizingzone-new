@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Payment Due Report | 1Dollar Admin')
+@section('title', 'Payment Due Report | Digitizing Zone Admin')
 @section('page_heading', 'Payment Due Report')
 @section('page_subheading', 'Review approved unpaid billing by customer.')
 

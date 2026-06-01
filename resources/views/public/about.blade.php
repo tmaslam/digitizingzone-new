@@ -1,7 +1,7 @@
 @extends('public.layout')
 
 @section('title', 'About Us | Embroidery Digitizing Since 2005 | '.$siteContext->displayLabel())
-@section('meta_description', 'About 1DollarDigitizing — professional embroidery digitizing since 2005. Over 1 million designs for 10,000+ customers worldwide. Quality, speed and affordable $1 pricing.')
+@section('meta_description', 'About DigitizingZone — professional embroidery digitizing since 2005. Over 1 million designs for 10,000+ customers worldwide. Quality, speed and affordable $1 pricing.')
 
 @section('content')
     @php
@@ -38,7 +38,7 @@
     <section class="page-header">
         <div class="container">
             <div class="about-page-header">
-                <h1>About <span>1 Dollar Digitizing</span></h1>
+                <h1>About <span>Digitizing Zone</span></h1>
                 <p>Your trusted partner for premium embroidery digitizing and vector art services since 2005.</p>
             </div>
         </div>
@@ -49,11 +49,11 @@
             <div class="section-card">
                 <div class="service-showcase-grid service-showcase-grid-split">
                     <div class="service-showcase-card">
-                        <img src="{{ $legacyAssetBase }}/images/1dollar-Digitizing.webp" alt="About 1 Dollar Digitizing">
+                        <img src="{{ $legacyAssetBase }}/images/1dollar-Digitizing.webp" alt="About Digitizing Zone">
                     </div>
                     <div class="service-showcase-copy">
                         <h2>Our <span>Story</span></h2>
-                        <p>Founded in 2005, 1 Dollar Digitizing has grown from a small digitizing shop to a trusted partner for thousands of apparel decorators, screen printers, and promotional product businesses across the United States.</p>
+                        <p>Founded in 2005, Digitizing Zone has grown from a small digitizing shop to a trusted partner for thousands of apparel decorators, screen printers, and promotional product businesses across the United States.</p>
                         <p>Our mission is simple: deliver production-ready embroidery files and crisp vector graphics at prices that make sense for your business. We combine decades of expertise with cutting-edge software to ensure every design meets the highest standards of quality.</p>
                         <p>Over the years, we've digitized over 1 Million designs for more than 10,000 satisfied customers. From small shops to large commercial operations, we treat every project with the same attention to detail and commitment to excellence.</p>
                     </div>
@@ -97,7 +97,7 @@
                     <h2>Our <span>Location</span></h2>
                     <p>Based in Fremont, California, serving customers nationwide</p>
                 </div>
-                <h3 class="location-title">1 Dollar Digitizing</h3>
+                <h3 class="location-title">Digitizing Zone</h3>
                 <p class="location-copy">46494 Mission Blvd<br>Fremont, CA 94539<br>United States</p>
                 <p class="location-line"><a href="tel:+12063126446" class="inline-link">+1 (206) 312-6446</a></p>
                 @if ($siteContext->supportEmail)
@@ -113,7 +113,7 @@
                 <h2>Ready to Work With Us?</h2>
                 <p>Experience the difference that quality digitizing can make for your business.</p>
                 <div class="theme-header-actions">
-                    <a class="button secondary" href="{{ session()->has('customer_user_id') ? '/quote.php' : '/sign-up.php' }}">Get Your Free Quote</a>
+                    <a class="button secondary" href="{{ session()->has('customer_user_id') ? url('/quote.php') : url('/sign-up.php') }}">Get Your Free Quote</a>
                 </div>
             </div>
         </div>

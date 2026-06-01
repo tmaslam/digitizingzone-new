@@ -52,7 +52,7 @@
                         @csrf
                         <button type="submit" style="background:none;border:none;padding:0;color:var(--brand-dark);cursor:pointer;font-size:inherit;text-decoration:underline;">Resend code to my email</button>
                     </form><br>
-                    <a href="/login.php">Back to sign in</a>
+                    <a href="{{ url('/login.php') }}">Back to sign in</a>
                 </p>
             </section>
         </div>

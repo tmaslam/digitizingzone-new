@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Assign Work #'.$order->order_id.' | 1Dollar Team Portal')
+@section('title', 'Assign Work #'.$order->order_id.' | Digitizing Zone Team Portal')
 @section('page_heading', 'Assign Work #'.$order->order_id)
 @section('page_subheading', 'Route work to yourself or a team member on your supervisor account.')
 

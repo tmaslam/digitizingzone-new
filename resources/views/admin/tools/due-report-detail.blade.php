@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Due Detail | 1Dollar Admin')
+@section('title', 'Due Detail | Digitizing Zone Admin')
 @section('page_heading', 'Due Detail For '.$customer->display_name)
 @section('page_subheading', 'Review unpaid invoices and choose either external payment recording or customer-credit application.')
 

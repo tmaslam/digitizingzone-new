@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'File Preview | 1Dollar Team Portal')
+@section('title', 'File Preview | Digitizing Zone Team Portal')
 @section('page_heading', 'File Preview')
 @section('page_subheading', 'Preview supported files without downloading them first.')
 

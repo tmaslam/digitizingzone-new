@@ -7,7 +7,7 @@
 
 @section('content')
     @php
-        $ctaUrl = session()->has('customer_user_id') ? '/quote.php' : '/sign-up.php';
+        $ctaUrl = session()->has('customer_user_id') ? url('/quote.php') : url('/sign-up.php');
         $heroFeatures = [
             ['icon' => '💰', 'title' => '$1.00', 'subtitle' => 'per 1k stitches'],
             ['icon' => '⏰', 'title' => '24h', 'subtitle' => 'Standard Turnaround'],
@@ -46,7 +46,7 @@
             ['question' => 'How much does embroidery digitizing cost?', 'answer' => 'Our pricing starts at just $1 per 1,000 stitches with a $6 minimum per design. 3D puff embroidery is included at no extra charge. Complex designs with high stitch counts or special requirements may cost more. Get a free quote by uploading your design.'],
             ['question' => "What if I'm not satisfied with the digitized file?", 'answer' => "We offer free minor revisions on all projects. If the file doesn't stitch out correctly due to our digitizing, we'll fix it at no charge. Your satisfaction is our priority - we stand behind our work 100%."],
             ['question' => 'Do you offer a first-time customer discount?', 'answer' => "Yes! First-time customers get their first design digitized for just $1.00 (for hat or left chest logos, up to 10,000 stitches). It's our way of letting you try our service risk-free. No coupon code needed - just mention it when you submit your quote request."],
-            ['question' => 'How do I send you my design?', 'answer' => 'You can upload your design directly through our quote request form. We accept JPG, PNG, and PDF files. You can also email your design to support@1dollardigitizing.com. For best results, please send high-resolution images (300 DPI or higher).'],
+            ['question' => 'How do I send you my design?', 'answer' => 'You can upload your design directly through our quote request form. We accept JPG, PNG, and PDF files. You can also email your design to support@digitizingzone.com. For best results, please send high-resolution images (300 DPI or higher).'],
             ['question' => 'Can you digitize photos for embroidery?', 'answer' => 'Absolutely! We specialize in photo digitizing, converting photographs into stitchable embroidery designs. This is perfect for memorial patches, pet portraits, and custom gifts. Photo digitizing requires special techniques and may take slightly longer than standard logo digitizing.'],
             ['question' => 'What payment methods do you accept?', 'answer' => 'We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, and bank transfers for larger orders. Payment is due upon approval of the quote, before we begin the digitizing work.'],
         ];
@@ -62,7 +62,7 @@
 
                     <div class="hero-buttons">
                         <a href="{{ $ctaUrl }}" class="button primary">Get Your Free Quote</a>
-                        <a href="/our-services.php" class="button secondary">Explore Our Services</a>
+                        <a href="{{ url('/our-services.php') }}" class="button secondary">Explore Our Services</a>
                     </div>
 
                     <div class="hero-features">
@@ -262,7 +262,7 @@
                 </div>
 
                 <div class="welcome-offer-actions">
-                    <a class="button primary" href="/sign-up.php">Claim This Offer</a>
+                    <a class="button primary" href="{{ url('/sign-up.php') }}">Claim This Offer</a>
                     <button type="button" class="button secondary" data-welcome-offer-close>Maybe Later</button>
                 </div>
             </div>

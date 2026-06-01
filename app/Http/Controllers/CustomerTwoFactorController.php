@@ -18,12 +18,12 @@ class CustomerTwoFactorController extends Controller
     public function show(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         $pending = $request->session()->get('customer_pending_2fa');
         if (! $pending) {
-            return redirect('/login.php');
+            return redirect(url('/login.php'));
         }
 
         /** @var SiteContext $site */
@@ -46,12 +46,12 @@ class CustomerTwoFactorController extends Controller
     public function verify(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         $pending = $request->session()->get('customer_pending_2fa');
         if (! $pending) {
-            return redirect('/login.php');
+            return redirect(url('/login.php'));
         }
 
         /** @var SiteContext $site */
@@ -70,7 +70,7 @@ class CustomerTwoFactorController extends Controller
         if ($result === null) {
             $request->session()->forget('customer_pending_2fa');
 
-            return redirect('/login.php')
+            return redirect(url('/login.php'))
                 ->withErrors(['auth' => 'The verification code has expired or too many incorrect attempts were made. Please sign in again.'])
                 ->onlyInput('user_id');
         }
@@ -90,7 +90,7 @@ class CustomerTwoFactorController extends Controller
         if (! $customer) {
             $request->session()->forget('customer_pending_2fa');
 
-            return redirect('/login.php')
+            return redirect(url('/login.php'))
                 ->withErrors(['auth' => 'Account not found. Please sign in again.']);
         }
 
@@ -112,10 +112,10 @@ class CustomerTwoFactorController extends Controller
         LoginSecurity::recordAttempt($request, $customer->user_name, 'Customer login (2FA verified)', 'success', $customer);
 
         if ($offerPaymentPending) {
-            return redirect('/member-offer.php');
+            return redirect(url('/member-offer.php'));
         }
 
-        return redirect('/dashboard.php');
+        return redirect(url('/dashboard.php'));
     }
 
     /**
@@ -125,7 +125,7 @@ class CustomerTwoFactorController extends Controller
     {
         $pending = $request->session()->get('customer_pending_2fa');
         if (! $pending) {
-            return redirect('/login.php');
+            return redirect(url('/login.php'));
         }
 
         /** @var SiteContext $site */
@@ -135,7 +135,7 @@ class CustomerTwoFactorController extends Controller
         // cross-site code reuse.
         if (trim((string) ($pending['site_key'] ?? '')) !== $site->legacyKey) {
             $request->session()->forget('customer_pending_2fa');
-            return redirect('/login.php')
+            return redirect(url('/login.php'))
                 ->withErrors(['auth' => 'Your session has expired. Please sign in again.'])
                 ->onlyInput('user_id');
         }

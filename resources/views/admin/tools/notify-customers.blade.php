@@ -7,7 +7,7 @@
     $selectedRecipients = array_map('strval', old('recipients', []));
 @endphp
 
-@section('title', 'Notify Customers | 1Dollar Admin')
+@section('title', 'Notify Customers | Digitizing Zone Admin')
 @section('page_heading', 'Notify Customers')
 @section('page_subheading', 'Send email to active customers on the selected website.')
 

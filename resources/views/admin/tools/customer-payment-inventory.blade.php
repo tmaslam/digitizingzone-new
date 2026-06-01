@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Customer Credit Inventory | 1Dollar Admin')
+@section('title', 'Customer Credit Inventory | Digitizing Zone Admin')
 @section('page_heading', 'Customer Credit Inventory')
 @section('page_subheading', 'Track active customers who currently have available credit that can be applied to future invoices.')
 

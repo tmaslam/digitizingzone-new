@@ -202,7 +202,7 @@ class CustomerPortalController extends Controller
             if ($convertedOrder) {
                 $origin = trim((string) $request->query('origin', 'quotes'));
 
-                return redirect('/view-order-detail.php?'.http_build_query([
+                return redirect(url('/view-order-detail.php').'?'.http_build_query([
                     'order_id' => $convertedOrder->order_id,
                     'origin' => $origin === 'quotes' ? 'orders' : $origin,
                 ]));
@@ -252,7 +252,7 @@ class CustomerPortalController extends Controller
             ->get();
 
         if ($billings->isEmpty()) {
-            return redirect('/view-billing.php')->with('success', 'No outstanding invoices to pay.');
+            return redirect(url('/view-billing.php'))->with('success', 'No outstanding invoices to pay.');
         }
 
         $totalOutstanding = $billings->sum(function ($billing) {
@@ -264,7 +264,7 @@ class CustomerPortalController extends Controller
         $combinedBalance = $availableBalance + $deposit;
 
         if ($combinedBalance + 0.0001 < $totalOutstanding) {
-            return redirect('/view-billing.php')->with('error', 'Insufficient balance. Your available balance + deposit ($' . number_format($combinedBalance, 2) . ') is less than the outstanding total ($' . number_format($totalOutstanding, 2) . ').');
+            return redirect(url('/view-billing.php'))->with('error', 'Insufficient balance. Your available balance + deposit ($' . number_format($combinedBalance, 2) . ') is less than the outstanding total ($' . number_format($totalOutstanding, 2) . ').');
         }
 
         $paidCount = 0;
@@ -274,7 +274,7 @@ class CustomerPortalController extends Controller
             }
         }
 
-        return redirect('/view-billing.php')->with('success', $paidCount . ' invoice(s) paid successfully using your deposit balance.');
+        return redirect(url('/view-billing.php'))->with('success', $paidCount . ' invoice(s) paid successfully using your deposit balance.');
     }
 
     public function processAccountUpgrade(Request $request)
@@ -513,7 +513,7 @@ class CustomerPortalController extends Controller
             ]);
             $this->sendAdminAlertForCustomerAction($customer, $site, $order, 'Customer Approved Order');
 
-            return redirect('/view-archive-orders.php')->with('success', 'Your order has been approved and moved to paid orders.');
+            return redirect(url('/view-archive-orders.php'))->with('success', 'Your order has been approved and moved to paid orders.');
         }
 
         $billing = Billing::query()
@@ -554,15 +554,15 @@ class CustomerPortalController extends Controller
             $billing = $billing->loadMissing('order');
 
             if (CustomerBalance::applyToBilling($billing, 'customer-approval')) {
-                return redirect('/view-archive-orders.php')->with('success', 'Your order has been approved and paid using your available balance.');
+                return redirect(url('/view-archive-orders.php'))->with('success', 'Your order has been approved and paid using your available balance.');
             }
 
             if ((string) $billing->fresh()->payment === 'yes' && $this->orderAmount($order) <= 0) {
-                return redirect('/view-invoices.php')->with('success', 'Your order has been approved and recorded as a no-charge invoice.');
+                return redirect(url('/view-invoices.php'))->with('success', 'Your order has been approved and recorded as a no-charge invoice.');
             }
         }
 
-        return redirect('/view-billing.php')->with('success', 'Your order has been approved and sent to billing.');
+        return redirect(url('/view-billing.php'))->with('success', 'Your order has been approved and sent to billing.');
     }
 
     public function approveCompatibility(Request $request)
@@ -663,7 +663,7 @@ class CustomerPortalController extends Controller
 
         OrderAutomation::syncCustomer($customer, $site, true);
 
-        return redirect('/view-quotes.php')->with('success', 'Your quote has been converted to an order successfully.');
+        return redirect(url('/view-quotes.php'))->with('success', 'Your quote has been converted to an order successfully.');
     }
 
     public function quoteFeedback(Request $request, int $orderId)
@@ -720,7 +720,7 @@ class CustomerPortalController extends Controller
         ]);
         $this->sendAdminAlertForCustomerAction($customer, $site, $quote, 'Customer Submitted Quote Feedback', $feedbackComment);
 
-        return redirect('/view-quotes.php')->with('success', 'Your quote feedback has been sent for admin review.');
+        return redirect(url('/view-quotes.php'))->with('success', 'Your quote feedback has been sent for admin review.');
     }
 
     public function cancelOrder(Request $request, int $orderId)
@@ -734,7 +734,7 @@ class CustomerPortalController extends Controller
 
         $this->softDeleteCustomerOrder($order, $customer->user_name ?: 'customer');
 
-        return redirect('/view-orders.php')->with('success', 'Your order has been cancelled successfully.');
+        return redirect(url('/view-orders.php'))->with('success', 'Your order has been cancelled successfully.');
     }
 
     public function deleteQuote(Request $request, int $orderId)
@@ -748,7 +748,7 @@ class CustomerPortalController extends Controller
 
         $this->softDeleteCustomerOrder($quote, $customer->user_name ?: 'customer');
 
-        return redirect('/view-quotes.php')->with('success', 'Your quote has been deleted successfully.');
+        return redirect(url('/view-quotes.php'))->with('success', 'Your quote has been deleted successfully.');
     }
 
     private function orderViewData(Order $order, AdminUser $customer, bool $isQuote): array
@@ -782,7 +782,7 @@ class CustomerPortalController extends Controller
         $backLink = $this->detailBackLink(request(), $isQuote);
         $statusLabel = CustomerWorkflowStatus::label($order, $isQuote);
 
-        if (! $isQuote && strtolower(trim((string) $order->status)) === 'approved' && $backLink['url'] === '/view-archive-orders.php') {
+        if (! $isQuote && strtolower(trim((string) $order->status)) === 'approved' && $backLink['url'] === url('/view-archive-orders.php')) {
             $statusLabel = 'Paid';
         }
 
@@ -1117,11 +1117,11 @@ class CustomerPortalController extends Controller
         $origin = trim((string) $request->query('origin', ''));
 
         return match ($origin) {
-            'archive' => ['url' => '/view-archive-orders.php', 'label' => 'Back to Paid Orders'],
-            'billing' => ['url' => '/view-billing.php', 'label' => 'Back to Billing'],
-            'invoices' => ['url' => '/view-invoices.php', 'label' => 'Back to Invoices'],
+            'archive' => ['url' => url('/view-archive-orders.php'), 'label' => 'Back to Paid Orders'],
+            'billing' => ['url' => url('/view-billing.php'), 'label' => 'Back to Billing'],
+            'invoices' => ['url' => url('/view-invoices.php'), 'label' => 'Back to Invoices'],
             default => [
-                'url' => $isQuote ? '/view-quotes.php' : '/view-orders.php',
+                'url' => $isQuote ? url('/view-quotes.php') : url('/view-orders.php'),
                 'label' => $isQuote ? 'Back to Quotes' : 'Back to Orders',
             ],
         };

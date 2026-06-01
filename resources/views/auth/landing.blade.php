@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1Dollar Portal</title>
+    <title>Digitizing Zone Portal</title>
     <style>
         :root {
             --bg: #f5efe5;
@@ -172,7 +172,7 @@
 <div class="shell">
     <section class="hero">
         <span>Portal Access</span>
-        <h1>1Dollar</h1>
+        <h1>Digitizing Zone</h1>
         <p>Select the correct sign-in area. Team and supervisor access share one portal, and admin access stays separate.</p>
         <ul>
             <li>Team and supervisor work area</li>

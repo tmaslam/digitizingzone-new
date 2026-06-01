@@ -1,6 +1,6 @@
 @extends('layouts.team')
 
-@section('title', 'Review Queue | 1Dollar Team Portal')
+@section('title', 'Review Queue | Digitizing Zone Team Portal')
 @section('page_heading', 'Review Queue')
 @section('page_subheading', 'Monitor completed team work and record supervisor verification before admin review.')
 

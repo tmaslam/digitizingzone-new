@@ -13,8 +13,8 @@
             </div>
             <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                 <a class="button ghost" href="{{ request()->fullUrlWithQuery(['export' => 'csv']) }}">Download Quote List</a>
-                <a class="button secondary" href="/quote.php">Start Digitizing Quote</a>
-                <a class="button secondary" href="/vector-quote.php">Start Vector Quote</a>
+                <a class="button secondary" href="{{ url('/quote.php') }}">Start Digitizing Quote</a>
+                <a class="button secondary" href="{{ url('/vector-quote.php') }}">Start Vector Quote</a>
             </div>
         </div>
 
@@ -67,9 +67,9 @@
                             <td data-label="Status"><span class="status {{ \App\Support\CustomerWorkflowStatus::tone($quote, true) }}">{{ \App\Support\CustomerWorkflowStatus::label($quote, true) }}</span></td>
                             <td class="action-cell" data-label="Action">
                                 <div class="action-group">
-                                    <a class="button secondary" href="/view-quote-detail.php?order_id={{ $quote->order_id }}&origin=quotes">View Detail</a>
-                                    <a class="button secondary" href="/view-quote-detail.php?order_id={{ $quote->order_id }}&origin=quotes#quote-response">Switch To Order</a>
-                                    <form method="post" action="/quotes/{{ $quote->order_id }}/delete" onsubmit="return confirm('Delete this quote?');">
+                                    <a class="button secondary" href="{{ url('/view-quote-detail.php') }}?order_id={{ $quote->order_id }}&origin=quotes">View Detail</a>
+                                    <a class="button secondary" href="{{ url('/view-quote-detail.php') }}?order_id={{ $quote->order_id }}&origin=quotes#quote-response">Switch To Order</a>
+                                    <form method="post" action="{{ url('/quotes/' . $quote->order_id . '/delete') }}" onsubmit="return confirm('Delete this quote?');">
                                         @csrf
                                         <button type="submit" class="button danger">Delete</button>
                                     </form>

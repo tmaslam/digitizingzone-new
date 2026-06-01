@@ -15,8 +15,8 @@
                 <h1>Supported <span>Embroidery And Vector Formats</span></h1>
                 <p>Review the machine embroidery and vector file formats we support for artwork preparation, production, and delivery.</p>
                 <div class="theme-header-actions">
-                    <a class="button primary" href="/sign-up.php">Get Quote</a>
-                    <a class="button secondary" href="/contact-us.php">Ask About A Format</a>
+                    <a class="button primary" href="{{ url('/sign-up.php') }}">Get Quote</a>
+                    <a class="button secondary" href="{{ url('/contact-us.php') }}">Ask About A Format</a>
                 </div>
                 <div class="formats-jump-nav" aria-label="Format sections">
                     <a href="#embroidery-formats">Machine Embroidery</a>
@@ -96,15 +96,15 @@
             min-height: 44px;
             padding: 10px 18px;
             border-radius: 999px;
-            background: linear-gradient(180deg, rgba(22, 159, 230, 0.10) 0%, rgba(22, 159, 230, 0.04) 100%);
-            border: 1px solid rgba(22, 159, 230, 0.16);
-            color: #0d6ea3;
+            background: linear-gradient(180deg, rgba(214, 43, 43, 0.10) 0%, rgba(214, 43, 43, 0.04) 100%);
+            border: 1px solid rgba(214, 43, 43, 0.16);
+            color: #b01f1f;
             font-weight: 700;
             box-shadow: 0 12px 24px rgba(12, 48, 89, 0.07);
         }
 
         .formats-jump-nav a:hover {
-            background: #169fe6;
+            background: #d62b2b;
             color: #fff;
         }
     </style>

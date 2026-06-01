@@ -234,7 +234,7 @@ Route::middleware('admin.auth')->group(function () use ($adminPrefix) {
     Route::post('/v/customers/{customer}/verify-email', [AdminPeopleController::class, 'verifyCustomerEmail']);
     Route::post('/v/customers/{customer}/approve', [AdminPeopleController::class, 'approveCustomer']);
     Route::post('/v/customers/{customer}/block', [AdminPeopleController::class, 'blockCustomer']);
-    Route::post('/v/customers/{customer}/reverse-upgrade', [AdminPeopleController::class, 'reverseUpgrade']);
+
     Route::post('/v/customers/{customer}/delete', [AdminPeopleController::class, 'deleteCustomer']);
     Route::match(['get', 'post'], '/v/show-all-teams.php', [AdminPeopleController::class, 'teams']);
     Route::post('/v/teams/{team}/disable', [AdminPeopleController::class, 'disableTeam']);

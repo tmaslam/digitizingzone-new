@@ -82,11 +82,11 @@
         </div>
 
         <div class="file-actions">
-            <a class="button" href="{{ $isOffer ? '/dashboard.php' : '/view-billing.php' }}">
+            <a class="button" href="{{ $isOffer ? url('/dashboard.php') : url('/view-billing.php') }}">
                 {{ $isOffer ? 'Go To Dashboard' : 'Back To Billing' }}
             </a>
             @if (! $isOffer)
-                <a class="button secondary" href="/dashboard.php">Dashboard</a>
+                <a class="button secondary" href="{{ url('/dashboard.php') }}">Dashboard</a>
             @endif
         </div>
 

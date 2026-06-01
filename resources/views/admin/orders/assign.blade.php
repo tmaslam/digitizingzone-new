@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Assign Order '.$order->order_id.' | 1Dollar Admin')
+@section('title', 'Assign Order '.$order->order_id.' | Digitizing Zone Admin')
 @section('page_heading', 'Assign Order '.$order->order_id)
 @section('page_subheading', 'Assign work, share files, and send notes to the team or supervisor.')
 

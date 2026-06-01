@@ -16,7 +16,7 @@ class AdminTwoFactorController extends Controller
     public function show(Request $request)
     {
         if ($request->session()->has('admin_user_id')) {
-            return redirect('/welcome.php');
+            return redirect(url('/welcome.php'));
         }
 
         $pendingId = $request->session()->get('admin_pending_2fa_user_id');
@@ -33,7 +33,7 @@ class AdminTwoFactorController extends Controller
     public function verify(Request $request)
     {
         if ($request->session()->has('admin_user_id')) {
-            return redirect('/welcome.php');
+            return redirect(url('/welcome.php'));
         }
 
         $pendingId = $request->session()->get('admin_pending_2fa_user_id');
@@ -103,7 +103,7 @@ class AdminTwoFactorController extends Controller
         ]);
         LoginSecurity::recordAttempt($request, $user->user_name, 'Admin login (2FA verified)', 'success', $user);
 
-        return redirect('/welcome.php');
+        return redirect(url('/welcome.php'));
     }
 
     /**

@@ -4,7 +4,7 @@
     $label = $accountType === 'supervisor' ? 'Supervisor' : 'Team';
 @endphp
 
-@section('title', ($mode === 'create' ? 'Create '.$label : 'Edit '.$label).' | 1Dollar Admin')
+@section('title', ($mode === 'create' ? 'Create '.$label : 'Edit '.$label).' | Digitizing Zone Admin')
 @section('page_heading', $mode === 'create' ? 'Create '.$label : 'Edit '.$label.' #'.$team->user_id)
 @section('page_subheading', $accountType === 'supervisor'
     ? 'Create or update supervisor login details.'

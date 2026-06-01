@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Dashboard | 1Dollar Admin')
+@section('title', 'Dashboard | Digitizing Zone Admin')
 @section('page_heading', 'Dashboard')
 @section('page_subheading', 'A cleaner control center for workload, approvals, payments, and account health.')
 

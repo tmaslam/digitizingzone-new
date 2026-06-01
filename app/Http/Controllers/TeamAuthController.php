@@ -17,7 +17,7 @@ class TeamAuthController extends Controller
     public function showLogin(Request $request)
     {
         if ($request->session()->has('team_user_id')) {
-            return redirect('/team/welcome.php');
+            return redirect(url('/team/welcome.php'));
         }
 
         return view('team.auth.login');
@@ -26,7 +26,7 @@ class TeamAuthController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('team_user_id')) {
-            return redirect('/team/welcome.php');
+            return redirect(url('/team/welcome.php'));
         }
 
         $validated = $request->validate([
@@ -100,7 +100,7 @@ class TeamAuthController extends Controller
 
         LoginSecurity::recordAttempt($request, $user->user_name, $user->is_supervisor ? 'Supervisor portal login' : 'Team portal login', 'success', $user);
 
-        return redirect('/team/welcome.php');
+        return redirect(url('/team/welcome.php'));
     }
 
     public function logout(Request $request)
@@ -115,7 +115,7 @@ class TeamAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('success', 'You have been successfully logged out.');
+        return redirect(url('/'))->with('success', 'You have been successfully logged out.');
     }
 
     private function throttleKey(Request $request, string $login): string

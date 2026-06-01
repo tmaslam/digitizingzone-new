@@ -34,7 +34,7 @@ class EnsureCustomerAuthenticated
                     && ! $request->is('simulate-2checkout/*')
                     && ! $request->is('logout.php')
                 ) {
-                    return redirect('/member-offer.php');
+                    return redirect(url('/member-offer.php'));
                 }
 
                 return HttpCache::applyPrivateNoStore($next($request));
@@ -77,7 +77,7 @@ class EnsureCustomerAuthenticated
             $offerPaymentPending
             && ! $this->allowsOfferPaymentPath($request)
         ) {
-            return redirect('/member-offer.php');
+            return redirect(url('/member-offer.php'));
         }
 
         return HttpCache::applyPrivateNoStore($next($request));
@@ -93,7 +93,7 @@ class EnsureCustomerAuthenticated
             'customer_site_key',
         ]);
 
-        return redirect('/login.php');
+        return redirect(url('/login.php'));
     }
 
     private function allowsOfferPaymentPath(Request $request): bool

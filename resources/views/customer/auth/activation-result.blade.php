@@ -14,7 +14,7 @@
             <h2>Activation complete</h2>
             <p class="muted">{{ $message ?? ('Your customer account for '.$siteContext->displayLabel().' is now active.') }}</p>
             <div class="actions">
-                <a class="button" href="{{ $nextStepUrl ?? '/login.php' }}">{{ $nextStepLabel ?? 'Go to Login' }}</a>
+                <a class="button" href="{{ $nextStepUrl ?? url('/login.php') }}">{{ $nextStepLabel ?? 'Go to Login' }}</a>
             </div>
         </section>
     </div>

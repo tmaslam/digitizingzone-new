@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Team Accounts | 1Dollar Admin')
+@section('title', 'Team Accounts | Digitizing Zone Admin')
 @section('page_heading', 'Team Accounts')
 @section('page_subheading', 'Manage team and supervisor accounts. Use the Status filter to view locked accounts and unlock them.')
 

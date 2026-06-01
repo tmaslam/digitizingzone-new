@@ -23,7 +23,7 @@ class CustomerAuthController extends Controller
     public function showLogin(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         /** @var SiteContext $site */
@@ -35,7 +35,7 @@ class CustomerAuthController extends Controller
             // but we must intercept here and go through the verification step instead.
             if ((int) ($rememberedCustomer->two_factor_enabled ?? 0) === 1) {
                 if (TrustedTwoFactorDevice::shouldSkipChallenge($request, 'customer', $rememberedCustomer, $site->legacyKey)) {
-                    return redirect('/dashboard.php');
+                    return redirect(url('/dashboard.php'));
                 }
 
                 $request->session()->forget(['customer_user_id', 'customer_user_name', 'customer_site_key']);
@@ -53,7 +53,7 @@ class CustomerAuthController extends Controller
                 return redirect()->route('customer.2fa.show');
             }
 
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         return view('customer.auth.login', [
@@ -65,7 +65,7 @@ class CustomerAuthController extends Controller
     public function login(Request $request)
     {
         if ($request->session()->has('customer_user_id')) {
-            return redirect('/dashboard.php');
+            return redirect(url('/dashboard.php'));
         }
 
         /** @var SiteContext $site */
@@ -150,10 +150,10 @@ class CustomerAuthController extends Controller
                     LoginSecurity::recordAttempt($request, $customer->user_name, 'Customer login (trusted device)', 'success', $customer);
 
                     if ($offerPaymentPending) {
-                        return redirect('/member-offer.php');
+                        return redirect(url('/member-offer.php'));
                     }
 
-                    return redirect('/dashboard.php');
+                    return redirect(url('/dashboard.php'));
                 }
 
                 $code = TwoFactorAuth::issueCode('customer', (int) $customer->user_id, $site->legacyKey);
@@ -181,10 +181,10 @@ class CustomerAuthController extends Controller
         LoginSecurity::recordAttempt($request, $customer->user_name, 'Customer login', 'success', $customer);
 
         if ($offerPaymentPending) {
-            return redirect('/member-offer.php');
+            return redirect(url('/member-offer.php'));
         }
 
-        return redirect('/dashboard.php');
+        return redirect(url('/dashboard.php'));
     }
 
     public function logout(Request $request)
@@ -205,7 +205,7 @@ class CustomerAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login.php')->with('success', 'You have been logged out successfully.');
+        return redirect(url('/login.php'))->with('success', 'You have been logged out successfully.');
     }
 
     public function persistCustomerSession(Request $request, \App\Models\AdminUser $customer, \App\Support\SiteContext $site, bool $offerPaymentPending, bool $rememberMe): void

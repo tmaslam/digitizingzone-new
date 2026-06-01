@@ -21,10 +21,10 @@
             @if (! $valid)
                 <div class="alert">This password reset link is invalid or has expired.</div>
                 <div class="actions">
-                    <a class="button" href="/forget-password.php">Request a New Link</a>
+                    <a class="button" href="{{ url('/forget-password.php') }}">Request a New Link</a>
                 </div>
             @else
-                <form method="post" action="/reset-password.php" data-validate-form novalidate>
+                <form method="post" action="{{ url('/reset-password.php') }}" data-validate-form novalidate>
                     @csrf
                     <input type="hidden" name="selector" value="{{ $selector }}">
                     <input type="hidden" name="token" value="{{ $token }}">
@@ -44,7 +44,7 @@
 
                     <div class="actions">
                         <button type="submit">Save Password</button>
-                        <a class="button secondary" href="/login.php">Back to Login</a>
+                        <a class="button secondary" href="{{ url('/login.php') }}">Back to Login</a>
                     </div>
                 </form>
             @endif

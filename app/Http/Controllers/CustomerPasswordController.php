@@ -110,7 +110,7 @@ class CustomerPasswordController extends Controller
             }
         }
 
-        return redirect('/login.php')->with('success', $genericMessage);
+        return redirect(url('/login.php'))->with('success', $genericMessage);
     }
 
     public function showReset(Request $request)
@@ -167,7 +167,7 @@ class CustomerPasswordController extends Controller
             ->where('site_legacy_key', $site->legacyKey)
             ->delete();
 
-        return redirect('/login.php')->with('success', 'Your password has been reset successfully. Please sign in.');
+        return redirect(url('/login.php'))->with('success', 'Your password has been reset successfully. Please sign in.');
     }
 
     private function tokenRecord(string $selector, string $validator, SiteContext $site): ?object

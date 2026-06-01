@@ -56,20 +56,20 @@
         ];
 
         $publicMenu = [
-            ['label' => 'Home', 'href' => '/'],
-            ['label' => 'Services', 'href' => '/our-services.php'],
-            ['label' => 'Pricing', 'href' => '/price-plan.php'],
-            ['label' => 'Work Process', 'href' => '/work-process.php'],
-            ['label' => 'About Us', 'href' => '/about-us.php'],
-            ['label' => 'Contact', 'href' => '/contact-us.php'],
+            ['label' => 'Home', 'href' => url('/')],
+            ['label' => 'Services', 'href' => url('/our-services.php')],
+            ['label' => 'Pricing', 'href' => url('/price-plan.php')],
+            ['label' => 'Work Process', 'href' => url('/work-process.php')],
+            ['label' => 'About Us', 'href' => url('/about-us.php')],
+            ['label' => 'Contact', 'href' => url('/contact-us.php')],
         ];
         $serviceLinks = [
-            ['label' => 'Embroidery Digitizing', 'href' => '/embroidery-digitizing.php'],
-            ['label' => '3D / Puff Embroidery', 'href' => '/3d-puff-embroidery-digitizing.php'],
-            ['label' => 'Applique Embroidery', 'href' => '/applique-embroidery-digitizing.php'],
-            ['label' => 'Chain Stitch Embroidery', 'href' => '/chain-stitch-embroidery-digitizing.php'],
-            ['label' => 'Photo Digitizing', 'href' => '/photo-digitizing.php'],
-            ['label' => 'Vector Art', 'href' => '/vector-art.php'],
+            ['label' => 'Embroidery Digitizing', 'href' => url('/embroidery-digitizing.php')],
+            ['label' => '3D / Puff Embroidery', 'href' => url('/3d-puff-embroidery-digitizing.php')],
+            ['label' => 'Applique Embroidery', 'href' => url('/applique-embroidery-digitizing.php')],
+            ['label' => 'Chain Stitch Embroidery', 'href' => url('/chain-stitch-embroidery-digitizing.php')],
+            ['label' => 'Photo Digitizing', 'href' => url('/photo-digitizing.php')],
+            ['label' => 'Vector Art', 'href' => url('/vector-art.php')],
         ];
         $companyLinks = [
             ['label' => 'About Us', 'href' => url('/about-us.php')],
@@ -101,6 +101,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>:root { --accent-soft: #fdf0f0; --accent-dark: #b01f1f; }</style>
     <link rel="stylesheet" href="{{ url('/css/front-theme-overrides.css') }}">
     <style>
         body.front-theme.public-theme *,
@@ -159,12 +160,12 @@
             padding: 10px 14px;
             border: 0;
             border-radius: 12px;
-            background: linear-gradient(135deg, #169fe6 0%, #0d6ea3 100%);
+            background: linear-gradient(135deg, #d62b2b, #b01f1f);
             color: #ffffff;
             font-family: "Inter", "Segoe UI", sans-serif;
             font-size: 0.92rem;
             font-weight: 700;
-            box-shadow: 0 12px 24px rgba(22, 159, 230, 0.24);
+            box-shadow: 0 12px 24px rgba(214, 43, 43, 0.24);
         }
 
         body.front-theme.public-theme .marketing-nav {
@@ -210,7 +211,7 @@
         body.front-theme.public-theme .marketing-nav-link:hover,
         body.front-theme.public-theme .marketing-nav-link.active {
             background: #ffffff;
-            color: #0d6ea3;
+            color: #b01f1f;
             box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
         }
 
@@ -346,21 +347,21 @@
 
         <header class="marketing-header">
             <div class="container marketing-header-shell">
-                <a href="/" class="marketing-brand">
-                    <img class="site-logo" src="{{ $legacyAssetBase }}/images/logo.png" alt="1 Dollar Digitizing">
+                <a href="{{ url('/') }}" class="marketing-brand">
+                    <img class="site-logo" src="{{ url('images/logo.png') }}" alt="Digitizing Zone">
                 </a>
 
                 <button class="marketing-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="public-navigation">Menu</button>
 
                 <div class="marketing-actions">
                     @if (session()->has('customer_user_id'))
-                        <a class="button secondary marketing-action-button" href="/dashboard.php">Dashboard</a>
-                        <a class="button secondary marketing-action-button" href="/logout.php">Logout</a>
-                        <a class="button primary marketing-action-button" href="/quote.php">Get Quote</a>
+                        <a class="button secondary marketing-action-button" href="{{ url('/dashboard.php') }}">Dashboard</a>
+                        <a class="button secondary marketing-action-button" href="{{ url('/logout.php') }}">Logout</a>
+                        <a class="button primary marketing-action-button" href="{{ url('/quote.php') }}">Get Quote</a>
                     @else
-                        <a class="button secondary marketing-action-button" href="/login.php">Login</a>
-                        <a class="button secondary marketing-action-button" href="/sign-up.php">Sign Up</a>
-                        <a class="button primary marketing-action-button" href="/sign-up.php">Get Quote</a>
+                        <a class="button secondary marketing-action-button" href="{{ url('/login.php') }}">Login</a>
+                        <a class="button secondary marketing-action-button" href="{{ url('/sign-up.php') }}">Sign Up</a>
+                        <a class="button primary marketing-action-button" href="{{ url('/sign-up.php') }}">Get Quote</a>
                     @endif
                 </div>
 
@@ -386,7 +387,7 @@
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand-block">
-                        <img class="footer-logo" src="{{ $legacyAssetBase }}/images/logo.png" alt="1 Dollar Digitizing">
+                        <img class="footer-logo" src="{{ url('images/logo.png') }}" alt="Digitizing Zone">
                         <p>Professional embroidery digitizing services at affordable prices. Quality you can count on.</p>
                         <div class="footer-brand-pills">
                             <span>24 Hour Standard Turnaround</span>
@@ -423,8 +424,8 @@
                             @endif
                         </ul>
                         <div class="footer-cta-group">
-                            <a class="button secondary footer-button" href="/contact-us.php">Contact Us</a>
-                            <a class="button primary footer-button" href="{{ session()->has('customer_user_id') ? '/quote.php' : '/sign-up.php' }}">Get Quote</a>
+                            <a class="button secondary footer-button" href="{{ url('/contact-us.php') }}">Contact Us</a>
+                            <a class="button primary footer-button" href="{{ session()->has('customer_user_id') ? url('/quote.php') : url('/sign-up.php') }}">Get Quote</a>
                         </div>
                     </div>
                 </div>
@@ -434,10 +435,10 @@
             <div class="footer-bottom-wrap">
                 <div class="container">
                     <div class="footer-bottom" style="margin-top:0;padding-top:0;">
-                        <p>&copy; {{ date('Y') }} 1 Dollar Digitizing. All rights reserved.</p>
+                        <p>&copy; {{ date('Y') }} Digitizing Zone. All rights reserved.</p>
                         <div class="footer-bottom-links">
-                            <a href="/privacy-policy.php">Privacy Policy</a>
-                            <a href="/terms.php">Terms</a>
+                            <a href="{{ url('/privacy-policy.php') }}">Privacy Policy</a>
+                            <a href="{{ url('/terms.php') }}">Terms</a>
                         </div>
                     </div>
                 </div>

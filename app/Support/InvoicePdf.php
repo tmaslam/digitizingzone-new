@@ -147,7 +147,7 @@ class InvoicePdf
         }
 
         $safeTitle = self::escape((string) $title);
-        $pdf .= "trailer\n<< /Size ".($maxObject + 1)." /Root 1 0 R /Info << /Title ({$safeTitle}) /Producer (1Dollar Digitizing) >> >>\n";
+        $pdf .= "trailer\n<< /Size ".($maxObject + 1)." /Root 1 0 R /Info << /Title ({$safeTitle}) /Producer (Digitizing Zone) >> >>\n";
         $pdf .= "startxref\n{$xrefOffset}\n%%EOF";
 
         return $pdf;

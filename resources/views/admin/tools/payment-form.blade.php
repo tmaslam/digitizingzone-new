@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Payment Entry | 1Dollar Admin')
+@section('title', 'Payment Entry | Digitizing Zone Admin')
 @section('page_heading', $payment ? 'Edit Payment' : 'New Payment')
 @section('page_subheading', 'Manual transaction entry for the customer payment ledger.')
 

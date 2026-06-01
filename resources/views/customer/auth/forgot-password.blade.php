@@ -27,7 +27,7 @@
                 <div class="alert">{{ $errors->first() }}</div>
             @endif
 
-            <form method="post" action="/forget-password.php" data-validate-form novalidate>
+            <form method="post" action="{{ url('/forget-password.php') }}" data-validate-form novalidate>
                 @csrf
                 <label class="form-field" data-form-field>
                     <span class="field-label">Email or User Name <span class="field-meta required" aria-hidden="true">*</span></span>
@@ -40,7 +40,7 @@
 
                 <div class="actions">
                     <button type="submit">Send Reset Link</button>
-                    <a class="button secondary" href="/login.php">Back to Login</a>
+                    <a class="button secondary" href="{{ url('/login.php') }}">Back to Login</a>
                 </div>
             </form>
         </section>

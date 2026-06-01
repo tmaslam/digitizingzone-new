@@ -13,8 +13,8 @@
             </div>
             <div style="display:flex;gap:12px;flex-wrap:wrap;">
                 <a class="button ghost" href="{{ request()->fullUrlWithQuery(['export' => 'csv']) }}">Download Order List</a>
-                <a class="button secondary" href="/new-order.php">Start Digitizing Order</a>
-                <a class="button secondary" href="/vector-order.php">Start Vector Order</a>
+                <a class="button secondary" href="{{ url('/new-order.php') }}">Start Digitizing Order</a>
+                <a class="button secondary" href="{{ url('/vector-order.php') }}">Start Vector Order</a>
             </div>
         </div>
 
@@ -51,9 +51,9 @@
                     <tbody>
                     @foreach ($orders as $order)
                         <tr>
-                            <td data-label="Order ID"><a class="inline-link" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=orders">{{ $order->order_id }}</a></td>
+                            <td data-label="Order ID"><a class="inline-link" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=orders">{{ $order->order_id }}</a></td>
                             <td data-label="Design Name">
-                                <strong><a class="inline-link" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=orders">{{ $order->design_name }}</a></strong>
+                                <strong><a class="inline-link" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=orders">{{ $order->design_name }}</a></strong>
                                 <span class="table-note">{{ \App\Support\CustomerWorkflowStatus::actionHint($order) }}</span>
                             </td>
                             <td data-label="Submitted">{{ $order->submit_date ?: '-' }}</td>
@@ -64,9 +64,9 @@
                             </td>
                             <td class="action-cell" data-label="Action">
                                 <div class="action-group">
-                                    <a class="button secondary" href="/view-order-detail.php?order_id={{ $order->order_id }}&origin=orders">View Detail</a>
+                                    <a class="button secondary" href="{{ url('/view-order-detail.php') }}?order_id={{ $order->order_id }}&origin=orders">View Detail</a>
                                     @if ($order->can_customer_cancel_flag ?? false)
-                                        <form method="post" action="/orders/{{ $order->order_id }}/cancel" onsubmit="return confirm('Cancel this order?');">
+                                        <form method="post" action="{{ url('/orders/' . $order->order_id . '/cancel') }}" onsubmit="return confirm('Cancel this order?');">
                                             @csrf
                                             <button type="submit" class="button danger">Cancel</button>
                                         </form>

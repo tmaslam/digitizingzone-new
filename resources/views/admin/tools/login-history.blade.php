@@ -6,7 +6,7 @@
     $nextDirection = fn ($column) => $currentColumn === $column && $currentDirection === 'asc' ? 'desc' : 'asc';
 @endphp
 
-@section('title', 'Login History | 1Dollar Admin')
+@section('title', 'Login History | Digitizing Zone Admin')
 @section('page_heading', 'Login History')
 @section('page_subheading', 'Admin and user login events from the existing audit table, without exposing sensitive credentials.')
 
