@@ -47,6 +47,6 @@ jobs:
       - name: "Clear server cache via deploy hook"
         run: |
           sleep 15
-          curl -sf "https://legacy.1dollardigitizing.com/deploy-hook.php?t=${{ steps.hook.outputs.token }}" \
+          curl -sf "https://digitizingzone.com/deploy-hook.php?t=${{ steps.hook.outputs.token }}" \
             && echo "Cache cleared" \
             || echo "Cache hook did not respond - run: php artisan view:clear"
