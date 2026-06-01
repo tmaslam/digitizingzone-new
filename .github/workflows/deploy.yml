@@ -30,8 +30,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.REMOTE_PATH }}
-          protocol: ftps
-          security: loose
+          protocol: ftp
           exclude: |
             .env
             .env.*
