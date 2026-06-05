@@ -4,6 +4,7 @@ namespace App\Support;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class TurnstileVerifier
@@ -29,19 +30,37 @@ class TurnstileVerifier
         $token = trim((string) $request->input('cf-turnstile-response', ''));
         if ($token === '') {
             SecurityAudit::recordBotVerificationFailure($request, $context, 'Turnstile response token was missing.');
+            Log::warning('Turnstile token missing.', ['context' => $context, 'ip' => $request->ip()]);
 
             return false;
         }
 
         try {
+            $secret = trim((string) config('services.turnstile.secret_key', ''));
+
+            Log::info('Turnstile verification request.', [
+                'context' => $context,
+                'ip' => $request->ip(),
+                'token_prefix' => substr($token, 0, 10),
+                'secret_prefix' => substr($secret, 0, 10),
+            ]);
+
             $response = Http::asForm()
                 ->timeout(10)
                 ->post('https://challenges.cloudflare.com/turnstile/v0/siteverify', [
-                    'secret' => trim((string) config('services.turnstile.secret_key', '')),
+                    'secret' => $secret,
                     'response' => $token,
                     'remoteip' => $request->ip(),
                     'idempotency_key' => (string) Str::uuid(),
                 ]);
+
+            $payload = $response->json();
+
+            Log::info('Turnstile verification response.', [
+                'context' => $context,
+                'http_status' => $response->status(),
+                'payload' => $payload,
+            ]);
 
             if (! $response->ok()) {
                 SecurityAudit::recordBotVerificationFailure($request, $context, 'Turnstile verification HTTP failure.', [
@@ -51,7 +70,6 @@ class TurnstileVerifier
                 return false;
             }
 
-            $payload = $response->json();
             if (! is_array($payload)) {
                 SecurityAudit::recordBotVerificationFailure($request, $context, 'Turnstile verification returned non-array payload.');
 
@@ -70,6 +88,11 @@ class TurnstileVerifier
             SecurityAudit::recordBotVerificationFailure($request, $context, 'Turnstile verification exception.', [
                 'message' => $exception->getMessage(),
             ], 'error');
+
+            Log::error('Turnstile verification exception.', [
+                'context' => $context,
+                'message' => $exception->getMessage(),
+            ]);
 
             return false;
         }
