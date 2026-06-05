@@ -11,6 +11,7 @@ use App\Support\TrustedTwoFactorDevice;
 use App\Support\TurnstileVerifier;
 use App\Support\TwoFactorAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 
@@ -143,7 +144,13 @@ class AdminAuthController extends Controller
         }
 
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-        TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        $sent = TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+
+        Log::info('Admin 2FA code sent.', [
+            'admin_user_id' => $user->user_id,
+            'email' => $email,
+            'sent' => $sent,
+        ]);
 
         $request->session()->put('admin_pending_2fa_user_id', (int) $user->user_id);
 

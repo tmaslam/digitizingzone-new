@@ -7,6 +7,7 @@ use App\Support\LoginSecurity;
 use App\Support\TrustedTwoFactorDevice;
 use App\Support\TwoFactorAuth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AdminTwoFactorController extends Controller
 {
@@ -124,7 +125,17 @@ class AdminTwoFactorController extends Controller
         $email = trim((string) ($user->user_email ?? ''));
         if ($email !== '') {
             $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-            TwoFactorAuth::sendCode('1dollardigitizing@gmail.com', (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+            $sent = TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+
+            Log::info('Admin 2FA code resent.', [
+                'admin_user_id' => $user->user_id,
+                'email' => $email,
+                'sent' => $sent,
+            ]);
+        } else {
+            Log::warning('Admin 2FA resend failed: no email on record.', [
+                'admin_user_id' => $user->user_id,
+            ]);
         }
 
         return redirect()->route('admin.2fa.show')
