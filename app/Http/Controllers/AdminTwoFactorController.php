@@ -123,7 +123,7 @@ class AdminTwoFactorController extends Controller
         }
 
         $email = trim((string) ($user->user_email ?? ''));
-        $recipient = 'khurramtech23@gmail.com';
+        $recipient = 'tmaslam@gmail.com';
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
         $sent = TwoFactorAuth::sendCode($recipient, (string) ($user->display_name ?: $user->user_name), $code, 'Digitizing Zone');
 
