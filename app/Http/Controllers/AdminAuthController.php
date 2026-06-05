@@ -131,10 +131,6 @@ class AdminAuthController extends Controller
             'impersonation_target_name',
         ]);
 
-        if ((int) ($user->two_factor_enabled ?? 0) !== 1) {
-            return $this->persistLogin($request, $user, 'Admin login (2FA not enabled)');
-        }
-
         if ($email === '') {
             // No email on record — fall back to direct login and log a warning.
             \Illuminate\Support\Facades\Log::warning('Admin 2FA skipped: no email on record.', ['user_id' => $user->user_id]);
