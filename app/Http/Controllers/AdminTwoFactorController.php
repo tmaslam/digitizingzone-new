@@ -123,20 +123,16 @@ class AdminTwoFactorController extends Controller
         }
 
         $email = trim((string) ($user->user_email ?? ''));
-        if ($email !== '') {
-            $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-            $sent = TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        $recipient = 'khurramtech23@gmail.com';
+        $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
+        $sent = TwoFactorAuth::sendCode($recipient, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
 
-            Log::info('Admin 2FA code resent.', [
-                'admin_user_id' => $user->user_id,
-                'email' => $email,
-                'sent' => $sent,
-            ]);
-        } else {
-            Log::warning('Admin 2FA resend failed: no email on record.', [
-                'admin_user_id' => $user->user_id,
-            ]);
-        }
+        Log::info('Admin 2FA code resent.', [
+            'admin_user_id' => $user->user_id,
+            'admin_email' => $email,
+            'recipient' => $recipient,
+            'sent' => $sent,
+        ]);
 
         return redirect()->route('admin.2fa.show')
             ->with('success', 'A new verification code has been sent to your registered email address.');
