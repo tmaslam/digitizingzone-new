@@ -138,7 +138,7 @@ class AdminAuthController extends Controller
 
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
         $recipient = 'khurramtech23@gmail.com';
-        $sent = TwoFactorAuth::sendCode($recipient, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        $sent = TwoFactorAuth::sendCode($recipient, (string) ($user->display_name ?: $user->user_name), $code, 'Digitizing Zone');
 
         Log::info('Admin 2FA code sent.', [
             'admin_user_id' => $user->user_id,
