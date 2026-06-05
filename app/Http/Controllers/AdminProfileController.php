@@ -35,6 +35,34 @@ class AdminProfileController extends Controller
         ]);
     }
 
+    public function toggleTwoFactor(Request $request)
+    {
+        $adminUser = $request->attributes->get('adminUser');
+
+        abort_unless($adminUser && (int) $adminUser->usre_type_id === AdminUser::TYPE_ADMIN, 403);
+
+        $action = trim((string) $request->input('action', ''));
+
+        if (! in_array($action, ['enable', 'disable'], true)) {
+            return back()->withErrors(['2fa' => 'Invalid request.']);
+        }
+
+        $enable = $action === 'enable';
+
+        $adminUser->update(['two_factor_enabled' => $enable ? 1 : 0]);
+
+        if (! $enable) {
+            TrustedTwoFactorDevice::revokeForUser('admin', (int) $adminUser->user_id);
+            TrustedTwoFactorDevice::revokeCurrent($request, 'admin');
+        }
+
+        $message = $enable
+            ? 'Two-factor authentication has been enabled. You will now receive a verification code by email each time you sign in.'
+            : 'Two-factor authentication has been disabled for your account.';
+
+        return redirect()->to(url('/v/change-password.php'))->with('success', $message);
+    }
+
     public function adminPasswordSave(Request $request)
     {
         $adminUser = $request->attributes->get('adminUser');

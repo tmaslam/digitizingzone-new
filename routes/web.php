@@ -246,6 +246,7 @@ Route::middleware('admin.auth')->group(function () use ($adminPrefix) {
     Route::post('/v/edit-customer-detail.php', [AdminProfileController::class, 'customerUpdate']);
     Route::get('/v/change-password.php', [AdminProfileController::class, 'adminPasswordForm']);
     Route::post('/v/change-password.php', [AdminProfileController::class, 'adminPasswordSave']);
+    Route::post('/v/change-password/2fa', [AdminProfileController::class, 'toggleTwoFactor']);
     Route::get('/v/create-teams.php', [AdminProfileController::class, 'teamForm']);
     Route::post('/v/create-teams.php', [AdminProfileController::class, 'teamSave']);
     Route::get('/v/assign-order.php', [AdminProfileController::class, 'assignForm']);

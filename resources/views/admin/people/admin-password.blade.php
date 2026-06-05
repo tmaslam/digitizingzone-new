@@ -32,4 +32,34 @@
             </form>
         </div>
     </section>
+
+    <section class="card" style="margin-top:24px;">
+        <div class="card-body">
+            <h3 style="margin-top:0;">Two-Factor Authentication</h3>
+            <p style="color:#6b7280;">When enabled, you will be asked to enter a one-time code emailed to your registered address each time you sign in.</p>
+
+            <div style="display:flex; align-items:center; gap:12px; margin:16px 0;">
+                <strong>Status:</strong>
+                @if ((int) ($adminUser->two_factor_enabled ?? 0) === 1)
+                    <span style="color:#1d6f46; font-weight:700;">Enabled</span>
+                @else
+                    <span style="color:#c56b22; font-weight:700;">Disabled</span>
+                @endif
+            </div>
+
+            @if ((int) ($adminUser->two_factor_enabled ?? 0) === 1)
+                <form method="post" action="{{ url('/v/change-password/2fa') }}" onsubmit="return confirm('Are you sure you want to disable two-factor authentication? Your account will be less secure.');">
+                    @csrf
+                    <input type="hidden" name="action" value="disable">
+                    <button type="submit" class="secondary">Disable Two-Factor Authentication</button>
+                </form>
+            @else
+                <form method="post" action="{{ url('/v/change-password/2fa') }}">
+                    @csrf
+                    <input type="hidden" name="action" value="enable">
+                    <button type="submit">Enable Two-Factor Authentication</button>
+                </form>
+            @endif
+        </div>
+    </section>
 @endsection

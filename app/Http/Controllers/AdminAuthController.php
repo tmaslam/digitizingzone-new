@@ -131,8 +131,9 @@ class AdminAuthController extends Controller
             'impersonation_target_name',
         ]);
 
-        // 2FA temporarily disabled for admin logins.
-        return $this->persistLogin($request, $user, 'Admin login (2FA temporarily disabled)');
+        if ((int) ($user->two_factor_enabled ?? 0) !== 1) {
+            return $this->persistLogin($request, $user, 'Admin login (2FA not enabled)');
+        }
 
         if ($email === '') {
             // No email on record — fall back to direct login and log a warning.
@@ -146,7 +147,7 @@ class AdminAuthController extends Controller
         }
 
         $code = TwoFactorAuth::issueCode('admin', (int) $user->user_id);
-        TwoFactorAuth::sendCode('1dollardigitizing@gmail.com', (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
+        TwoFactorAuth::sendCode($email, (string) ($user->display_name ?: $user->user_name), $code, (string) config('app.name', '1Dollar'));
 
         $request->session()->put('admin_pending_2fa_user_id', (int) $user->user_id);
 
