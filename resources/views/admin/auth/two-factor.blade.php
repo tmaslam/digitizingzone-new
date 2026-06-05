@@ -9,8 +9,8 @@
             --bg: #f4ede2;
             --ink: #19232e;
             --muted: #6b7280;
-            --accent: #0f5f66;
-            --accent-dark: #123c55;
+            --accent: #bf5a57;
+            --accent-dark: #983a37;
             --line: rgba(25, 35, 46, 0.26);
             --line-strong: rgba(25, 35, 46, 0.38);
             --shadow: 0 28px 70px rgba(20, 33, 49, 0.14);
@@ -26,7 +26,7 @@
             color: var(--ink);
             overflow-x: hidden;
             background:
-                radial-gradient(circle at top left, rgba(15, 95, 102, 0.14), transparent 30%),
+                radial-gradient(circle at top left, rgba(191, 90, 87, 0.14), transparent 30%),
                 radial-gradient(circle at bottom right, rgba(197, 107, 34, 0.12), transparent 24%),
                 linear-gradient(180deg, #fbf7ef 0%, #f3eadb 100%);
         }
@@ -42,11 +42,11 @@
             backdrop-filter: blur(16px);
         }
         .hero { padding: clamp(28px, 4vw, 54px); background: linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.14)); }
-        .hero span { display: inline-block; padding: 8px 12px; border-radius: 999px; background: rgba(15, 95, 102, 0.1); color: var(--accent-dark); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
+        .hero span { display: inline-block; padding: 8px 12px; border-radius: 999px; background: rgba(191, 90, 87, 0.1); color: var(--accent-dark); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
         .hero h1 { margin: 18px 0 12px; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 0.92; letter-spacing: -0.07em; }
         .hero p { margin: 0; max-width: 480px; color: var(--muted); line-height: 1.75; }
         .hero ul { margin: 30px 0 0; padding: 0; list-style: none; display: grid; gap: 14px; }
-        .hero li::before { content: "•"; color: var(--accent); font-weight: 900; margin-right: 10px; }
+        .hero li::before { content: "•"; color: #d62b2b; font-weight: 900; margin-right: 10px; }
         .panel { padding: clamp(22px, 3vw, 34px); background: rgba(255,255,255,0.75); }
         .card { border-radius: 24px; padding: 24px; background: white; border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(20, 33, 49, 0.08); }
         .card + .card { margin-top: 18px; }
@@ -62,7 +62,7 @@
             transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             font-size: 1.3rem; letter-spacing: 0.18em; font-family: monospace; text-align: center;
         }
-        input:focus { outline: none; border-color: rgba(15, 95, 102, 0.62); background: #ffffff; box-shadow: 0 0 0 4px rgba(15, 95, 102, 0.12); }
+        input:focus { outline: none; border-color: rgba(191, 90, 87, 0.62); background: #ffffff; box-shadow: 0 0 0 4px rgba(191, 90, 87, 0.12); }
         button {
             border: 0; border-radius: 14px; padding: 13px 16px; min-height: 46px;
             background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white;
@@ -72,7 +72,7 @@
         .link-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.78); color: var(--ink); font-weight: 700; text-decoration: none; font-size: 0.9rem; }
         .alert { margin-bottom: 16px; padding: 14px 16px; border-radius: 16px; background: rgba(180, 35, 24, 0.08); color: #9d2d17; border: 1px solid rgba(180, 35, 24, 0.18); }
         .alert.success { background: rgba(21, 115, 71, 0.08); color: #1d6f46; border-color: rgba(21, 115, 71, 0.16); }
-        .notice { padding: 12px 16px; border-radius: 14px; background: rgba(15, 95, 102, 0.07); border: 1px solid rgba(15, 95, 102, 0.14); font-size: 0.88rem; color: var(--ink); line-height: 1.55; margin-bottom: 18px; }
+        .notice { padding: 12px 16px; border-radius: 14px; background: rgba(191, 90, 87, 0.07); border: 1px solid rgba(191, 90, 87, 0.14); font-size: 0.88rem; color: var(--ink); line-height: 1.55; margin-bottom: 18px; }
         @media (max-width: 920px) { .shell { grid-template-columns: 1fr; } .hero, .panel { padding: 26px; } }
         @media (max-width: 640px) { body { padding: 16px; } .shell { border-radius: 24px; } .card { border-radius: 20px; padding: 18px; } .hero h1 { font-size: clamp(2.05rem, 14vw, 3rem); } .actions > * { width: 100%; } .link-btn, button { width: 100%; } }
     </style>
@@ -116,7 +116,7 @@
                     <input id="trust_device" type="checkbox" name="trust_device" value="1" style="width:auto;margin-top:2px;">
                     <span>
                         Trust this browser for 30 days.
-                        <span class="muted" style="display:block;font-size:0.82rem;margin-top:4px;">If selected, we will not ask for another 2FA code on this browser for the next 30 days. <span style="color:#0f5f66;">[v3]</span></span>
+                        <span class="muted" style="display:block;font-size:0.82rem;margin-top:4px;">If selected, we will not ask for another 2FA code on this browser for the next 30 days. <span style="color:#bf5a57;">[v3]</span></span>
                     </span>
                 </label>
                 <button type="submit">Verify &amp; Sign In</button>
